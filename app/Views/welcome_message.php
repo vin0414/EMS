@@ -42,67 +42,68 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-              <span class="menu-title">Basic UI Elements</span>
+              <i class="mdi mdi-server menu-icon"></i>
+              <span class="menu-title">Manage Expenses</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
+                  <a class="nav-link" href="">New Expense</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a>
+                  <a class="nav-link" href="">Upload Contract</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
+                  <a class="nav-link" href="">List of Expenses</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="">Contracts</a>
                 </li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/icons/mdi.html">
-              <i class="mdi mdi-contacts menu-icon"></i>
-              <span class="menu-title">Icons</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-              <span class="menu-title">Forms</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-              <i class="mdi mdi-chart-bar menu-icon"></i>
-              <span class="menu-title">Charts</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
-              <i class="mdi mdi-table-large menu-icon"></i>
-              <span class="menu-title">Tables</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <span class="nav-link" href="#">
-              <span class="menu-title">Docs</span>
+              <span class="menu-title">Reports</span>
             </span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://www.bootstrapdash.com/demo/breeze-free/documentation/documentation.html">
-              <i class="mdi mdi-file-document-box menu-icon"></i>
-              <span class="menu-title">Documentation</span>
+            <a class="nav-link" data-toggle="collapse" href="#ui-report" aria-expanded="false" aria-controls="ui-basic">
+              <i class="mdi mdi-chart-bar menu-icon"></i>
+              <span class="menu-title">Financial Statement</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-report">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="">Bills Payable</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="">Expense Breakdown</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="">Expense Report</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link" href="#">
+              <span class="menu-title">Others</span>
+            </span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="mdi mdi-settings menu-icon"></i>
+              <span class="menu-title">Settings</span>
             </a>
           </li>
           <li class="nav-item sidebar-actions">
             <div class="nav-link">
               <div class="mt-4">
-                <div class="border-none">
-                  <p class="text-black">Notification</p>
-                </div>
                 <ul class="mt-4 pl-0">
-                  <li>Sign Out</li>
+                  <li class="btn bg-primary text-white">Sign Out</li>
                 </ul>
               </div>
             </div>
@@ -257,7 +258,7 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-sm-7">
-                        <h5>Business Survey</h5>
+                        <h5>Monthly Expenses</h5>
                         <p class="text-muted"> Show overview jan 2018 - Dec 2019 <a class="text-muted font-weight-medium pl-2" href="#"><u>See Details</u></a>
                         </p>
                       </div>
@@ -622,8 +623,7 @@
           </div>
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard template</a> from Bootstrapdash.com</span>
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © APFC <?php echo date('Y') ?></span>
             </div>
           </footer>
         </div>
