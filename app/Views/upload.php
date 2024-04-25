@@ -187,6 +187,22 @@
                 </button>
               </div>
             </div>
+            <div class="row">
+              <div class="col-lg-4 form-group">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-title"><i class="mdi mdi-upload"></i> Upload</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 form-group">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-title"><i class="mdi mdi-image"></i> Preview</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
