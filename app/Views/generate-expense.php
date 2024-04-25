@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>EMS - Upload</title>
+    <title>EMS - Generate Expenses</title>
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css" />
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
@@ -52,7 +52,7 @@
                   <a class="nav-link" href="<?=site_url('new-expense')?>">New Expense</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="<?=site_url('upload')?>">Upload Contract</a>
+                  <a class="nav-link" href="<?=site_url('upload')?>">Upload Contract</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?=site_url('manage-expenses')?>">List of Expenses</a>
@@ -64,7 +64,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=site_url('generate-expense')?>">
+            <a class="nav-link active" href="<?=site_url('generate-expense')?>">
               <i class="mdi mdi-buffer menu-icon"></i>
               <span class="menu-title">Generate</span>
             </a>

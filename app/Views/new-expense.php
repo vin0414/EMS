@@ -8,17 +8,23 @@
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css" />
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
-    <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="assets/vendors/select2/select2.min.css" />
+    <link rel="stylesheet" href="assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="shortcut icon" href="assets/images/fastcat.png" />
+    <style>
+      .tableFixHead thead th { position: sticky; top: 0; z-index: 1;color:#fff;background-color:#0275d8;}
+			table  { border-collapse: collapse; width: 100%; }
+			th, td { padding: 8px 16px;color:#000; }
+			tbody{color:#000;}
+    </style>
   </head>
   <body>
     <div class="container-scroller">
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
           <a class="sidebar-brand brand-logo" href="/"><img src="assets/images/fastcat.png" alt="logo"/></a>
-          <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="/"><img src="assets/images/fastcat.png" alt="logo"/></a>
+          <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="/"><img src="assets/images/logo-mini.svg" alt="logo"/></a>
         </div>
         <ul class="nav">
           <li class="nav-item nav-profile">
@@ -64,7 +70,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?=site_url('generate-expense')?>">
               <i class="mdi mdi-buffer menu-icon"></i>
               <span class="menu-title">Generate</span>
             </a>
@@ -101,7 +107,7 @@
             <div class="nav-link">
               <div class="mt-4">
                 <ul class="mt-4 pl-0">
-                  <li class="btn bg-primary text-white">Sign Out</li>
+                  <li class="btn btn-primary text-white">Sign Out</li>
                 </ul>
               </div>
             </div>
@@ -130,20 +136,6 @@
             <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
               <i class="mdi mdi-menu"></i>
             </button>
-            <ul class="navbar-nav">
-              <li class="nav-item nav-search border-0 ml-1 ml-md-3 ml-lg-5 d-none d-md-flex">
-                <form class="nav-link form-inline mt-2 mt-md-0">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" />
-                    <div class="input-group-append">
-                      <span class="input-group-text">
-                        <i class="mdi mdi-magnify"></i>
-                      </span>
-                    </div>
-                  </div>
-                </form>
-              </li>
-            </ul>
             <ul class="navbar-nav navbar-nav-right ml-lg-auto">
               <li class="nav-item dropdown d-none d-xl-flex border-0">
                 <a class="nav-link dropdown-toggle" id="languageDropdown" href="#" data-toggle="dropdown">
@@ -176,15 +168,39 @@
         <div class="main-panel">
           <div class="content-wrapper pb-0">
             <div class="page-header flex-wrap">
-              <h3 class="mb-0"> Hi, welcome back! <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">Expense Monitoring System</span>
+              <h3 class="mb-0"> Expense Sheet List
               </h3>
               <div class="d-flex">
-                <button type="button" class="btn btn-sm bg-white btn-icon-text border">
-                  <i class="mdi mdi-email btn-icon-prepend"></i> Email 
+                <button type="button" class="btn btn-sm bg-white btn-icon-text border" id="btnAdd">
+                  <i class="mdi mdi-plus btn-icon-prepend"></i> Add Entry 
                 </button>
                 <button type="button" class="btn btn-sm bg-white btn-icon-text border ml-3">
                   <i class="mdi mdi-printer btn-icon-prepend"></i> Print 
                 </button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-12 form-group">
+                    <label>Search</label>
+                    <input type="search" class="form-control" id="search"/>
+                  </div>
+                  <div class="col-12 form-group tableFixHead" style="height:400px;overflow-y:auto;">
+                    <table class="table-striped table-hover">
+                      <thead>
+                        <th>Date</th>
+                        <th>Type of Expense</th>
+                        <th>Details</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </thead>
+                      <tbody id="tblexpenses">
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -198,27 +214,75 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Expense Entry</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form method="POST" class="row" id="frmEntry" enctype="multipart/form-data">
+              <div class="col-12 form-group">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label>Type of Expense</label>
+                    <select class="js-example-basic-single" name="expenses" style="width:100%;">
+                      <option value="">Choose</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-3">
+                    <label>From</label>
+                    <input type="date" class="form-control" name="fromdate"/>
+                  </div>
+                  <div class="col-lg-3">
+                    <label>To</label>
+                    <input type="date" class="form-control" name="todate"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 form-group">
+                <label>Details</label>
+                <textarea class="form-control" name="details" style="height:150px;overflow-y:auto;"></textarea>
+              </div>
+              <div class="col-12 form-group">
+                <div class="row">
+                  <div class="col-lg-3">
+                    <label>Mode of Payment</label>
+                    <select class="form-control" name="mode_payment">
+                      <option value="">Choose</option>
+                      <option>Cash</option>
+                      <option>Check</option>
+                      <option>Bank</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.resize.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.pie.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
+    <script src="assets/vendors/select2/select2.min.js"></script>
+    <script src="assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
     <script src="assets/js/off-canvas.js"></script>
     <script src="assets/js/hoverable-collapse.js"></script>
     <script src="assets/js/misc.js"></script>
+    <script src="assets/js/file-upload.js"></script>
+    <script src="assets/js/typeahead.js"></script>
+    <script src="assets/js/select2.js"></script>
     <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
-    <!-- End custom js for this page -->
+    <script>
+      $('#btnAdd').on('click',function(e)
+      {
+        e.preventDefault();
+        $('#myModal').modal('show');
+      });
+    </script>
   </body>
 </html>

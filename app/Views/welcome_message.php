@@ -18,7 +18,7 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
           <a class="sidebar-brand brand-logo" href="/"><img src="assets/images/fastcat.png" alt="logo"/></a>
-          <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="/"><img src="assets/images/fastcat.png" alt="logo"/></a>
+          <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="/"><img src="assets/images/logo-mini.svg" alt="logo"/></a>
         </div>
         <ul class="nav">
           <li class="nav-item nav-profile">
@@ -64,7 +64,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?=site_url('generate-expense')?>">
               <i class="mdi mdi-buffer menu-icon"></i>
               <span class="menu-title">Generate</span>
             </a>

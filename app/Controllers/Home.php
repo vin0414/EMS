@@ -34,4 +34,9 @@ class Home extends BaseController
     {
         return view('list-contracts');
     }
+
+    public function generateExpense()
+    {
+        return view('generate-expense');
+    }
 }

@@ -34,6 +34,17 @@ $routes->get('/new-expense','Home::newExpense');
 $routes->get('/upload','Home::Upload');
 $routes->get('/manage-expenses','Home::manageExpenses');
 $routes->get('/contracts','Home::listContracts');
+$routes->get('/generate-expense','Home::generateExpense');
+
+$routes->group('',['filter'=>'AuthCheck'],function($routes)
+{
+
+});
+
+$routes->group('',['filter'=>'AlreadyLoggedIn'],function($routes)
+{
+
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing
