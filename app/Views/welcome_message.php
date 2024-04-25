@@ -49,19 +49,25 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="">New Expense</a>
+                  <a class="nav-link" href="<?=site_url('new-expense')?>">New Expense</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Upload Contract</a>
+                  <a class="nav-link" href="<?=site_url('upload')?>">Upload Contract</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">List of Expenses</a>
+                  <a class="nav-link" href="<?=site_url('manage-expenses')?>">List of Expenses</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Contracts</a>
+                  <a class="nav-link" href="<?=site_url('contracts')?>">Contracts</a>
                 </li>
               </ul>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="mdi mdi-buffer menu-icon"></i>
+              <span class="menu-title">Generate</span>
+            </a>
           </li>
           <li class="nav-item">
             <span class="nav-link" href="#">
@@ -69,24 +75,16 @@
             </span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-report" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="">
               <i class="mdi mdi-chart-bar menu-icon"></i>
-              <span class="menu-title">Financial Statement</span>
-              <i class="menu-arrow"></i>
+              <span class="menu-title">Expense Report</span>
             </a>
-            <div class="collapse" id="ui-report">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                  <a class="nav-link" href="">Bills Payable</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Expense Breakdown</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Expense Report</a>
-                </li>
-              </ul>
-            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="mdi mdi-receipt menu-icon"></i>
+              <span class="menu-title">Bills Payable</span>
+            </a>
           </li>
           <li class="nav-item">
             <span class="nav-link" href="#">
@@ -320,17 +318,6 @@
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-sm-8">
-                        <p class="text-muted mb-0"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore. <b>Learn More</b>
-                        </p>
-                      </div>
-                      <div class="col-sm-4">
-                        <p class="mb-0 text-muted">Sales Revenue</p>
-                        <h5 class="d-inline-block survey-value mb-0"> $2,45,500 </h5>
-                        <p class="d-inline-block text-danger mb-0"> last 8 months </p>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -475,7 +462,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-xl-4 col-md-6 grid-margin stretch-card">
+              <div class="col-xl-8 col-md-6 grid-margin stretch-card">
                 <div class="card card-invoice">
                   <div class="card-body">
                     <h4 class="card-title pb-3">Pending invoices</h4>
