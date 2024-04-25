@@ -196,7 +196,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                           <div class="color-card">
                             <p class="mb-0 color-card-head">Total Expenses</p>
-                            <h2 class="text-white"> $8,753.<span class="h5">00</span>
+                            <h2 class="text-white">8,753.<span class="h5">00</span>
                             </h2>
                           </div>
                           <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-warning"></i>
@@ -211,7 +211,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                           <div class="color-card">
                             <p class="mb-0 color-card-head">Monthly Expenses</p>
-                            <h2 class="text-white"> $5,300.<span class="h5">00</span>
+                            <h2 class="text-white">5,300.<span class="h5">00</span>
                             </h2>
                           </div>
                           <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-danger"></i>
@@ -226,7 +226,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                           <div class="color-card">
                             <p class="mb-0 color-card-head">For Payment</p>
-                            <h2 class="text-white"> $1,753.<span class="h5">00</span>
+                            <h2 class="text-white">1,753.<span class="h5">00</span>
                             </h2>
                           </div>
                           <i class="card-icon-indicator mdi mdi-cash bg-inverse-icon-primary"></i>
@@ -241,9 +241,9 @@
                         <div class="d-flex justify-content-between align-items-start">
                           <div class="color-card">
                             <p class="mb-0 color-card-head">Paid</p>
-                            <h2 class="text-white">2368</h2>
+                            <h2 class="text-white">2,368.<span class="h5">00</span></h2>
                           </div>
-                          <i class="card-icon-indicator mdi mdi-cash bg-inverse-icon-success"></i>
+                          <i class="card-icon-indicator mdi mdi-check bg-inverse-icon-success"></i>
                         </div>
                         <h6 class="text-white">20.32% Since last month</h6>
                       </div>
@@ -262,7 +262,7 @@
                       </div>
                       <div class="col-sm-5 text-md-right">
                         <button type="button" class="btn btn-icon-text mb-3 mb-sm-0 btn-inverse-primary font-weight-normal">
-                          <i class="mdi mdi-email btn-icon-prepend"></i>Download Report </button>
+                          <i class="mdi mdi-download btn-icon-prepend"></i>Download</button>
                       </div>
                     </div>
                     <div class="row">
@@ -326,13 +326,13 @@
               <div class="col-xl-8 col-sm-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body px-0 overflow-auto">
-                    <h4 class="card-title pl-4">Purchase History</h4>
+                    <h4 class="card-title pl-4">Recent Expenses</h4>
                     <div class="table-responsive">
                       <table class="table">
                         <thead class="bg-light">
                           <tr>
-                            <th>Customer</th>
-                            <th>Project</th>
+                            <th>Expense</th>
+                            <th>Details</th>
                             <th>Invoice</th>
                             <th>Amount</th>
                           </tr>
@@ -430,8 +430,7 @@
               <div class="col-xl-4 col-sm-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="card-title font-weight-medium"> Business Survey </div>
-                    <p class="text-muted"> Lorem ipsum dolor sitadipiscing elit, sed amet do eiusmod tempor we find a new solution </p>
+                    <div class="card-title font-weight-medium">Expenses </div>
                     <div class="d-flex flex-wrap border-bottom py-2 border-top justify-content-between">
                       <img class="survey-img mb-lg-3" src="assets/images/dashboard/img_3.jpg" alt="" />
                       <div class="pt-2">
