@@ -189,6 +189,7 @@
                   <div class="col-12 form-group tableFixHead" style="height:400px;overflow-y:auto;">
                     <table class="table-striped table-hover">
                       <thead>
+                        <th>#</th>
                         <th>Date</th>
                         <th>Type of Expense</th>
                         <th>Details</th>
@@ -215,7 +216,7 @@
       <!-- page-body-wrapper ends -->
     </div>
     <div class="modal fade" id="myModal">
-      <div class="modal-dialog modal-xl">
+      <div class="modal-dialog">
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
@@ -224,24 +225,28 @@
           </div>
           <!-- Modal body -->
           <div class="modal-body">
-            <form method="POST" class="row" id="frmEntry" enctype="multipart/form-data">
+            <form method="POST" class="row" id="frmEntry">
+              <div class="col-12 form-group">
+                <label>Type of Expense</label>
+                <select class="js-example-basic-single" name="expenses" style="width:100%;">
+                  <option value="">Choose</option>
+                </select>
+              </div>
               <div class="col-12 form-group">
                 <div class="row">
                   <div class="col-lg-6">
-                    <label>Type of Expense</label>
-                    <select class="js-example-basic-single" name="expenses" style="width:100%;">
-                      <option value="">Choose</option>
-                    </select>
-                  </div>
-                  <div class="col-lg-3">
                     <label>From</label>
                     <input type="date" class="form-control" name="fromdate"/>
                   </div>
-                  <div class="col-lg-3">
+                  <div class="col-lg-6">
                     <label>To</label>
                     <input type="date" class="form-control" name="todate"/>
                   </div>
                 </div>
+              </div>
+              <div class="col-12 form-group">
+                <label>Paid To</label>
+                <input type="text" class="form-control" name="payee"/>
               </div>
               <div class="col-12 form-group">
                 <label>Details</label>
@@ -249,16 +254,24 @@
               </div>
               <div class="col-12 form-group">
                 <div class="row">
-                  <div class="col-lg-3">
+                  <div class="col-lg-6">
                     <label>Mode of Payment</label>
                     <select class="form-control" name="mode_payment">
                       <option value="">Choose</option>
                       <option>Cash</option>
                       <option>Check</option>
+                      <option>Credit</option>
                       <option>Bank</option>
                     </select>
                   </div>
+                  <div class="col-lg-6">
+                    <label>Amount To Be Paid</label>
+                    <input type="text" class="form-control" name="amount" placeholder="0.00"/>
+                  </div>
                 </div>
+              </div>
+              <div class="col-12 form-group">
+                <button type="submit" class="btn btn-primary" id="BtnSend">Save Entry</button>
               </div>
             </form>
           </div>
