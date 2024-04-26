@@ -130,20 +130,6 @@
             <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
               <i class="mdi mdi-menu"></i>
             </button>
-            <ul class="navbar-nav">
-              <li class="nav-item nav-search border-0 ml-1 ml-md-3 ml-lg-5 d-none d-md-flex">
-                <form class="nav-link form-inline mt-2 mt-md-0">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" />
-                    <div class="input-group-append">
-                      <span class="input-group-text">
-                        <i class="mdi mdi-magnify"></i>
-                      </span>
-                    </div>
-                  </div>
-                </form>
-              </li>
-            </ul>
             <ul class="navbar-nav navbar-nav-right ml-lg-auto">
               <li class="nav-item dropdown d-none d-xl-flex border-0">
                 <a class="nav-link dropdown-toggle" id="languageDropdown" href="#" data-toggle="dropdown">
@@ -176,16 +162,11 @@
         <div class="main-panel">
           <div class="content-wrapper pb-0">
             <div class="page-header flex-wrap">
-              <h3 class="mb-0"> Hi, welcome back! <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">Expense Monitoring System</span>
-              </h3>
-              <div class="d-flex">
-                <button type="button" class="btn btn-sm bg-white btn-icon-text border">
-                  <i class="mdi mdi-email btn-icon-prepend"></i> Email 
-                </button>
-                <button type="button" class="btn btn-sm bg-white btn-icon-text border ml-3">
-                  <i class="mdi mdi-printer btn-icon-prepend"></i> Print 
-                </button>
-              </div>
+              <h3 class="mb-0">Contracts</h3>
+            </div>
+            <div class="row">
+              <div class="col-lg-8 form-group"></div>
+              <div class="col-lg-4 form-group"></div>
             </div>
           </div>
           <footer class="footer">

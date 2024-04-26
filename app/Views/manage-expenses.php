@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
     <link rel="shortcut icon" href="assets/images/fastcat.png" />
   </head>
   <body>
@@ -164,11 +165,66 @@
             <div class="page-header flex-wrap">
               <h3 class="mb-0"> List of Expenses
               </h3>
-              <div class="d-flex">
-                <input type="search" class="border bg-white" name="search" id="search" placeholder="Search"/>
-                <button type="button" class="btn btn-sm bg-white btn-icon-text border ml-3">
-                  <i class="mdi mdi-printer btn-icon-prepend"></i> Print 
-                </button>
+            </div>
+            <div class="tabs">
+              <ul class="nav nav-pills">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="pill" href="#all_expense">All Expense</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="pill" href="#pending">Pending</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="pill" href="#overdue">Overdue</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="all_expense">
+                  <div class="table-responsive">
+                    <table class="table" style="width:100%;">
+                      <thead>
+                        <th class="bg-primary text-white">Date Created</th>
+                        <th class="bg-primary text-white">Type of Expense</th>
+                        <th class="bg-primary text-white">Details</th>
+                        <th class="bg-primary text-white">Amount</th>
+                        <th class="bg-primary text-white">Payment Method</th>
+                        <th class="bg-primary text-white">Lifespan</th>
+                        <th class="bg-primary text-white">End Date</th>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="pending">
+                  <div class="table-responsive">
+                    <table class="table" style="width:100%;">
+                      <thead>
+                        <th class="bg-primary text-white">Date Created</th>
+                        <th class="bg-primary text-white">Type of Expense</th>
+                        <th class="bg-primary text-white">Details</th>
+                        <th class="bg-primary text-white">Amount</th>
+                        <th class="bg-primary text-white">Due Date</th>
+                        <th class="bg-primary text-white">Action</th>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="overdue">
+                  <div class="table-responsive">
+                    <table class="table" style="width:100%;">
+                      <thead>
+                        <th class="bg-primary text-white">Date Created</th>
+                        <th class="bg-primary text-white">Type of Expense</th>
+                        <th class="bg-primary text-white">Details</th>
+                        <th class="bg-primary text-white">Amount</th>
+                        <th class="bg-primary text-white">Due Date</th>
+                        <th class="bg-primary text-white">Action</th>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -204,5 +260,11 @@
     <!-- Custom js for this page -->
     <script src="assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+    <script>
+      $(document).ready( function () {
+          $('.table').DataTable();
+      });
+    </script>
   </body>
 </html>

@@ -235,20 +235,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-xl-12 col-md-6 stretch-card pb-sm-3 pb-lg-0">
-                    <div class="card bg-success">
-                      <div class="card-body px-3 py-4">
-                        <div class="d-flex justify-content-between align-items-start">
-                          <div class="color-card">
-                            <p class="mb-0 color-card-head">Paid</p>
-                            <h2 class="text-white">2,368.<span class="h5">00</span></h2>
-                          </div>
-                          <i class="card-icon-indicator mdi mdi-check bg-inverse-icon-success"></i>
-                        </div>
-                        <h6 class="text-white">20.32% Since last month</h6>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
               <div class="col-xl-9 stretch-card grid-margin">

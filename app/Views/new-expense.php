@@ -183,21 +183,49 @@
             </div>
             <div class="card">
               <div class="card-body">
-                <div class="tableFixHead" style="height:500px;overflow-y:auto;">
-                  <table class="table-striped table-hover">
-                    <thead>
-                      <th>#</th>
-                      <th>Date</th>
-                      <th>Type of Expense</th>
-                      <th>Details</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </thead>
-                    <tbody id="tblexpenses">
-
-                    </tbody>
-                  </table>
-                </div>
+                <form method="POST" class="row" id="frmExpense" action="">
+                  <div class="col-12 form-group tableFixHead" style="height:400px;overflow-y:auto;">
+                    <table class="table-striped table-hover">
+                      <thead>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Type of Expense</th>
+                        <th>Details</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </thead>
+                      <tbody id="tblexpenses">
+                        <tr>
+                          <td>
+                            <input type="checkbox" name="itemID[]" id="itemID" style="height:20px;width:18px;" checked/>
+                          </td>
+                          <td>2024-04-25</td>
+                          <td>Rental Expense</td>
+                          <td>Ticketing Office</td>
+                          <th><span class="badge btn-warning text-white">NOT SUBMITTED</span></th>
+                          <td>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-primary btn-sm">Select</button>
+                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
+                              <h6 class="dropdown-header">Action</h6>
+                              <a class="dropdown-item" href="#">Submit</a>
+                              <a class="dropdown-item" href="#">Delete</a>
+                              <a class="dropdown-item" href="#">Edit</a>
+                            </div>
+                          </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="col-12 form-group">
+                    <button type="submit" class="btn btn-primary" id="btnSave"><i class="mdi mdi-content-save"></i>&nbsp;Submit All</button>
+                    <button type="button" class="btn btn-danger" id="btndelete"><i class="mdi mdi-delete-variant"></i>&nbsp;Delete All</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -250,7 +278,7 @@
               </div>
               <div class="col-12 form-group">
                 <div class="row">
-                  <div class="col-lg-6">
+                  <div class="col-lg-4">
                     <label>Mode of Payment</label>
                     <select class="form-control" name="mode_payment">
                       <option value="">Choose</option>
@@ -260,7 +288,11 @@
                       <option>Bank</option>
                     </select>
                   </div>
-                  <div class="col-lg-6">
+                  <div class="col-lg-4">
+                    <label>Amount</label>
+                    <input type="text" class="form-control" name="amount" placeholder="0.00"/>
+                  </div>
+                  <div class="col-lg-4">
                     <label>Amount To Be Paid</label>
                     <input type="text" class="form-control" name="amount" placeholder="0.00"/>
                   </div>
