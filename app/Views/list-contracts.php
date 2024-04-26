@@ -171,8 +171,128 @@
               <h3 class="mb-0">Contracts</h3>
             </div>
             <div class="row">
-              <div class="col-lg-8 form-group"></div>
-              <div class="col-lg-4 form-group"></div>
+              <div class="col-lg-9 form-group">
+                <div class="row">
+                  <div class="col-12 form-group">
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Contracts" aria-describedby="basic-addon2" />
+                        <div class="input-group-append">
+                          <button class="btn btn-sm btn-primary" type="button">
+                            <i class="mdi mdi-magnify"></i>
+                          </button>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-12 form-group">
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-12 form-group">
+                                Sample title of contract
+                              </div>
+                              <div class="col-12 form-group">
+                                <img src="Files/Receive-report (19).pdf" style="height:200px;width:100%;"/>
+                              </div>
+                              <div class="col-12 form-group">
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                  <a href="" class="btn btn-outline-primary form-control btn-sm">Preview</a>
+                                  </div>
+                                  <div class="col-lg-6">
+                                  <button type="button" class="btn btn-primary form-control btn-sm">Edit</button>
+                                  </div>
+                                </div> 
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-12 form-group">
+                                Sample title of contract
+                              </div>
+                              <div class="col-12 form-group">
+                                <img src="Files/Receive-report (19).pdf" style="height:200px;width:100%;"/>
+                              </div>
+                              <div class="col-12 form-group">
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                  <a href="" class="btn btn-outline-primary form-control btn-sm">Preview</a>
+                                  </div>
+                                  <div class="col-lg-6">
+                                  <button type="button" class="btn btn-primary form-control btn-sm">Edit</button>
+                                  </div>
+                                </div> 
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-12 form-group">
+                                Sample title of contract
+                              </div>
+                              <div class="col-12 form-group">
+                                <img src="Files/Receive-report (19).pdf" style="height:200px;width:100%;"/>
+                              </div>
+                              <div class="col-12 form-group">
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                  <a href="" class="btn btn-outline-primary form-control btn-sm">Preview</a>
+                                  </div>
+                                  <div class="col-lg-6">
+                                  <button type="button" class="btn btn-primary form-control btn-sm">Edit</button>
+                                  </div>
+                                </div> 
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 form-group">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-title"><b>Upcoming Contracts</b></div>
+                    <label><small>To Be Expired</small></label>
+                    <div class="row border-bottom pb-3 pt-4 align-items-center mx-0">
+                      <div class="col-12 pl-0">
+                        <div class="d-flex">
+                          <div class="pl-2">
+                            <h6 class="m-0">Contract No 1</h6>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3 pl-0 pl-sm-3">
+                        <div class="badge badge-inverse-success mt-3 mt-sm-0">Expiration : 2025-01-04</div>
+                      </div>
+                    </div>
+                    <div class="row border-bottom pb-3 pt-4 align-items-center mx-0">
+                      <div class="col-12 pl-0">
+                        <div class="d-flex">
+                          <div class="pl-2">
+                            <h6 class="m-0">Contract No 2</h6>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3 pl-0 pl-sm-3">
+                        <div class="badge badge-inverse-success mt-3 mt-sm-0">Expiration : 2024-12-14</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <footer class="footer">
