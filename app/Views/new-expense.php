@@ -83,6 +83,12 @@
           <li class="nav-item">
             <a class="nav-link" href="">
               <i class="mdi mdi-chart-bar menu-icon"></i>
+              <span class="menu-title">Rental Expense</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="mdi mdi-chart-bar menu-icon"></i>
               <span class="menu-title">Expense Report</span>
             </a>
           </li>
@@ -168,64 +174,121 @@
         <div class="main-panel">
           <div class="content-wrapper pb-0">
             <div class="page-header flex-wrap">
-              <h3 class="mb-0"> Expense Sheet List
-              </h3>
-              <div class="d-flex">
-                <input type="search" class="border bg-white" name="search" id="search" placeholder="Search"/>
-                &nbsp;
-                <button type="button" class="btn btn-sm bg-white btn-icon-text border" id="btnAdd">
-                  <i class="mdi mdi-plus btn-icon-prepend"></i> Add Entry 
-                </button>
-                <button type="button" class="btn btn-sm bg-white btn-icon-text border ml-3">
-                  <i class="mdi mdi-printer btn-icon-prepend"></i> Print 
-                </button>
-              </div>
+              <h3 class="mb-0"> Expense Sheet List</h3>
             </div>
             <div class="card">
               <div class="card-body">
-                <form method="POST" class="row" id="frmExpense" action="">
-                  <div class="col-12 form-group tableFixHead" style="height:400px;overflow-y:auto;">
-                    <table class="table-striped table-hover">
-                      <thead>
-                        <th>#</th>
-                        <th>Date</th>
-                        <th>Type of Expense</th>
-                        <th>Details</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                      </thead>
-                      <tbody id="tblexpenses">
-                        <tr>
-                          <td>
-                            <input type="checkbox" name="itemID[]" id="itemID" style="height:20px;width:18px;" checked/>
-                          </td>
-                          <td>2024-04-25</td>
-                          <td>Rental Expense</td>
-                          <td>Ticketing Office</td>
-                          <th><span class="badge btn-warning text-white">NOT SUBMITTED</span></th>
-                          <td>
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-primary btn-sm">Select</button>
-                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
-                              <h6 class="dropdown-header">Action</h6>
-                              <a class="dropdown-item" href="#">Submit</a>
-                              <a class="dropdown-item" href="#">Delete</a>
-                              <a class="dropdown-item" href="#">Edit</a>
+                <div class="tabs">
+                  <ul class="nav nav-pills">
+                    <li class="nav-item">
+                      <a class="nav-link active" data-toggle="pill" href="#rental">Rental Expense</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="pill" href="#utilities">Utilities</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="pill" href="#consumables">Consumables</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content">
+                    <div class="tab-pane fade show active" id="rental">
+                      <button type="button" class="btn btn-sm bg-white btn-icon-text border" id="btnAdd">
+                        <i class="mdi mdi-plus btn-icon-prepend"></i> Add Entry 
+                      </button>
+                      <form method="POST" class="row" id="frmExpense" action="" style="margin-top:10px;">
+                        <div class="col-12 form-group tableFixHead" style="height:400px;overflow-y:auto;">
+                          <table class="table-striped table-hover">
+                            <thead>
+                              <th>#</th>
+                              <th>Date</th>
+                              <th>Type of Expense</th>
+                              <th>Details</th>
+                              <th>Status</th>
+                              <th>Action</th>
+                            </thead>
+                            <tbody id="tblexpenses">
+                              <tr>
+                                <td>
+                                  <input type="checkbox" name="itemID[]" id="itemID" style="height:20px;width:18px;" checked/>
+                                </td>
+                                <td>2024-04-25</td>
+                                <td>Rental Expense</td>
+                                <td>Ticketing Office</td>
+                                <th><span class="badge btn-warning text-white">NOT SUBMITTED</span></th>
+                                <td>
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-primary btn-sm">Select</button>
+                                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
+                                      <h6 class="dropdown-header">Action</h6>
+                                      <a class="dropdown-item" href="#">Submit</a>
+                                      <a class="dropdown-item" href="#">Delete</a>
+                                      <a class="dropdown-item" href="#">Edit</a>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="col-12 form-group">
+                          <button type="submit" class="btn btn-primary" id="btnSave"><i class="mdi mdi-content-save"></i>&nbsp;Submit All</button>
+                          <button type="button" class="btn btn-danger" id="btndelete"><i class="mdi mdi-delete-variant"></i>&nbsp;Delete All</button>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="tab-pane fade" id="utilities">
+                      <form method="POST" class="row" id="frmUtilities">
+                        <div class="col-12 form-group">
+                          <label>Type of Expense</label>
+                          <select class="js-example-basic-single" name="expenses" style="width:100%;">
+                            <option value="">Choose</option>
+                          </select>
+                        </div>
+                        <div class="col-12 form-group">
+                          <label>Paid To</label>
+                          <input type="text" class="form-control" name="payee"/>
+                        </div>
+                        <div class="col-12 form-group">
+                          <label>Details</label>
+                          <textarea class="form-control" name="details" style="height:150px;overflow-y:auto;"></textarea>
+                        </div>
+                        <div class="col-12 form-group">
+                        <input type="checkbox" name="due_date_selection" id="due_date_selection" style="height:20px;width:18px;"/>&nbsp;Last Day of the Month?
+                        </div>
+                        <div class="col-12 form-group">
+                          <div class="row">
+                            <div class="col-lg-4">
+                              <label>Day of the Month</label>
+                              <input type="number" class="form-control" name="day_month"/>
+                            </div>
+                            <div class="col-lg-4">
+                              <label>Mode of Payment</label>
+                              <select class="form-control" name="mode_payment">
+                                <option value="">Choose</option>
+                                <option>Cash</option>
+                                <option>Check</option>
+                                <option>Credit</option>
+                                <option>Bank</option>
+                              </select>
+                            </div>
+                            <div class="col-lg-4">
+                              <label>Amount</label>
+                              <input type="text" class="form-control" name="amount" placeholder="0.00"/>
                             </div>
                           </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                        </div>
+                        <div class="col-12 form-group">
+                          <button type="submit" class="btn btn-primary" id="BtnSend">Save Entry</button>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="tab-pane fade" id="consumables">
+                    </div>
                   </div>
-                  <div class="col-12 form-group">
-                    <button type="submit" class="btn btn-primary" id="btnSave"><i class="mdi mdi-content-save"></i>&nbsp;Submit All</button>
-                    <button type="button" class="btn btn-danger" id="btndelete"><i class="mdi mdi-delete-variant"></i>&nbsp;Delete All</button>
-                  </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>
@@ -244,7 +307,7 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Expense Entry</h4>
+            <h4 class="modal-title">Rentals</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <!-- Modal body -->
@@ -257,24 +320,27 @@
                 </select>
               </div>
               <div class="col-12 form-group">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <label>From</label>
-                    <input type="date" class="form-control" name="fromdate"/>
-                  </div>
-                  <div class="col-lg-6">
-                    <label>To</label>
-                    <input type="date" class="form-control" name="todate"/>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 form-group">
                 <label>Paid To</label>
                 <input type="text" class="form-control" name="payee"/>
               </div>
               <div class="col-12 form-group">
                 <label>Details</label>
                 <textarea class="form-control" name="details" style="height:150px;overflow-y:auto;"></textarea>
+              </div>
+              <div class="col-12 form-group">
+              <input type="checkbox" name="due_date_selection" id="due_date_selection" style="height:20px;width:18px;"/>&nbsp;Last Day of the Month?
+              </div>
+              <div class="col-12 form-group">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label>Life Span</label>
+                    <input type="number" class="form-control" name="lifespan"/>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Day of the Month</label>
+                    <input type="number" class="form-control" name="day_month"/>
+                  </div>
+                </div>
               </div>
               <div class="col-12 form-group">
                 <div class="row">

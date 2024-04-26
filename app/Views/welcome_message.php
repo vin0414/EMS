@@ -77,6 +77,12 @@
           <li class="nav-item">
             <a class="nav-link" href="">
               <i class="mdi mdi-chart-bar menu-icon"></i>
+              <span class="menu-title">Rental Expense</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="mdi mdi-chart-bar menu-icon"></i>
               <span class="menu-title">Expense Report</span>
             </a>
           </li>

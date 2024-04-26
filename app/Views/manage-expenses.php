@@ -78,6 +78,12 @@
           <li class="nav-item">
             <a class="nav-link" href="">
               <i class="mdi mdi-chart-bar menu-icon"></i>
+              <span class="menu-title">Rental Expense</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="mdi mdi-chart-bar menu-icon"></i>
               <span class="menu-title">Expense Report</span>
             </a>
           </li>
@@ -165,7 +171,7 @@
             <div class="page-header flex-wrap">
               <h3 class="mb-0"> List of Expenses
               </h3>
-            </div>
+            </div> 
             <div class="tabs">
               <ul class="nav nav-pills">
                 <li class="nav-item">
@@ -189,9 +195,19 @@
                         <th class="bg-primary text-white">Amount</th>
                         <th class="bg-primary text-white">Payment Method</th>
                         <th class="bg-primary text-white">Lifespan</th>
-                        <th class="bg-primary text-white">End Date</th>
+                        <th class="bg-primary text-white">Due Date</th>
                       </thead>
-                      <tbody></tbody>
+                      <tbody>
+                        <tr>
+                          <td>2024-04-26</td>
+                          <td>Service Fee</td>
+                          <td>Sample of details here</td>
+                          <td>50,000.00</td>
+                          <td>Credit</td>
+                          <td>0</td>
+                          <td>2024-04-30</td>
+                        </tr>
+                      </tbody>
                     </table>
                   </div>
                 </div>
@@ -206,7 +222,28 @@
                         <th class="bg-primary text-white">Due Date</th>
                         <th class="bg-primary text-white">Action</th>
                       </thead>
-                      <tbody></tbody>
+                      <tbody>
+                        <tr>
+                          <td>2024-04-26</td>
+                          <td>Service Fee</td>
+                          <td>Sample of details here</td>
+                          <td>50,000.00</td>
+                          <td>2024-04-30</td>
+                          <td>
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-primary btn-sm">Select</button>
+                              <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
+                                <h6 class="dropdown-header">Action</h6>
+                                <a class="dropdown-item" href="#">Upload Proof</a>
+                                <a class="dropdown-item" href="#">Cancel</a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
                   </div>
                 </div>
