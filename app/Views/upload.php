@@ -130,20 +130,6 @@
             <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
               <i class="mdi mdi-menu"></i>
             </button>
-            <ul class="navbar-nav">
-              <li class="nav-item nav-search border-0 ml-1 ml-md-3 ml-lg-5 d-none d-md-flex">
-                <form class="nav-link form-inline mt-2 mt-md-0">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" />
-                    <div class="input-group-append">
-                      <span class="input-group-text">
-                        <i class="mdi mdi-magnify"></i>
-                      </span>
-                    </div>
-                  </div>
-                </form>
-              </li>
-            </ul>
             <ul class="navbar-nav navbar-nav-right ml-lg-auto">
               <li class="nav-item dropdown d-none d-xl-flex border-0">
                 <a class="nav-link dropdown-toggle" id="languageDropdown" href="#" data-toggle="dropdown">
@@ -175,23 +161,32 @@
         </nav>
         <div class="main-panel">
           <div class="content-wrapper pb-0">
-            <div class="page-header flex-wrap">
-              <h3 class="mb-0"> Hi, welcome back! <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">Expense Monitoring System</span>
-              </h3>
-              <div class="d-flex">
-                <button type="button" class="btn btn-sm bg-white btn-icon-text border">
-                  <i class="mdi mdi-email btn-icon-prepend"></i> Email 
-                </button>
-                <button type="button" class="btn btn-sm bg-white btn-icon-text border ml-3">
-                  <i class="mdi mdi-printer btn-icon-prepend"></i> Print 
-                </button>
-              </div>
-            </div>
             <div class="row">
               <div class="col-lg-4 form-group">
                 <div class="card">
                   <div class="card-body">
                     <div class="card-title"><i class="mdi mdi-upload"></i> Upload</div>
+                    <form method="POST" class="row" id="frmUpload" enctype="multipart/form-data">
+                      <div class="col-12 form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" name="title_file" required/>
+                      </div>
+                      <div class="col-12 form-group">
+                        <label>Description</label>
+                        <textarea class="form-control" name="details" style="height:120px;" required></textarea>
+                      </div>
+                      <div class="col-12 form-group">
+                        <label>Expiration Date</label>
+                        <input type="date" class="form-control" name="expiration_date" required/>
+                      </div>
+                      <div class="col-12 form-group">
+                        <label>Attachment</label>
+                        <input type="file" class="form-control" name="file" id="file" onchange="DisplayFile()" required/>
+                      </div>
+                      <div class="col-12 form-group">
+                        <button type="submit" class="btn btn-primary" id="BtnSubmit">Submit</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -199,6 +194,9 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="card-title"><i class="mdi mdi-image"></i> Preview</div>
+                    <object data="" type="application/pdf" id="fileContents" style="width:100%;height:500px;">
+                    <div>No PDF viewer available</div>
+                    </object>
                   </div>
                 </div>
               </div>
@@ -233,8 +231,18 @@
     <script src="assets/js/hoverable-collapse.js"></script>
     <script src="assets/js/misc.js"></script>
     <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
-    <!-- End custom js for this page -->
+    <script>
+      function DisplayFile()
+      {
+        var file = document.getElementById("file").files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+              document.querySelector('#fileContents').setAttribute('data', evt.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+      }
+    </script>
   </body>
 </html>

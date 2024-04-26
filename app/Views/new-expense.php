@@ -171,6 +171,8 @@
               <h3 class="mb-0"> Expense Sheet List
               </h3>
               <div class="d-flex">
+                <input type="search" class="border bg-white" name="search" id="search" placeholder="Search"/>
+                &nbsp;
                 <button type="button" class="btn btn-sm bg-white btn-icon-text border" id="btnAdd">
                   <i class="mdi mdi-plus btn-icon-prepend"></i> Add Entry 
                 </button>
@@ -181,26 +183,20 @@
             </div>
             <div class="card">
               <div class="card-body">
-                <div class="row g-3">
-                  <div class="col-12 form-group">
-                    <label>Search</label>
-                    <input type="search" class="form-control" id="search"/>
-                  </div>
-                  <div class="col-12 form-group tableFixHead" style="height:400px;overflow-y:auto;">
-                    <table class="table-striped table-hover">
-                      <thead>
-                        <th>#</th>
-                        <th>Date</th>
-                        <th>Type of Expense</th>
-                        <th>Details</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                      </thead>
-                      <tbody id="tblexpenses">
+                <div class="tableFixHead" style="height:500px;overflow-y:auto;">
+                  <table class="table-striped table-hover">
+                    <thead>
+                      <th>#</th>
+                      <th>Date</th>
+                      <th>Type of Expense</th>
+                      <th>Details</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </thead>
+                    <tbody id="tblexpenses">
 
-                      </tbody>
-                    </table>
-                  </div>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
