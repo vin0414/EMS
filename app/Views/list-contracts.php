@@ -46,7 +46,7 @@
               <span class="menu-title">Manage Expenses</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse show" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
                   <a class="nav-link" href="<?=site_url('new-expense')?>">New Expense</a>
@@ -170,6 +170,11 @@
             <div class="page-header flex-wrap">
               <h3 class="mb-0">Contracts</h3>
             </div>
+            <?php if(!empty(session()->getFlashdata('success'))) : ?>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= session()->getFlashdata('success'); ?>
+              </div>
+            <?php endif; ?>
             <div class="row">
               <div class="col-lg-9 form-group">
                 <div class="row">
@@ -202,7 +207,7 @@
                                   <a href="" class="btn btn-outline-primary form-control btn-sm">Preview</a>
                                   </div>
                                   <div class="col-lg-6">
-                                  <button type="button" class="btn btn-primary form-control btn-sm">Edit</button>
+                                  <a href="<?=site_url('edit/')?><?php echo $row['Title'] ?>" class="btn btn-primary form-control btn-sm">Edit</a>
                                   </div>
                                 </div> 
                               </div>
@@ -223,27 +228,8 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="card-title"><b>Upcoming Contracts</b></div>
-                    <label><small>To Be Expired</small></label>
-                    <div class="row border-bottom pb-3 pt-4 align-items-center mx-0">
-                      <div class="col-12 pl-0">
-                        <div class="d-flex">
-                          <div class="pl-2">
-                            <h6 class="m-0">Contract No 1</h6>
-                            <div class="badge badge-inverse-success mt-3 mt-sm-0">Expiration : 2025-01-04</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row border-bottom pb-3 pt-4 align-items-center mx-0">
-                      <div class="col-12 pl-0">
-                        <div class="d-flex">
-                          <div class="pl-2">
-                            <h6 class="m-0">Contract No 2</h6>
-                            <div class="badge badge-inverse-success">Expiration : 2024-12-14</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <label><small>To Be Expired in 3 Days</small></label>
+                    <div id="list"></div>
                   </div>
                 </div>
               </div>
@@ -278,5 +264,16 @@
     <script src="assets/js/hoverable-collapse.js"></script>
     <script src="assets/js/misc.js"></script>
     <!-- endinject -->
+    <script>
+      $(document).ready(function(){
+        loadExpiredContracts();
+      });
+      function loadExpiredContracts()
+      {
+        $.ajax({
+          url:"<?=site_url('list-of-contracts')?>",method:"GET",success:function(response){$('#list').html(response);}
+        });
+      }
+    </script>
   </body>
 </html>

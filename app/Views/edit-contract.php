@@ -4,27 +4,27 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>EMS - Upload</title>
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css" />
-    <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css" />
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
-    <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="shortcut icon" href="assets/images/fastcat.png" />
+    <title>EMS - Edit Contract</title>
+    <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/flag-icon-css/css/flag-icon.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="/assets/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="shortcut icon" href="/assets/images/fastcat.png" />
   </head>
   <body>
     <div class="container-scroller">
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
-          <a class="sidebar-brand brand-logo" href="/"><img src="assets/images/fastcat.png" alt="logo"/></a>
-          <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="/"><img src="assets/images/logo-mini.svg" alt="logo"/></a>
+          <a class="sidebar-brand brand-logo" href="/"><img src="/assets/images/fastcat.png" alt="logo"/></a>
+          <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="/"><img src="/assets/images/logo-mini.svg" alt="logo"/></a>
         </div>
         <ul class="nav">
           <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
               <div class="nav-profile-image">
-                <img src="assets/images/faces/pic-1.png" alt="profile" />
+                <img src="/assets/images/faces/pic-1.png" alt="profile" />
                 <span class="login-status online"></span>
                 <!--change to offline or busy as needed-->
               </div>
@@ -46,19 +46,22 @@
               <span class="menu-title">Manage Expenses</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse show" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
                   <a class="nav-link" href="<?=site_url('new-expense')?>">New Expense</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="<?=site_url('upload')?>">Upload Contract</a>
+                  <a class="nav-link" href="<?=site_url('upload')?>">Upload Contract</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?=site_url('manage-expenses')?>">List of Expenses</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?=site_url('contracts')?>">Contracts</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="">Edit Contract</a>
                 </li>
               </ul>
             </div>
@@ -168,59 +171,48 @@
         <div class="main-panel">
           <div class="content-wrapper pb-0">
             <div class="row">
-              <div class="col-lg-4 form-group">
+              <div class="col-lg-3 form-group"></div>
+              <div class="col-lg-6 form-group">
                 <div class="card">
                   <div class="card-body">
-                    <div class="card-title"><i class="mdi mdi-upload"></i> Upload</div>
+                    <div class="card-title"><i class="mdi mdi-pencil-outline"></i> Edit Contract</div>
                     <?php if(!empty(session()->getFlashdata('fail'))) : ?>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <?= session()->getFlashdata('fail'); ?>
-                    </div>
-                  <?php endif; ?>
-                  <?php if(!empty(session()->getFlashdata('success'))) : ?>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                      <?= session()->getFlashdata('success'); ?>
-                    </div>
-                  <?php endif; ?>
-                    <form method="POST" class="row" id="frmUpload" action="<?=base_url('save-contract')?>" enctype="multipart/form-data">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?= session()->getFlashdata('fail'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <form method="POST" class="row" id="frmUpload" action="<?=base_url('edit-contract')?>" enctype="multipart/form-data">
+                      <?php if($list):?>
+                      <input type="hidden" name="contractID" value="<?php echo $list['contractID'] ?>"/>
                       <div class="col-12 form-group">
                         <label>Title</label>
-                        <input type="text" class="form-control" name="title_file" required/>
+                        <input type="text" class="form-control" name="title_file" value="<?php echo $list['Title'] ?>" required/>
                       </div>
                       <div class="col-12 form-group">
                         <label>Description</label>
-                        <textarea class="form-control" name="details" style="height:120px;" required></textarea>
+                        <textarea class="form-control" name="details" style="height:120px;" required><?php echo $list['Details'] ?></textarea>
                       </div>
                       <div class="col-12 form-group">
                         <div class="row">
                           <div class="col-lg-6">
                             <label>From Date</label>
-                            <input type="date" class="form-control" name="from_date" required/>
+                            <input type="date" class="form-control" name="from_date" value="<?php echo $list['Fromdate'] ?>" required/>
                           </div>
                           <div class="col-lg-6">
                             <label>End Date</label>
-                            <input type="date" class="form-control" name="expiration_date" required/>
+                            <input type="date" class="form-control" name="expiration_date" value="<?php echo $list['Todate'] ?>" required/>
                           </div>
                         </div>
                       </div>
                       <div class="col-12 form-group">
                         <label>Attachment</label>
-                        <input type="file" class="form-control" name="file" id="file" onchange="DisplayFile()" required/>
+                        <input type="file" class="form-control" name="file" id="file"/>
                       </div>
                       <div class="col-12 form-group">
-                        <button type="submit" class="btn btn-primary" id="BtnSubmit">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="BtnSubmit">Save Changes</button>
                       </div>
+                      <?php endif; ?>
                     </form>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-8 form-group">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="card-title"><i class="mdi mdi-image"></i> Preview</div>
-                    <object data="" type="application/pdf" id="fileContents" style="width:100%;height:475px;">
-                    <div>No PDF viewer available</div>
-                    </object>
                   </div>
                 </div>
               </div>
@@ -238,35 +230,22 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.resize.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.pie.js"></script>
+    <script src="/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.resize.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.categories.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.fillbetween.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.stack.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.pie.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/misc.js"></script>
+    <script src="/assets/js/off-canvas.js"></script>
+    <script src="/assets/js/hoverable-collapse.js"></script>
+    <script src="/assets/js/misc.js"></script>
     <!-- endinject -->
-    <script>
-      function DisplayFile()
-      {
-        var file = document.getElementById("file").files[0];
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function (evt) {
-              document.querySelector('#fileContents').setAttribute('data', evt.target.result);
-            }
-            reader.readAsDataURL(file);
-        }
-      }
-    </script>
   </body>
 </html>

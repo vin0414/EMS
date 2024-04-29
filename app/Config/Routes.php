@@ -34,11 +34,14 @@ $routes->get('/new-expense','Home::newExpense');
 $routes->get('/upload','Home::Upload');
 $routes->get('/manage-expenses','Home::manageExpenses');
 $routes->get('/contracts','Home::listContracts');
+$routes->get('/edit/(:any)','Home::editContract/$1');
 $routes->get('/generate-expense','Home::generateExpense');
 $routes->get('/settings','Home::Settings');
 //functions
 $routes->post('save-contract','Home::saveContract');
 $routes->get('search-contract','Home::searchContract');
+$routes->get('list-of-contracts','Home::expiredContracts');
+$routes->post('edit-contract','Home::updateContract');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {
