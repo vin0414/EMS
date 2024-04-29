@@ -172,7 +172,17 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="card-title"><i class="mdi mdi-upload"></i> Upload</div>
-                    <form method="POST" class="row" id="frmUpload" enctype="multipart/form-data">
+                    <?php if(!empty(session()->getFlashdata('fail'))) : ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <?= session()->getFlashdata('fail'); ?>
+                    </div>
+                  <?php endif; ?>
+                  <?php if(!empty(session()->getFlashdata('success'))) : ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <?= session()->getFlashdata('success'); ?>
+                    </div>
+                  <?php endif; ?>
+                    <form method="POST" class="row" id="frmUpload" action="<?=base_url('save-contract')?>" enctype="multipart/form-data">
                       <div class="col-12 form-group">
                         <label>Title</label>
                         <input type="text" class="form-control" name="title_file" required/>

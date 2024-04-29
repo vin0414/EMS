@@ -44,4 +44,37 @@ class Home extends BaseController
     {
         return view('settings');
     }
+
+    //functions
+    public function saveContract()
+    {
+        $contractsModel = new \App\Models\contractsModel();
+        //get the data
+        $title = $this->request->getPost('title_file');
+        $details = $this->request->getPost('details');
+        $from_date = $this->request->getPost('from_date');
+        $expiration_date = $this->request->getPost('expiration_date');
+        $file = $this->request->getFile('file');
+        $originalName = $file->getClientName();
+        $validation = $this->validate([
+            'title_file'=>'required',
+            'details'=>'required',
+            'from_date'=>'required',
+            'expiration_date'=>'required'
+        ]);
+        if(!$validation)
+        {
+            session()->setFlashdata('fail','Invalid! Please fill in the form fields');
+            return redirect()->to('/upload')->withInput();
+        }
+        else
+        {
+            $values = ['Title'=>$title, 'Details'=>$details,'Fromdate'=>$from_date,'Todate'=>$expiration_date,'Attachment'=>$originalName];
+            $contractsModel->save($values);
+            //move the file to Contracts Folder
+            $file->move('Contracts/',$originalName);
+            session()->setFlashdata('success','Great! Successfully uploaded.');
+            return redirect()->to('/upload?success')->withInput();
+        }
+    }
 }

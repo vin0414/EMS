@@ -36,6 +36,8 @@ $routes->get('/manage-expenses','Home::manageExpenses');
 $routes->get('/contracts','Home::listContracts');
 $routes->get('/generate-expense','Home::generateExpense');
 $routes->get('/settings','Home::Settings');
+//functions
+$routes->post('save-contract','Home::saveContract');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {
