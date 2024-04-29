@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="shortcut icon" href="assets/images/fastcat.png" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
   </head>
   <body>
     <div class="container-scroller">
@@ -182,16 +183,35 @@
         <div class="main-panel">
           <div class="content-wrapper pb-0">
             <div class="page-header flex-wrap">
-              <h3 class="mb-0"> Hi, welcome back! <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">Expense Monitoring System</span>
+              <h3 class="mb-0"> Hi, welcome back! <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">Account Expense</span>
               </h3>
               <div class="d-flex">
                 <button type="button" class="btn btn-sm bg-white btn-icon-text border">
-                  <i class="mdi mdi-email btn-icon-prepend"></i> Email 
-                </button>
-                <button type="button" class="btn btn-sm bg-white btn-icon-text border ml-3">
-                  <i class="mdi mdi-printer btn-icon-prepend"></i> Print 
+                  <i class="mdi mdi-plus btn-icon-prepend"></i> Add Entry 
                 </button>
               </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table" style="width:100%;">
+                            <thead>
+                                <th class="bg-primary text-white">GL Code</th>
+                                <th class="bg-primary text-white">Details</th>
+                                <th class="bg-primary text-white">Code</th>
+                                <th class="bg-primary text-white">Action</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>Expense</td>
+                                <td>Service Fee</td>
+                                <td>500001</td>
+                                <td>-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
           </div>
           <footer class="footer">
@@ -223,8 +243,11 @@
     <script src="assets/js/hoverable-collapse.js"></script>
     <script src="assets/js/misc.js"></script>
     <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
-    <!-- End custom js for this page -->
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+    <script>
+      $(document).ready( function () {
+          $('.table').DataTable();
+      });
+    </script>
   </body>
 </html>

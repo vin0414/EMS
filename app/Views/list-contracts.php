@@ -193,7 +193,7 @@
                                 Sample title of contract
                               </div>
                               <div class="col-12 form-group">
-                                <img src="Files/Receive-report (19).pdf" style="height:200px;width:100%;"/>
+                                <embed src="Files/Receive-report (19).pdf" style="height:200px;width:100%;"/>
                               </div>
                               <div class="col-12 form-group">
                                 <div class="row">
@@ -217,7 +217,7 @@
                                 Sample title of contract
                               </div>
                               <div class="col-12 form-group">
-                                <img src="Files/Receive-report (19).pdf" style="height:200px;width:100%;"/>
+                                <embed src="Files/Receive-report (19).pdf" style="height:200px;width:100%;"/>
                               </div>
                               <div class="col-12 form-group">
                                 <div class="row">
@@ -241,7 +241,7 @@
                                 Sample title of contract
                               </div>
                               <div class="col-12 form-group">
-                                <img src="Files/Receive-report (19).pdf" style="height:200px;width:100%;"/>
+                                <embed src="Files/Receive-report (19).pdf" style="height:200px;width:100%;"/>
                               </div>
                               <div class="col-12 form-group">
                                 <div class="row">

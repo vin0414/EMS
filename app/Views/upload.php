@@ -182,12 +182,16 @@
                         <textarea class="form-control" name="details" style="height:120px;" required></textarea>
                       </div>
                       <div class="col-12 form-group">
-                        <label>From Date</label>
-                        <input type="date" class="form-control" name="from_date" required/>
-                      </div>
-                      <div class="col-12 form-group">
-                        <label>End Date</label>
-                        <input type="date" class="form-control" name="expiration_date" required/>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <label>From Date</label>
+                            <input type="date" class="form-control" name="from_date" required/>
+                          </div>
+                          <div class="col-lg-6">
+                            <label>End Date</label>
+                            <input type="date" class="form-control" name="expiration_date" required/>
+                          </div>
+                        </div>
                       </div>
                       <div class="col-12 form-group">
                         <label>Attachment</label>
