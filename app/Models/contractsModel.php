@@ -9,26 +9,26 @@ class contractsModel extends Model
     protected $table      = 'tblcontracts';
     protected $primaryKey = 'contractID';
 
-    protected $useAutoIncrement = true;
-    protected $returnType     = 'array';
-    protected $useSoftDeletes = true;
+    protected $useAutoIncrement  = true;
+    protected $insertID = 0;
+    protected $returnType = 'array';
+    protected $userSoftDelete = false;
+    protected $protectFields = true;
     protected $allowedFields = ['Title', 'Details','Fromdate','Todate','Attachment'];
-    protected bool $allowEmptyInserts = false;
-
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
+    
+    protected $validationRules = [];
+    protected $validationMessages = [];
+    protected $skipValidation = false;
     protected $cleanValidationRules = true;
-
-    // Callbacks
+    
+    
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    protected $beforeInsert = [];
+    protected $afterInsert = [];
+    protected $beforeUpdate = [];
+    protected $afterUpdate = [];
+    protected $beforeFind = [];
+    protected $afterFind = [];
+    protected $beforeDelete = [];
+    protected $afterDelete = [];
 }

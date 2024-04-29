@@ -33,11 +33,9 @@ class Home extends BaseController
     public function listContracts()
     {
         $pager = \Config\Services::pager();
-        $contractsModel = new \App\Models\contractsModel();
-        $data = [
-            'contracts' => $contractsModel->paginate(10),
-            'pager' => $contractsModel->pager,
-        ];
+        $model = new \App\Models\contractsModel();
+        $list = $model->paginate(6);
+        $data = ['list'=>$list,'pager'=>$model->pager];
         return view('list-contracts',$data);
     }
 
@@ -52,6 +50,14 @@ class Home extends BaseController
     }
 
     //functions
+    public function searchContract()
+    {
+        $val = "%".$this->request->getGet('search')."%";
+        $model = new \App\Models\contractsModel();
+        $list = $model->LIKE('Title',$val)->paginate(6);
+        $data = ['list'=>$list,'pager'=>$model->pager];
+        return view('list-contracts',$data);
+    }
     public function saveContract()
     {
         $contractsModel = new \App\Models\contractsModel();

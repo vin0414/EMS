@@ -38,6 +38,7 @@ $routes->get('/generate-expense','Home::generateExpense');
 $routes->get('/settings','Home::Settings');
 //functions
 $routes->post('save-contract','Home::saveContract');
+$routes->get('search-contract','Home::searchContract');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {

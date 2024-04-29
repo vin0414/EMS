@@ -173,28 +173,28 @@
             <div class="row">
               <div class="col-lg-9 form-group">
                 <div class="row">
-                  <div class="col-12 form-group">
+                  <form class="col-12 form-group" method="GET" action="<?=base_url('search-contract')?>">
                       <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Contracts" aria-describedby="basic-addon2" />
+                        <input type="search" class="form-control" name="search" placeholder="Search" aria-label="Contracts" aria-describedby="basic-addon2" />
                         <div class="input-group-append">
-                          <button class="btn btn-sm btn-primary" type="button">
+                          <button class="btn btn-sm btn-primary" type="submit">
                             <i class="mdi mdi-magnify"></i>
                           </button>
                         </div>
                       </div>
-                  </div>
+                  </form>
                   <div class="col-12 form-group">
-                    <div class="row">
-                      <?php foreach($contracts as $row): ?>
-                      <div class="col-lg-4">
+                    <div class="row" id="results">
+                      <?php foreach($list as $row): ?>
+                      <div class="col-lg-4 form-group">
                         <div class="card">
                           <div class="card-body">
                             <div class="row">
                               <div class="col-12 form-group">
-                                Sample title of contract
+                              <?php echo $row['Title'] ?>  
                               </div>
                               <div class="col-12 form-group">
-                                <embed src="Files/Receive-report (19).pdf" style="height:200px;width:100%;"/>
+                                <embed src="Files/<?php echo $row['Attachment'] ?>" style="height:200px;width:100%;"/>
                               </div>
                               <div class="col-12 form-group">
                                 <div class="row">
@@ -210,8 +210,12 @@
                           </div>
                         </div>
                       </div>
-                      <?php endforeach;?>
+                      <?php endforeach; ?>
                     </div>
+                    <br/>
+                    <ul class="pagination">
+                      <li><?=$pager->simpleLinks() ?></li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -274,8 +278,5 @@
     <script src="assets/js/hoverable-collapse.js"></script>
     <script src="assets/js/misc.js"></script>
     <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
-    <!-- End custom js for this page -->
   </body>
 </html>
