@@ -15,13 +15,6 @@ class contractsModel extends Model
     protected $allowedFields = ['Title', 'Details','Fromdate','Todate','Attachment'];
     protected bool $allowEmptyInserts = false;
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
-
     // Validation
     protected $validationRules      = [];
     protected $validationMessages   = [];

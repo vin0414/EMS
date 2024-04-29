@@ -185,6 +185,7 @@
                   </div>
                   <div class="col-12 form-group">
                     <div class="row">
+                      <?php foreach($contracts as $row): ?>
                       <div class="col-lg-4">
                         <div class="card">
                           <div class="card-body">
@@ -209,54 +210,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-4">
-                        <div class="card">
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-12 form-group">
-                                Sample title of contract
-                              </div>
-                              <div class="col-12 form-group">
-                                <embed src="Files/Receive-report (19).pdf" style="height:200px;width:100%;"/>
-                              </div>
-                              <div class="col-12 form-group">
-                                <div class="row">
-                                  <div class="col-lg-6">
-                                  <a href="" class="btn btn-outline-primary form-control btn-sm">Preview</a>
-                                  </div>
-                                  <div class="col-lg-6">
-                                  <button type="button" class="btn btn-primary form-control btn-sm">Edit</button>
-                                  </div>
-                                </div> 
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-4">
-                        <div class="card">
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-12 form-group">
-                                Sample title of contract
-                              </div>
-                              <div class="col-12 form-group">
-                                <embed src="Files/Receive-report (19).pdf" style="height:200px;width:100%;"/>
-                              </div>
-                              <div class="col-12 form-group">
-                                <div class="row">
-                                  <div class="col-lg-6">
-                                  <a href="" class="btn btn-outline-primary form-control btn-sm">Preview</a>
-                                  </div>
-                                  <div class="col-lg-6">
-                                  <button type="button" class="btn btn-primary form-control btn-sm">Edit</button>
-                                  </div>
-                                </div> 
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <?php endforeach;?>
                     </div>
                   </div>
                 </div>

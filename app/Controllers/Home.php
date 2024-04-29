@@ -32,7 +32,13 @@ class Home extends BaseController
 
     public function listContracts()
     {
-        return view('list-contracts');
+        $pager = \Config\Services::pager();
+        $contractsModel = new \App\Models\contractsModel();
+        $data = [
+            'contracts' => $contractsModel->paginate(10),
+            'pager' => $contractsModel->pager,
+        ];
+        return view('list-contracts',$data);
     }
 
     public function generateExpense()
@@ -72,7 +78,7 @@ class Home extends BaseController
             $values = ['Title'=>$title, 'Details'=>$details,'Fromdate'=>$from_date,'Todate'=>$expiration_date,'Attachment'=>$originalName];
             $contractsModel->save($values);
             //move the file to Contracts Folder
-            $file->move('Contracts/',$originalName);
+            $file->move('Files/',$originalName);
             session()->setFlashdata('success','Great! Successfully uploaded.');
             return redirect()->to('/upload?success')->withInput();
         }
