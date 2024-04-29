@@ -99,7 +99,7 @@
             </span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?=site_url('settings')?>">
               <i class="mdi mdi-settings menu-icon"></i>
               <span class="menu-title">Settings</span>
             </a>

@@ -104,7 +104,7 @@
             </span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?=site_url('settings')?>">
               <i class="mdi mdi-settings menu-icon"></i>
               <span class="menu-title">Settings</span>
             </a>
@@ -223,9 +223,9 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
                                       <h6 class="dropdown-header">Action</h6>
-                                      <a class="dropdown-item" href="#">Submit</a>
-                                      <a class="dropdown-item" href="#">Delete</a>
-                                      <a class="dropdown-item" href="#">Edit</a>
+                                      <a class="dropdown-item" href="#"><i class="mdi mdi-send"></i>&nbsp;Submit</a>
+                                      <a class="dropdown-item" href="#"><i class="mdi mdi-delete"></i>&nbsp;Delete</a>
+                                      <a class="dropdown-item" href="#"><i class="mdi mdi-pencil-box-outline"></i>&nbsp;Edit</a>
                                     </div>
                                   </div>
                                 </td>

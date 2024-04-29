@@ -98,7 +98,7 @@
             </span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?=site_url('settings')?>">
               <i class="mdi mdi-settings menu-icon"></i>
               <span class="menu-title">Settings</span>
             </a>
@@ -271,11 +271,9 @@
                         <div class="d-flex">
                           <div class="pl-2">
                             <h6 class="m-0">Contract No 1</h6>
+                            <div class="badge badge-inverse-success mt-3 mt-sm-0">Expiration : 2025-01-04</div>
                           </div>
                         </div>
-                      </div>
-                      <div class="col-sm-3 pl-0 pl-sm-3">
-                        <div class="badge badge-inverse-success mt-3 mt-sm-0">Expiration : 2025-01-04</div>
                       </div>
                     </div>
                     <div class="row border-bottom pb-3 pt-4 align-items-center mx-0">
@@ -283,11 +281,9 @@
                         <div class="d-flex">
                           <div class="pl-2">
                             <h6 class="m-0">Contract No 2</h6>
+                            <div class="badge badge-inverse-success">Expiration : 2024-12-14</div>
                           </div>
                         </div>
-                      </div>
-                      <div class="col-sm-3 pl-0 pl-sm-3">
-                        <div class="badge badge-inverse-success mt-3 mt-sm-0">Expiration : 2024-12-14</div>
                       </div>
                     </div>
                   </div>

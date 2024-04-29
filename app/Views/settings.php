@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>EMS - Generate Expenses</title>
+    <title>EMS - Settings</title>
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css" />
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
@@ -64,7 +64,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="<?=site_url('generate-expense')?>">
+            <a class="nav-link" href="<?=site_url('generate-expense')?>">
               <i class="mdi mdi-buffer menu-icon"></i>
               <span class="menu-title">Generate</span>
             </a>
@@ -98,7 +98,7 @@
             </span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=site_url('settings')?>">
+            <a class="nav-link active" href="<?=site_url('settings')?>">
               <i class="mdi mdi-settings menu-icon"></i>
               <span class="menu-title">Settings</span>
             </a>
