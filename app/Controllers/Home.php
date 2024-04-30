@@ -64,6 +64,11 @@ class Home extends BaseController
     }
 
     //functions
+    public function saveExpense()
+    {
+        
+    }
+
     public function saveCode()
     {
         $accountExpense = new \App\Models\accountExpenseModel();

@@ -378,6 +378,16 @@
         </div>
       </div>
     </div>
+    <div class="modal" id="modal-loading" data-backdrop="static">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+				<div class="modal-body text-center">
+					<div class="spinner-border"></div>
+					<div>Loading</div>
+				</div>
+				</div>
+			</div>
+		</div>
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
@@ -396,12 +406,7 @@
         e.preventDefault();
         $('#myModal').modal('show');
       });
-      $('#frmUtilities').on('submit',function(e)
-      {
-        e.preventDefault();
-        var data = $('#frmUtilities').serialize();
-        alert(data);
-      });
+      
       $('#due_date_selection').change(function(){
         if (!$(this).prop("checked")) {
           $('#day_month').attr("disabled",false);
@@ -411,6 +416,7 @@
           $('#day_month').attr("disabled",true);
         }
       });
+
       $('#due_date').change(function(){
         if (!$(this).prop("checked")) {
           $('#day').attr("disabled",false);
@@ -419,6 +425,29 @@
         {
           $('#day').attr("disabled",true);
         }
+      });
+
+      $('#frmUtilities').on('submit',function(e)
+      {
+        e.preventDefault();
+        var data = $('#frmUtilities').serialize();
+        $('#modal-loading').modal('show');
+        $.ajax({
+          url:"<?=site_url('save-expense')?>",method:"POST",
+          data:data,success:function(response)
+          {
+            $('#modal-loading').modal('hide');
+            if(response==="success")
+            {
+              alert("Great! Successfully submitted");
+              $('#frmUtilities')[0].reset();
+            }
+            else
+            {
+              alert(response);
+            }
+          }
+        });
       });
     </script>
   </body>
