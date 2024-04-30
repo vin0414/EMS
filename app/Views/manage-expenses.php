@@ -196,26 +196,28 @@
               <div class="tab-content">
                 <div class="tab-pane fade show active" id="all_expense">
                   <div class="table-responsive">
-                    <table class="table" style="width:100%;">
+                    <table class="table table-striped table-bordered" style="width:100%;">
                       <thead>
                         <th class="bg-primary text-white">Date Created</th>
                         <th class="bg-primary text-white">Type of Expense</th>
                         <th class="bg-primary text-white">Details</th>
                         <th class="bg-primary text-white">Amount</th>
-                        <th class="bg-primary text-white">Payment Method</th>
+                        <th class="bg-primary text-white">Total Amount</th>
                         <th class="bg-primary text-white">Lifespan</th>
                         <th class="bg-primary text-white">Due Date</th>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>2024-04-26</td>
-                          <td>Service Fee</td>
-                          <td>Sample of details here</td>
-                          <td>50,000.00</td>
-                          <td>Credit</td>
-                          <td>0</td>
-                          <td>2024-04-30</td>
-                        </tr>
+                        <?php foreach($rental as $row): ?>
+                          <tr>
+                            <td><?php echo $row->DateCreated ?></td>
+                            <td><?php echo $row->Description ?></td>
+                            <td><?php echo $row->Details ?></td>
+                            <td><?php echo number_format($row->Amount,2) ?></td>
+                            <td><?php echo number_format($row->TotalAmount,2) ?></td>
+                            <td><?php echo $row->LifeSpan ?></td>
+                            <td><?php echo $row->DueDate ?></td>
+                          </tr>
+                        <?php endforeach;?>
                       </tbody>
                     </table>
                   </div>

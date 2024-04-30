@@ -30,12 +30,17 @@ class Home extends BaseController
 
     public function manageExpenses()
     {
+        //rentals
+        $builder = $this->db->table('tblrental a');
+        $builder->select('a.*,b.Description');
+        $builder->join('tblaccount_expense b','b.expID=a.expID','LEFT');
+        $rental = $builder->get()->getResult();
         //utilities
         $builder = $this->db->table('tblutilities a');
         $builder->select('a.*,b.Description');
         $builder->join('tblaccount_expense b','b.expID=a.expID','LEFT');
         $utility = $builder->get()->getResult();
-        $data = ['utility'=>$utility];
+        $data = ['utility'=>$utility,'rental'=>$rental];
         return view('manage-expenses',$data);
     }
 

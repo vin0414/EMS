@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class rentalModel extends Model
+{
+    protected $table      = 'tblrental';
+    protected $primaryKey = 'rentalID';
+
+    protected $useAutoIncrement  = true;
+    protected $insertID = 0;
+    protected $returnType = 'array';
+    protected $userSoftDelete = false;
+    protected $protectFields = true;
+    protected $allowedFields = ['expID', 'Payee','Details','LifeSpan','LastDay','Day','ModePayment','Amount','TotalAmount','DateCreated','DueDate','userID'];
+    
+    protected $validationRules = [];
+    protected $validationMessages = [];
+    protected $skipValidation = false;
+    protected $cleanValidationRules = true;
+    
+    
+    protected $allowCallbacks = true;
+    protected $beforeInsert = [];
+    protected $afterInsert = [];
+    protected $beforeUpdate = [];
+    protected $afterUpdate = [];
+    protected $beforeFind = [];
+    protected $afterFind = [];
+    protected $beforeDelete = [];
+    protected $afterDelete = [];
+}
