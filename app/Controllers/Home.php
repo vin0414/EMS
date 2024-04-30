@@ -54,10 +54,44 @@ class Home extends BaseController
 
     public function Settings()
     {
-        return view('settings');
+        $expense = new \App\Models\accountExpenseModel();
+        $list = $expense->findAll();
+        $data = ['list'=>$list];
+        return view('settings',$data);
     }
 
     //functions
+    public function saveCode()
+    {
+        $accountExpense = new \App\Models\accountExpenseModel();
+        //data
+        $details = $this->request->getPost('details');
+        $code = $this->request->getPost('glcode');
+        $validation = $this->validate([
+            'details'=>'required',
+            'glcode'=>'required'
+        ]);
+        if(!$validation)
+        {
+            echo "Invalid! Please  fill in the form";
+        }
+        else
+        {
+            $values = ['Description'=>$details, 'GLCode'=>$code];
+            $accountExpense->save($values);
+            echo "success";
+        }
+    }
+
+    public function removeCode()
+    {
+        $val = $this->request->getPost('value');
+        $builder = $this->db->table('tblaccount_expense');
+        $builder->WHERE('expID',$val);
+        $builder->delete();
+        echo "success";
+    }
+
     public function searchContract()
     {
         $val = "%".$this->request->getGet('search')."%";

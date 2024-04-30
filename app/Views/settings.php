@@ -9,10 +9,9 @@
     <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css" />
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
     <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="shortcut icon" href="assets/images/fastcat.png" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
+    <link rel="shortcut icon" href="assets/images/fastcat.png" />
   </head>
   <body>
     <div class="container-scroller">
@@ -186,7 +185,7 @@
               <h3 class="mb-0"> Hi, welcome back! <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">Account Expense</span>
               </h3>
               <div class="d-flex">
-                <button type="button" class="btn btn-sm bg-white btn-icon-text border">
+                <button type="button" class="btn btn-sm bg-white btn-icon-text border add">
                   <i class="mdi mdi-plus btn-icon-prepend"></i> Add Entry 
                 </button>
               </div>
@@ -194,15 +193,34 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table" style="width:100%;">
+                        <table class="table">
                             <thead>
-                                <th class="bg-primary text-white">Type of Expense</th>
+                                <th class="bg-primary text-white">#</th>
                                 <th class="bg-primary text-white">Details</th>
-                                <th class="bg-primary text-white">Code</th>
+                                <th class="bg-primary text-white">GL Code</th>
                                 <th class="bg-primary text-white">Action</th>
                             </thead>
                             <tbody>
-                                
+                              <?php foreach($list as $row): ?>
+                                <tr>
+                                  <td><?php echo $row['expID'] ?></td>
+                                  <td><?php echo $row['Description'] ?></td>
+                                  <td><?php echo $row['GLCode'] ?></td>
+                                  <td>
+                                    <div class="btn-group">
+                                      <button type="button" class="btn btn-primary btn-sm">Select</button>
+                                      <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                      </button>
+                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
+                                        <h6 class="dropdown-header">Action</h6>
+                                        <button type="button" class="dropdown-item remove" value="<?php echo $row['expID'] ?>"><i class="mdi mdi-delete"></i>&nbsp;Delete</button>
+                                        <button type="button" class="dropdown-item edit" value="<?php echo $row['expID'] ?>"><i class="mdi mdi-pencil-box-outline"></i>&nbsp;Edit</button>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                              <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
@@ -219,21 +237,36 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+    <div class="modal fade" id="accountExpenseModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Account Expense</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form method="POST" class="row" id="frmAdd">
+              <div class="col-12 form-group">
+                <label>Details</label>
+                <textarea class="form-control" name="details" style="height:150px;"></textarea>
+              </div>
+              <div class="col-12 form-group">
+                <label>GL Code</label>
+                <input type="text" class="form-control" name="glcode"/>
+              </div>
+              <div class="col-12 form-group">
+                <button type="submit" class="btn btn-primary" id="btnSave">Save Entry</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.resize.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.pie.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
     <script src="assets/js/off-canvas.js"></script>
     <script src="assets/js/hoverable-collapse.js"></script>
     <script src="assets/js/misc.js"></script>
@@ -242,6 +275,33 @@
     <script>
       $(document).ready( function () {
           $('.table').DataTable();
+      });
+      $('.add').on('click',function()
+      {
+        $('#accountExpenseModal').modal('show');
+      });
+      $(document).on('click','.remove',function(){
+        var confirmation = confirm("Do you want to remove this selected item?");
+        if(confirmation)
+        {
+          var val = $(this).val();
+          $.ajax({
+            url:"<?=site_url('remove-code')?>",method:"POST",
+            data:{value:val},success:function(response){
+              if(response==="success"){location.reload();}else{alert(response);}
+            }
+          });
+        }
+      })
+      $('#btnSave').on('click',function(e){
+        e.preventDefault();
+        var data = $('#frmAdd').serialize();
+        $.ajax({
+          url:"<?=site_url('save-code')?>",method:"POST",data:data,success:function(response)
+          {
+            if(response==="success"){location.reload();}else{alert(response);}
+          }
+        });
       });
     </script>
   </body>
