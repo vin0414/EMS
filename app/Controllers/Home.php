@@ -75,6 +75,55 @@ class Home extends BaseController
     }
 
     //functions - BASIC CRUD
+    public function saveEntry()
+    {
+        $rentalModel = new \App\Models\rentalModel();
+        //data
+        $expID = $this->request->getPost('expenses');
+        $payee = $this->request->getPost('payee');
+        $details = $this->request->getPost('details');
+        $due_date = $this->request->getPost('due_date');
+        $lifespan = $this->request->getPost('lifespan');
+        $day_month = $this->request->getPost('day_month');
+        $mode_payment = $this->request->getPost('mode_payment');
+        $amount = str_replace(',', '',$this->request->getPost('amount'));
+        $totalamount = str_replace(',', '',$this->request->getPost('total_amount'));
+        $expiration_date = $this->request->getPost('expiration_date');
+        //add validation
+        $validation = $this->validate([
+            'expenses'=>'required',
+            'payee'=>'required',
+            'details'=>'required',
+            'lifespan'=>'required',
+            'mode_payment'=>'required',
+            'amount'=>'required',
+            'total_amount'=>'required',
+            'expiration_date'=>'required'
+        ]);
+        if(!$validation)
+        {
+            echo "Invalid! Please fill in the form to continue";
+        }
+        else
+        {
+            if($due_date=="1")
+            {
+               
+            }
+            else
+            {
+                if(empty($day_month))
+                {
+                    echo "Invalid! Please select specific day for auto-generation of expenses";
+                }
+                else
+                {
+                    
+                }
+            }
+        }
+    }
+
     public function saveExpense()
     {
         $utilityModel = new \App\Models\utilityModel();

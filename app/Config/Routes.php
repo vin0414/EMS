@@ -47,6 +47,7 @@ $routes->post('remove-code','Home::removeCode');
 $routes->get('view-details','Home::viewDetails');
 $routes->post('modify-code','Home::modifyCode');
 $routes->post('save-expense','Home::saveExpense');
+$routes->post('save-rental-entry','Home::saveEntry');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {

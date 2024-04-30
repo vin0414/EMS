@@ -370,7 +370,7 @@
                   </div>
                   <div class="col-lg-4">
                     <label>Total Amount</label>
-                    <input type="text" class="form-control" name="amount" placeholder="0.00"/>
+                    <input type="text" class="form-control" name="total_amount" placeholder="0.00"/>
                   </div>
                 </div>
               </div>
@@ -428,6 +428,28 @@
         {
           $('#day').attr("disabled",true);
         }
+      });
+      $('#frmEntry').on('submit',function(e)
+      {
+        e.preventDefault();
+        var data = $(this).serialize();
+        $('#modal-loading').modal('show');
+        $.ajax({
+          url:"<?=site_url('save-rental-entry')?>",method:"POST",
+          data:data,success:function(response)
+          {
+            $('#modal-loading').modal('hide');
+            if(response==="success")
+            {
+              alert("Great! Successfully submitted");
+              $('#frmEntry')[0].reset();
+            }
+            else
+            {
+              alert(response);
+            }
+          }
+        });
       });
 
       $('#frmUtilities').on('submit',function(e)
