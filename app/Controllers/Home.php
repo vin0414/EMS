@@ -145,7 +145,7 @@ class Home extends BaseController
         $date = date('Y-m-d');
         $newDate = date('Y-m-d', strtotime($date . ' + 3 days')); 
         $model = new \App\Models\contractsModel();
-        $list = $model->WHERE('Todate',$newDate)->findAll();
+        $list = $model->WHERE('Todate<=',$newDate)->findAll();
         foreach($list as $row)
         {
             ?>

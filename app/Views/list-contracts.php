@@ -204,7 +204,7 @@
                               <div class="col-12 form-group">
                                 <div class="row">
                                   <div class="col-lg-6">
-                                  <a href="" class="btn btn-outline-primary form-control btn-sm">Preview</a>
+                                  <a href="Files/<?php echo $row['Attachment'] ?>" class="btn btn-outline-primary form-control btn-sm" target="_BLANK">Preview</a>
                                   </div>
                                   <div class="col-lg-6">
                                   <a href="<?=site_url('edit/')?><?php echo $row['Title'] ?>" class="btn btn-primary form-control btn-sm">Edit</a>
@@ -218,9 +218,9 @@
                       <?php endforeach; ?>
                     </div>
                     <br/>
-                    <ul class="pagination">
-                      <li><?=$pager->simpleLinks() ?></li>
-                    </ul>
+                    <div class="form-inline">
+                    <?=$pager->simpleLinks() ?>
+                    </div>
                   </div>
                 </div>
               </div>
