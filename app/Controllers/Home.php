@@ -92,6 +92,34 @@ class Home extends BaseController
         echo "success";
     }
 
+    public function viewDetails()
+    {
+        $val = $this->request->getGet('value');
+        $builder = $this->db->table('tblaccount_expense');
+        $builder->select('*');
+        $builder->WHERE('expID',$val);
+        $data = $builder->get();
+        if($row = $data->getRow())
+        {
+            ?>
+            <form method="POST" class="row" id="editForm">
+                <input type="hidden" name="expID" value="<?php echo $row->expID ?>"/>
+                <div class="col-12 form-group">
+                    <label>Details</label>
+                    <textarea class="form-control" name="details" style="height:150px;"><?php echo $row->Description ?></textarea>
+                </div>
+                <div class="col-12 form-group">
+                    <label>GL Code</label>
+                    <input type="text" class="form-control" name="glcode" value="<?php echo $row->GLCode ?>"/>
+                </div>
+                <div class="col-12 form-group">
+                    <button type="submit" class="btn btn-primary" id="btnUpdate">Save Changes</button>
+                </div>
+            </form>
+            <?php
+        }
+    }
+
     public function searchContract()
     {
         $val = "%".$this->request->getGet('search')."%";

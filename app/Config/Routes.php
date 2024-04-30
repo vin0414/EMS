@@ -44,6 +44,8 @@ $routes->get('list-of-contracts','Home::expiredContracts');
 $routes->post('edit-contract','Home::updateContract');
 $routes->post('save-code','Home::saveCode');
 $routes->post('remove-code','Home::removeCode');
+$routes->get('view-details','Home::viewDetails');
+
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {
 

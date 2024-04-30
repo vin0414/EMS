@@ -264,6 +264,21 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="editModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Account Expense</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body" id="output">
+            
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
@@ -279,6 +294,17 @@
       $('.add').on('click',function()
       {
         $('#accountExpenseModal').modal('show');
+      });
+      $('.edit').on('click',function()
+      {
+        var val = $(this).val();
+        $.ajax({
+          url:"<?=site_url('view-details')?>",method:"GET",
+          data:{value:val},success:function(response){
+            $('#editModal').modal('show');
+            $('#output').html(response);
+          }
+        });
       });
       $(document).on('click','.remove',function(){
         var confirmation = confirm("Do you want to remove this selected item?");
