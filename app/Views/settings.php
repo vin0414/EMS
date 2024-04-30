@@ -196,18 +196,13 @@
                     <div class="table-responsive">
                         <table class="table" style="width:100%;">
                             <thead>
-                                <th class="bg-primary text-white">GL Code</th>
+                                <th class="bg-primary text-white">Type of Expense</th>
                                 <th class="bg-primary text-white">Details</th>
                                 <th class="bg-primary text-white">Code</th>
                                 <th class="bg-primary text-white">Action</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                <td>Expense</td>
-                                <td>Service Fee</td>
-                                <td>500001</td>
-                                <td>-</td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>

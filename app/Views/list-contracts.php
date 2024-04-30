@@ -198,8 +198,8 @@
                               <div class="col-12 form-group">
                               <?php echo $row['Title'] ?>  
                               </div>
-                              <div class="col-12 form-group">
-                                <embed src="Files/<?php echo $row['Attachment'] ?>" style="height:200px;width:100%;"/>
+                              <div class="col-12 form-group" style="overflow:hidden;">
+                                <embed src="Files/<?php echo $row['Attachment'] ?>"/>
                               </div>
                               <div class="col-12 form-group">
                                 <div class="row">
