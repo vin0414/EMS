@@ -401,9 +401,8 @@
     <script src="assets/js/select2.js"></script>
     <!-- endinject -->
     <script>
-      $('#btnAdd').on('click',function(e)
+      $('#btnAdd').on('click',function()
       {
-        e.preventDefault();
         $('#myModal').modal('show');
       });
       

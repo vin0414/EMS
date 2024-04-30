@@ -63,10 +63,57 @@ class Home extends BaseController
         return view('settings',$data);
     }
 
-    //functions
+    //functions - BASIC CRUD
     public function saveExpense()
     {
-        
+        $utilityModel = new \App\Models\utilityModel();
+        //data
+        $expID = $this->request->getPost('expenses');
+        $payee = $this->request->getPost('payee');
+        $details = $this->request->getPost('details');
+        $due_date = $this->request->getPost('due_date_selection');
+        $day_month = $this->request->getPost('day_month');
+        $mode_payment = $this->request->getPost('mode_payment');
+        $amount = str_replace(',', '',$this->request->getPost('amount'));
+        //add validation
+        $validation = $this->validate([
+            'expenses'=>'required',
+            'payee'=>'required',
+            'details'=>'required',
+            'mode_payment'=>'required',
+            'amount'=>'required'
+        ]);
+
+        if(!$validation)
+        {
+            echo "Invalid! Please fill in the form to continue";
+        }
+        else
+        {
+            if($due_date=="1")
+            {
+                $values = ['expID'=>$expID, 'Payee'=>$payee,'Details'=>$details,
+                            'LastDay'=>$due_date,'Day'=>0,'ModePayment'=>$mode_payment,
+                            'Amount'=>$amount,'DateCreated'=>date('Y-m-d'),'userID'=>0];
+                $utilityModel->save($values);
+                echo "success";
+            }
+            else
+            {
+                if(empty($day_month))
+                {
+                    echo "Invalid! Please select specific day for auto-generation of expenses";
+                }
+                else
+                {
+                    $values = ['expID'=>$expID, 'Payee'=>$payee,'Details'=>$details,
+                            'LastDay'=>0,'Day'=>$day_month,'ModePayment'=>$mode_payment,
+                            'Amount'=>$amount,'DateCreated'=>date('Y-m-d'),'userID'=>0];
+                    $utilityModel->save($values);
+                    echo "success";
+                }
+            }
+        }
     }
 
     public function saveCode()
