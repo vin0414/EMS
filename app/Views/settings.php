@@ -329,6 +329,16 @@
           }
         });
       });
+      $(document).on('click','.update',function(e){
+        e.preventDefault();
+        var data = $('#editForm').serialize();
+        $.ajax({
+          url:"<?=site_url('modify-code')?>",method:"POST",data:data,success:function(response)
+          {
+            if(response==="success"){location.reload();}else{alert(response);}
+          }
+        });
+      });
     </script>
   </body>
 </html>

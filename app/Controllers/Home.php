@@ -83,6 +83,29 @@ class Home extends BaseController
         }
     }
 
+    public function modifyCode()
+    {
+        $accountExpense = new \App\Models\accountExpenseModel();
+        //data
+        $id = $this->request->getPost('expID');
+        $details = $this->request->getPost('details');
+        $code = $this->request->getPost('glcode');
+        $validation = $this->validate([
+            'details'=>'required',
+            'glcode'=>'required'
+        ]);
+        if(!$validation)
+        {
+            echo "Invalid! Please  fill in the form";
+        }
+        else
+        {
+            $values = ['Description'=>$details, 'GLCode'=>$code];
+            $accountExpense->update($id,$values);
+            echo "success";
+        }
+    }
+
     public function removeCode()
     {
         $val = $this->request->getPost('value');
@@ -113,7 +136,7 @@ class Home extends BaseController
                     <input type="text" class="form-control" name="glcode" value="<?php echo $row->GLCode ?>"/>
                 </div>
                 <div class="col-12 form-group">
-                    <button type="submit" class="btn btn-primary" id="btnUpdate">Save Changes</button>
+                    <button type="submit" class="btn btn-primary update">Save Changes</button>
                 </div>
             </form>
             <?php
