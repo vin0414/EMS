@@ -338,13 +338,17 @@
               </div>
               <div class="col-12 form-group">
                 <div class="row">
-                  <div class="col-lg-6">
+                  <div class="col-lg-4">
+                    <label>Day of the Month</label>
+                    <input type="number" class="form-control" name="day_month" id="day"/>
+                  </div>
+                  <div class="col-lg-3">
                     <label>Life Span</label>
                     <input type="number" class="form-control" name="lifespan"/>
                   </div>
-                  <div class="col-lg-6">
-                    <label>Day of the Month</label>
-                    <input type="number" class="form-control" name="day_month" id="day"/>
+                  <div class="col-lg-5">
+                    <label>Due Date</label>
+                    <input type="date" class="form-control" name="expiration_date"/>
                   </div>
                 </div>
               </div>
@@ -365,7 +369,7 @@
                     <input type="text" class="form-control" name="amount" placeholder="0.00"/>
                   </div>
                   <div class="col-lg-4">
-                    <label>Amount To Be Paid</label>
+                    <label>Total Amount</label>
                     <input type="text" class="form-control" name="amount" placeholder="0.00"/>
                   </div>
                 </div>

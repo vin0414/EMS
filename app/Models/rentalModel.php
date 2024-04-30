@@ -14,7 +14,7 @@ class rentalModel extends Model
     protected $returnType = 'array';
     protected $userSoftDelete = false;
     protected $protectFields = true;
-    protected $allowedFields = ['expID', 'Payee','Details','LifeSpan','LastDay','Day','ModePayment','Amount','TotalAmount','DateCreated','DueDate','userID'];
+    protected $allowedFields = ['expID', 'Payee','Details','LifeSpan','LastDay','Day','ModePayment','Amount','TotalAmount','DateCreated','DueDate','Status','userID'];
     
     protected $validationRules = [];
     protected $validationMessages = [];
