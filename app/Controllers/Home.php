@@ -17,7 +17,10 @@ class Home extends BaseController
 
     public function newExpense()
     {
-        return view('new-expense');
+        $accountExpense = new \App\Models\accountExpenseModel();
+        $account = $accountExpense->findAll();
+        $data = ['account'=>$account];
+        return view('new-expense',$data);
     }
 
     public function Upload()

@@ -181,13 +181,13 @@
                 <div class="tabs">
                   <ul class="nav nav-pills">
                     <li class="nav-item">
-                      <a class="nav-link active" data-toggle="pill" href="#rental">Rental Expense</a>
+                      <a class="nav-link active" data-toggle="pill" href="#rental"><span class="mdi mdi-square-inc-cash"></span>&nbsp;Rental Expense</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="pill" href="#utilities">Utilities</a>
+                      <a class="nav-link" data-toggle="pill" href="#utilities"><span class="mdi mdi-clipboard-outline"></span>&nbsp;Utilities</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="pill" href="#consumables">Consumables</a>
+                      <a class="nav-link" data-toggle="pill" href="#consumables"><span class="mdi mdi-bulletin-board"></span>&nbsp;Consumables</a>
                     </li>
                   </ul>
                   <div class="tab-content">
@@ -245,6 +245,9 @@
                           <label>Type of Expense</label>
                           <select class="js-example-basic-single" name="expenses" style="width:100%;">
                             <option value="">Choose</option>
+                            <?php foreach($account as $row):?>
+                              <option value="<?php echo $row['expID'] ?>"><?php echo $row['Description'] ?></option>
+                            <?php endforeach;?>
                           </select>
                         </div>
                         <div class="col-12 form-group">
@@ -256,13 +259,13 @@
                           <textarea class="form-control" name="details" style="height:150px;overflow-y:auto;"></textarea>
                         </div>
                         <div class="col-12 form-group">
-                        <input type="checkbox" name="due_date_selection" id="due_date_selection" style="height:20px;width:18px;"/>&nbsp;Last Day of the Month?
+                          <input type="checkbox" name="due_date_selection" id="due_date_selection" value="1" style="height:20px;width:18px;"/>&nbsp;Last Day of the Month?
                         </div>
                         <div class="col-12 form-group">
                           <div class="row">
                             <div class="col-lg-4">
                               <label>Day of the Month</label>
-                              <input type="number" class="form-control" name="day_month"/>
+                              <input type="number" class="form-control" name="day_month" id="day_month"/>
                             </div>
                             <div class="col-lg-4">
                               <label>Mode of Payment</label>
@@ -281,7 +284,7 @@
                           </div>
                         </div>
                         <div class="col-12 form-group">
-                          <button type="submit" class="btn btn-primary" id="BtnSend">Save Entry</button>
+                          <button type="submit" class="btn btn-primary save">Save Entry</button>
                         </div>
                       </form>
                     </div>
@@ -317,6 +320,9 @@
                 <label>Type of Expense</label>
                 <select class="js-example-basic-single" name="expenses" style="width:100%;">
                   <option value="">Choose</option>
+                  <?php foreach($account as $row):?>
+                    <option value="<?php echo $row['expID'] ?>"><?php echo $row['Description'] ?></option>
+                  <?php endforeach;?>
                 </select>
               </div>
               <div class="col-12 form-group">
@@ -328,7 +334,7 @@
                 <textarea class="form-control" name="details" style="height:150px;overflow-y:auto;"></textarea>
               </div>
               <div class="col-12 form-group">
-              <input type="checkbox" name="due_date_selection" id="due_date_selection" style="height:20px;width:18px;"/>&nbsp;Last Day of the Month?
+              <input type="checkbox" name="due_date" id="due_date" value="1" style="height:20px;width:18px;"/>&nbsp;Last Day of the Month?
               </div>
               <div class="col-12 form-group">
                 <div class="row">
@@ -338,7 +344,7 @@
                   </div>
                   <div class="col-lg-6">
                     <label>Day of the Month</label>
-                    <input type="number" class="form-control" name="day_month"/>
+                    <input type="number" class="form-control" name="day_month" id="day"/>
                   </div>
                 </div>
               </div>
@@ -389,6 +395,30 @@
       {
         e.preventDefault();
         $('#myModal').modal('show');
+      });
+      $('#frmUtilities').on('submit',function(e)
+      {
+        e.preventDefault();
+        var data = $('#frmUtilities').serialize();
+        alert(data);
+      });
+      $('#due_date_selection').change(function(){
+        if (!$(this).prop("checked")) {
+          $('#day_month').attr("disabled",false);
+        }
+        else
+        {
+          $('#day_month').attr("disabled",true);
+        }
+      });
+      $('#due_date').change(function(){
+        if (!$(this).prop("checked")) {
+          $('#day').attr("disabled",false);
+        }
+        else
+        {
+          $('#day').attr("disabled",true);
+        }
       });
     </script>
   </body>
