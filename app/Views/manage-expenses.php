@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
     <link rel="shortcut icon" href="assets/images/fastcat.png" />
+    <style>
+      .tab-content{background-color: #ffffff;}
+    </style>
   </head>
   <body>
     <div class="container-scroller">
@@ -175,13 +178,19 @@
             <div class="tabs">
               <ul class="nav nav-pills">
                 <li class="nav-item">
-                  <a class="nav-link active" data-toggle="pill" href="#all_expense">All Expense</a>
+                  <a class="nav-link active" data-toggle="pill" href="#all_expense"><span class="mdi mdi-book-open"></span>&nbsp;Rentals</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="pill" href="#pending">Pending</a>
+                  <a class="nav-link" data-toggle="pill" href="#utility"><span class="mdi mdi-clipboard-outline"></span>&nbsp;Utilities</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="pill" href="#overdue">Overdue</a>
+                  <a class="nav-link" data-toggle="pill" href="#consumables"><span class="mdi mdi-bulletin-board"></span>&nbsp;Consumables</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="pill" href="#pending"><span class="mdi mdi-bell-ring-outline"></span>&nbsp;Pending</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="pill" href="#overdue"><span class="mdi mdi-archive"></span>&nbsp;Overdue</a>
                 </li>
               </ul>
               <div class="tab-content">
@@ -210,6 +219,46 @@
                       </tbody>
                     </table>
                   </div>
+                </div>
+                <div class="tab-pane fade" id="utility">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered" style="width:100%;">
+                      <thead>
+                        <th class="bg-primary text-white">Date Created</th>
+                        <th class="bg-primary text-white">Type of Expense</th>
+                        <th class="bg-primary text-white">Payee</th>
+                        <th class="bg-primary text-white">Details</th>
+                        <th class="bg-primary text-white">Amount</th>
+                        <th class="bg-primary text-white">Action</th>
+                      </thead>
+                      <tbody>
+                        <?php foreach($utility as $row): ?>
+                        <tr>
+                          <td><?php echo $row->DateCreated ?></td>
+                          <td><?php echo $row->Description ?></td>
+                          <td><?php echo $row->Payee ?></td>
+                          <td><?php echo $row->Details ?></td>
+                          <td><?php echo number_format($row->Amount,2) ?></td>
+                          <td>
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-primary btn-sm">Select</button>
+                              <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
+                                <h6 class="dropdown-header">Action</h6>
+                                <a class="dropdown-item" href="<?=site_url('edit-utility-expense/')?><?php echo $row->utilityID ?>">Edit</a>
+                                <button type="button" class="dropdown-item" value="<?php echo $row->utilityID ?>">Cancel</button>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <?php endforeach; ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="consumables">
                 </div>
                 <div class="tab-pane fade" id="pending">
                   <div class="table-responsive">
