@@ -58,7 +58,14 @@ class Home extends BaseController
 
     public function editUtility($id)
     {
-        return view('edit-utility');
+        $accountExpense = new \App\Models\accountExpenseModel();
+        $account = $accountExpense->findAll();
+        //utility
+        $utilityModel = new \App\Models\utilityModel();
+        $utility = $utilityModel->WHERE('utilityID',$id)->first();
+
+        $data = ['account'=>$account,'utility'=>$utility];
+        return view('edit-utility',$data);
     }
 
     public function listContracts()
