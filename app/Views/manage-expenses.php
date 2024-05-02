@@ -174,7 +174,12 @@
             <div class="page-header flex-wrap">
               <h3 class="mb-0"> List of Expenses
               </h3>
-            </div> 
+            </div>
+            <?php if(!empty(session()->getFlashdata('success'))) : ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= session()->getFlashdata('success'); ?>
+                </div>
+            <?php endif; ?> 
             <div class="tabs">
               <ul class="nav nav-pills">
                 <li class="nav-item">

@@ -128,8 +128,8 @@ class Home extends BaseController
         {
             $values = ['expID'=>$expID, 'Payee'=>$payee,'Details'=>$details,
                         'Day'=>$day_month,'ModePayment'=>$mode_payment,
-                        'Amount'=>$amount,'DateCreated'=>date('Y-m-d'),'userID'=>0];
-            $utilityModel->save($values);
+                        'Amount'=>$amount,'userID'=>0];
+            $utilityModel->update($id,$values);
             session()->setFlashdata('success','Great! Successfully applied changes');
             return redirect()->to('/manage-expenses')->withInput();
         }
