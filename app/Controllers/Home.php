@@ -76,6 +76,16 @@ class Home extends BaseController
     }
 
     //functions - BASIC CRUD
+    public function sendAll()
+    {
+
+    }
+
+    public function deleteAll()
+    {
+
+    }
+
     public function deleteItem()
     {
         $val = $this->request->getPost('value');
@@ -183,7 +193,6 @@ class Home extends BaseController
                         <h6 class="dropdown-header">Action</h6>
                         <button type="button" class="dropdown-item sendItem" value="<?php echo $row->rentalID ?>"><i class="mdi mdi-send"></i>&nbsp;Submit</button>
                         <button type="button" class="dropdown-item deleteItem" value="<?php echo $row->rentalID ?>"><i class="mdi mdi-delete"></i>&nbsp;Delete</button>
-                        <a class="dropdown-item" href="<?=site_url('edit-rental/')?><?php echo $row->rentalID ?>"><i class="mdi mdi-pencil-box-outline"></i>&nbsp;Edit</a>
                     </div>
                     </div>
                 </td>

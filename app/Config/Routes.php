@@ -51,6 +51,8 @@ $routes->post('save-rental-entry','Home::saveEntry');
 $routes->get('list-rentals','Home::listRentals');
 $routes->post('delete-item','Home::deleteItem');
 $routes->post('send-item','Home::sendItem');
+$routes->post('delete-all','Home::deleteAll');
+$routes->post('send-all','Home::sendAll');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {
