@@ -14,7 +14,7 @@ class utilityModel extends Model
     protected $returnType = 'array';
     protected $userSoftDelete = false;
     protected $protectFields = true;
-    protected $allowedFields = ['expID', 'Payee','Details','LastDay','Day','ModePayment','Amount','DateCreated','userID'];
+    protected $allowedFields = ['expID', 'Payee','Details','LastDay','Day','ModePayment','Amount','Status','DateCreated','userID'];
     
     protected $validationRules = [];
     protected $validationMessages = [];

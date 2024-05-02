@@ -34,6 +34,7 @@ $routes->get('/new-expense','Home::newExpense');
 $routes->get('/upload','Home::Upload');
 $routes->get('/manage-expenses','Home::manageExpenses');
 $routes->get('/edit-rental/(:any)','Home::editRental/$1');
+$routes->get('/edit-utility-expense/(:any)','Home::editUtility/$1');
 $routes->get('/contracts','Home::listContracts');
 $routes->get('/edit/(:any)','Home::editContract/$1');
 $routes->get('/generate-expense','Home::generateExpense');
@@ -54,6 +55,8 @@ $routes->post('delete-item','Home::deleteItem');
 $routes->post('send-item','Home::sendItem');
 $routes->post('delete-all','Home::deleteAll');
 $routes->post('send-all','Home::sendAll');
+$routes->post('update-rent','Home::updateRent');
+$routes->post('cancel-expense','Home::cancelExpense');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {

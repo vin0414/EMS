@@ -181,10 +181,11 @@
                         <?= session()->getFlashdata('fail'); ?>
                         </div>
                     <?php endif; ?>
-                    <form method="POST" class="row" id="frmEntry">
+                    <form method="POST" class="row" id="frmEntry" action="<?=base_url('update-rent')?>">
+                        <input type="hidden" name="rentID" value="<?=$rent['rentalID']?>"/>
                         <div class="col-12 form-group">
                             <label>Type of Expense</label>
-                            <select class="js-example-basic-single" name="expenses" id="expenses" style="width:100%;">
+                            <select class="js-example-basic-single" name="expenses" id="expenses" style="width:100%;" required>
                             <option value="">Choose</option>
                             <?php foreach($account as $row):?>
                                 <option value="<?php echo $row['expID'] ?>"><?php echo $row['Description'] ?></option>
@@ -193,32 +194,25 @@
                         </div>
                         <div class="col-12 form-group">
                             <label>Paid To</label>
-                            <input type="text" class="form-control" name="payee" value="<?=$rent['Payee']?>"/>
+                            <input type="text" class="form-control" name="payee" value="<?=$rent['Payee']?>" required/>
                         </div>
                         <div class="col-12 form-group">
                             <label>Details</label>
-                            <textarea class="form-control" name="details" style="height:150px;overflow-y:auto;"><?=$rent['Details']?></textarea>
-                        </div>
-                        <div class="col-12 form-group">
-                        <?php if($rent['LastDay']==1){ ?>
-                            <input type="checkbox" name="due_date" id="due_date" value="1" style="height:20px;width:18px;" checked/>&nbsp;Last Day of the Month?
-                        <?php }else{ ?>
-                            <input type="checkbox" name="due_date" id="due_date" value="1" style="height:20px;width:18px;"/>&nbsp;Last Day of the Month?
-                        <?php } ?>
+                            <textarea class="form-control" name="details" style="height:150px;overflow-y:auto;" required><?=$rent['Details']?></textarea>
                         </div>
                         <div class="col-12 form-group">
                             <div class="row">
                             <div class="col-lg-4">
                                 <label>Day of the Month</label>
-                                <input type="number" class="form-control" value="<?=$rent['Day']?>" name="day_month" id="day"/>
+                                <input type="number" class="form-control" value="<?=$rent['Day']?>" name="day_month" id="day" required/>
                             </div>
                             <div class="col-lg-3">
                                 <label>Life Span</label>
-                                <input type="number" class="form-control" value="<?=$rent['LifeSpan']?>" name="lifespan"/>
+                                <input type="number" class="form-control" value="<?=$rent['LifeSpan']?>" name="lifespan" required/>
                             </div>
                             <div class="col-lg-5">
                                 <label>Due Date</label>
-                                <input type="date" class="form-control" value="<?=$rent['DueDate']?>" name="expiration_date"/>
+                                <input type="date" class="form-control" value="<?=$rent['DueDate']?>" name="expiration_date" required/>
                             </div>
                             </div>
                         </div>
@@ -226,7 +220,7 @@
                             <div class="row">
                             <div class="col-lg-4">
                                 <label>Mode of Payment</label>
-                                <select class="form-control" name="mode_payment">
+                                <select class="form-control" name="mode_payment" required>
                                 <option value="">Choose</option>
                                 <option>Cash</option>
                                 <option>Check</option>
@@ -236,11 +230,11 @@
                             </div>
                             <div class="col-lg-4">
                                 <label>Amount</label>
-                                <input type="text" class="form-control" name="amount" value="<?=$rent['Amount']?>" placeholder="0.00"/>
+                                <input type="text" class="form-control" name="amount" value="<?=$rent['Amount']?>" placeholder="0.00" required/>
                             </div>
                             <div class="col-lg-4">
                                 <label>Total Amount</label>
-                                <input type="text" class="form-control" name="total_amount" value="<?=$rent['TotalAmount']?>" placeholder="0.00"/>
+                                <input type="text" class="form-control" name="total_amount" value="<?=$rent['TotalAmount']?>" placeholder="0.00" required/>
                             </div>
                             </div>
                         </div>
@@ -273,17 +267,6 @@
     <script src="/assets/js/select2.js"></script>
     <!-- endinject -->
     <script>
-    $('#due_date').change(function(){
-        if (!$(this).prop("checked")) {
-          $('#day').attr("disabled",false);
-          document.getElementById('day').value=0;
-        }
-        else
-        {
-          $('#day').attr("disabled",true);
-          document.getElementById('day').value=0;
-        }
-      });
     </script>
   </body>
 </html>

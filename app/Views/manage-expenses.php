@@ -235,6 +235,7 @@
                         <th class="bg-primary text-white">Payee</th>
                         <th class="bg-primary text-white">Details</th>
                         <th class="bg-primary text-white">Amount</th>
+                        <th class="bg-primary text-white">Status</th>
                         <th class="bg-primary text-white">Action</th>
                       </thead>
                       <tbody>
@@ -246,6 +247,16 @@
                           <td><?php echo $row->Details ?></td>
                           <td><?php echo number_format($row->Amount,2) ?></td>
                           <td>
+                            <?php if($row->Status==1){ ?>
+                              <span class="badge bg-info text-white">ON PROCESS</span>
+                            <?php }else if($row->Status==0){ ?>
+                              <span class="badge bg-danger text-white">CANCELLED</span>
+                            <?php }else{?>
+                              <span class="badge bg-success text-white">ARCHIVE</span>
+                            <?php } ?>
+                          </td>
+                          <td>
+                            <?php if($row->Status==1){ ?>
                             <div class="btn-group">
                               <button type="button" class="btn btn-primary btn-sm">Select</button>
                               <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -254,9 +265,10 @@
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
                                 <h6 class="dropdown-header">Action</h6>
                                 <a class="dropdown-item" href="<?=site_url('edit-utility-expense/')?><?php echo $row->utilityID ?>">Edit</a>
-                                <button type="button" class="dropdown-item" value="<?php echo $row->utilityID ?>">Cancel</button>
+                                <button type="button" class="dropdown-item cancel" value="<?php echo $row->utilityID ?>">Cancel</button>
                               </div>
                             </div>
+                            <?php } ?>
                           </td>
                         </tr>
                         <?php endforeach; ?>
@@ -356,6 +368,19 @@
     <script>
       $(document).ready( function () {
           $('.table').DataTable();
+      });
+      $(document).on('click','.cancel',function(){
+        var confirmation = confirm('Do you want to cancel this expense?');
+        if(confirmation)
+        {
+          $.ajax({
+            url:"<?=site_url('cancel-expense')?>",method:"POST",
+            data:{value:$(this).val()},success:function(response)
+            {
+              if(response==="success"){location.reload();}else{alert(response);}
+            }
+          });
+        }
       });
     </script>
   </body>
