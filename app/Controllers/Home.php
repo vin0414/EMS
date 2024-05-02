@@ -34,6 +34,7 @@ class Home extends BaseController
         $builder = $this->db->table('tblrental a');
         $builder->select('a.*,b.Description');
         $builder->join('tblaccount_expense b','b.expID=a.expID','LEFT');
+        $builder->WHERE('a.Status',1);
         $rental = $builder->get()->getResult();
         //utilities
         $builder = $this->db->table('tblutilities a');
@@ -108,7 +109,12 @@ class Home extends BaseController
         {
             if($due_date=="1")
             {
-               
+               $values = ['expID'=>$expID, 'Payee'=>$payee,'Details'=>$details,
+                'LifeSpan'=>$lifespan,'LastDay'=>$due_date,'Day'=>0,
+                'ModePayment'=>$mode_payment,'Amount'=>$amount,'TotalAmount'=>$totalamount,
+                'DateCreated'=>date('Y-m-d'),'DueDate'=>$expiration_date,'Status'=>0,'userID'=>0];
+                $rentalModel->save($values);
+                echo "success";
             }
             else
             {
@@ -118,9 +124,53 @@ class Home extends BaseController
                 }
                 else
                 {
-                    
+                    $values = ['expID'=>$expID, 'Payee'=>$payee,'Details'=>$details,
+                    'LifeSpan'=>$lifespan,'LastDay'=>0,'Day'=>$day_month,
+                    'ModePayment'=>$mode_payment,'Amount'=>$amount,'TotalAmount'=>$totalamount,
+                    'DateCreated'=>date('Y-m-d'),'DueDate'=>$expiration_date,'Status'=>0,'userID'=>0];
+                    $rentalModel->save($values);
+                    echo "success";
                 }
             }
+        }
+    }
+
+    public function listRentals()
+    {
+        $userID = 0;
+        $builder = $this->db->table('tblrental a');
+        $builder->select('a.*,b.Description');
+        $builder->join('tblaccount_expense b','b.expID=a.expID','LEFT');
+        $builder->WHERE('a.userID',$userID)->WHERE('a.Status',0);
+        $data = $builder->get();
+        foreach($data->getResult() as $row)
+        {
+            ?>
+            <tr>
+                <td>
+                    <input type="checkbox" name="itemID[]" id="itemID" value="<?php echo $row->rentalID ?>" style="height:20px;width:18px;" checked/>
+                </td>
+                <td><?php echo $row->DateCreated ?></td>
+                <td><?php echo $row->Description ?></td>
+                <td><?php echo $row->Details ?></td>
+                <td><?php echo number_format($row->TotalAmount,2) ?></td>
+                <td><span class="badge btn-warning text-white">NOT SUBMITTED</span></td>
+                <td>
+                    <div class="btn-group">
+                    <button type="button" class="btn btn-primary btn-sm">Select</button>
+                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
+                        <h6 class="dropdown-header">Action</h6>
+                        <button type="button" class="dropdown-item sendItem" value="<?php echo $row->rentalID ?>"><i class="mdi mdi-send"></i>&nbsp;Submit</button>
+                        <button type="button" class="dropdown-item deleteItem" value="<?php echo $row->rentalID ?>"><i class="mdi mdi-delete"></i>&nbsp;Delete</button>
+                        <a class="dropdown-item" href="<?=site_url('edit-rental/')?><?php echo $row->rentalID ?>"><i class="mdi mdi-pencil-box-outline"></i>&nbsp;Edit</a>
+                    </div>
+                    </div>
+                </td>
+            </tr>
+            <?php
         }
     }
 

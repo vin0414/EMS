@@ -203,33 +203,11 @@
                               <th>Date</th>
                               <th>Type of Expense</th>
                               <th>Details</th>
+                              <th>Total Amount</th>
                               <th>Status</th>
                               <th>Action</th>
                             </thead>
                             <tbody id="tblexpenses">
-                              <tr>
-                                <td>
-                                  <input type="checkbox" name="itemID[]" id="itemID" style="height:20px;width:18px;" checked/>
-                                </td>
-                                <td>2024-04-25</td>
-                                <td>Rental Expense</td>
-                                <td>Ticketing Office</td>
-                                <th><span class="badge btn-warning text-white">NOT SUBMITTED</span></th>
-                                <td>
-                                  <div class="btn-group">
-                                    <button type="button" class="btn btn-primary btn-sm">Select</button>
-                                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
-                                      <h6 class="dropdown-header">Action</h6>
-                                      <a class="dropdown-item" href="#"><i class="mdi mdi-send"></i>&nbsp;Submit</a>
-                                      <a class="dropdown-item" href="#"><i class="mdi mdi-delete"></i>&nbsp;Delete</a>
-                                      <a class="dropdown-item" href="#"><i class="mdi mdi-pencil-box-outline"></i>&nbsp;Edit</a>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
                             </tbody>
                           </table>
                         </div>
@@ -405,6 +383,27 @@
     <script src="assets/js/select2.js"></script>
     <!-- endinject -->
     <script>
+      $(document).ready(function(){
+        loadRentals();
+      });
+      function loadRentals()
+      {
+        $('#tblexpenses').html("<tr><td colspan='7'>Loading...</td></tr>");
+        $.ajax({
+          url:"<?=site_url('list-rentals')?>",method:"GET",
+          success:function(response)
+          {
+            if(response==="")
+            {
+              $('#tblexpenses').html("<tr><td colspan='7'>No Record(s)</td></tr>");
+            }
+            else
+            {
+              $('#tblexpenses').html(response);
+            }
+          }
+        });
+      }
       $('#btnAdd').on('click',function()
       {
         $('#myModal').modal('show');
@@ -443,6 +442,7 @@
             {
               alert("Great! Successfully submitted");
               $('#frmEntry')[0].reset();
+              loadRentals();
             }
             else
             {
