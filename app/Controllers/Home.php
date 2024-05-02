@@ -78,12 +78,28 @@ class Home extends BaseController
     //functions - BASIC CRUD
     public function sendAll()
     {
-
+        $rentalModel = new \App\Models\rentalModel();
+        $val = $this->request->getPost('itemID');
+        $count = count($val);
+        $values = ['Status'=>1];
+        for($i=0;$i<$count;$i++)
+        {
+            $rentalModel->update($val[$i],$values);
+        }
+        echo "success";
     }
 
     public function deleteAll()
     {
-
+        $val = $this->request->getPost('itemID');
+        $count = count($val);
+        for($i=0;$i<$count;$i++)
+        {
+            $builder = $this->db->table('tblrental');
+            $builder->WHERE('rentalID',$val[$i]);
+            $builder->delete();
+        }
+        echo "success";
     }
 
     public function deleteItem()

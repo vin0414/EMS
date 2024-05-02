@@ -409,14 +409,51 @@
         });
       }
       $('#btnSave').on('click',function(e){
-        e.preventDefault();
-        var data = $('#frmExpense').serialize();
-        alert(data);
+          e.preventDefault();
+          var confirmation = confirm("Do you want to submit all items?");
+          if(confirmation)
+          {
+            var data = $('#frmExpense').serialize();
+            $.ajax({
+              url:"<?=site_url('send-all')?>",method:"POST",
+              data:data,success:function(response)
+              {
+                $('#modal-loading').modal('hide');
+                if(response==="success")
+                {
+                  loadRentals();
+                }
+                else
+                {
+                  alert(response);
+                }
+              }
+            });
+          }
       });
       $('#btnDelete').on('click',function(e){
         e.preventDefault();
-        var data = $('#frmExpense').serialize();
-        alert(data);
+        var confirmation = confirm("Do you want to delete all items?");
+        if(confirmation)
+        {
+          var data = $('#frmExpense').serialize();
+          $('#modal-loading').modal('show');
+          $.ajax({
+            url:"<?=site_url('delete-all')?>",method:"POST",
+            data:data,success:function(response)
+            {
+              $('#modal-loading').modal('hide');
+              if(response==="success")
+              {
+                loadRentals();
+              }
+              else
+              {
+                alert(response);
+              }
+            }
+          });
+        }
       });
       $(document).on('click','.deleteItem',function(){
         var confirmation = confirm("Do you want to delete this item?");

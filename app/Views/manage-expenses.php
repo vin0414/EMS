@@ -205,6 +205,7 @@
                         <th class="bg-primary text-white">Total Amount</th>
                         <th class="bg-primary text-white">Lifespan</th>
                         <th class="bg-primary text-white">Due Date</th>
+                        <th class="bg-primary text-white">Action</th>
                       </thead>
                       <tbody>
                         <?php foreach($rental as $row): ?>
@@ -216,6 +217,9 @@
                             <td><?php echo number_format($row->TotalAmount,2) ?></td>
                             <td><?php echo $row->LifeSpan ?></td>
                             <td><?php echo $row->DueDate ?></td>
+                            <td>
+                              <a href="<?=site_url('edit-rental/')?><?php echo $row->rentalID ?>" class="btn btn-primary"><span class="mdi mdi-pencil-outline"></span>&nbsp;Edit</a>
+                            </td>
                           </tr>
                         <?php endforeach;?>
                       </tbody>
