@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="/assets/vendors/flag-icon-css/css/flag-icon.min.css" />
     <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css" />
-    <link rel="stylesheet" href="/assets/vendors/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/select2/select2.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="shortcut icon" href="/assets/images/fastcat.png" />
   </head>
@@ -181,7 +181,73 @@
                         <?= session()->getFlashdata('fail'); ?>
                         </div>
                     <?php endif; ?>
-                    
+                    <form method="POST" class="row" id="frmEntry">
+                        <div class="col-12 form-group">
+                            <label>Type of Expense</label>
+                            <select class="js-example-basic-single" name="expenses" id="expenses" style="width:100%;">
+                            <option value="">Choose</option>
+                            <?php foreach($account as $row):?>
+                                <option value="<?php echo $row['expID'] ?>"><?php echo $row['Description'] ?></option>
+                            <?php endforeach;?>
+                            </select>
+                        </div>
+                        <div class="col-12 form-group">
+                            <label>Paid To</label>
+                            <input type="text" class="form-control" name="payee" value="<?=$rent['Payee']?>"/>
+                        </div>
+                        <div class="col-12 form-group">
+                            <label>Details</label>
+                            <textarea class="form-control" name="details" style="height:150px;overflow-y:auto;"><?=$rent['Details']?></textarea>
+                        </div>
+                        <div class="col-12 form-group">
+                        <?php if($rent['LastDay']==1){ ?>
+                            <input type="checkbox" name="due_date" id="due_date" value="1" style="height:20px;width:18px;" checked/>&nbsp;Last Day of the Month?
+                        <?php }else{ ?>
+                            <input type="checkbox" name="due_date" id="due_date" value="1" style="height:20px;width:18px;"/>&nbsp;Last Day of the Month?
+                        <?php } ?>
+                        </div>
+                        <div class="col-12 form-group">
+                            <div class="row">
+                            <div class="col-lg-4">
+                                <label>Day of the Month</label>
+                                <input type="number" class="form-control" value="<?=$rent['Day']?>" name="day_month" id="day"/>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Life Span</label>
+                                <input type="number" class="form-control" value="<?=$rent['LifeSpan']?>" name="lifespan"/>
+                            </div>
+                            <div class="col-lg-5">
+                                <label>Due Date</label>
+                                <input type="date" class="form-control" value="<?=$rent['DueDate']?>" name="expiration_date"/>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-12 form-group">
+                            <div class="row">
+                            <div class="col-lg-4">
+                                <label>Mode of Payment</label>
+                                <select class="form-control" name="mode_payment">
+                                <option value="">Choose</option>
+                                <option>Cash</option>
+                                <option>Check</option>
+                                <option>Credit</option>
+                                <option>Bank</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Amount</label>
+                                <input type="text" class="form-control" name="amount" value="<?=$rent['Amount']?>" placeholder="0.00"/>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Total Amount</label>
+                                <input type="text" class="form-control" name="total_amount" value="<?=$rent['TotalAmount']?>" placeholder="0.00"/>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-12 form-group">
+                            <button type="submit" class="btn btn-primary" id="BtnSend">Save Changes</button>
+                        </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -200,21 +266,24 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="/assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <script src="/assets/vendors/flot/jquery.flot.js"></script>
-    <script src="/assets/vendors/flot/jquery.flot.resize.js"></script>
-    <script src="/assets/vendors/flot/jquery.flot.categories.js"></script>
-    <script src="/assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-    <script src="/assets/vendors/flot/jquery.flot.stack.js"></script>
-    <script src="/assets/vendors/flot/jquery.flot.pie.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
+    <script src="/assets/vendors/select2/select2.min.js"></script>
     <script src="/assets/js/off-canvas.js"></script>
     <script src="/assets/js/hoverable-collapse.js"></script>
     <script src="/assets/js/misc.js"></script>
+    <script src="/assets/js/select2.js"></script>
     <!-- endinject -->
+    <script>
+    $('#due_date').change(function(){
+        if (!$(this).prop("checked")) {
+          $('#day').attr("disabled",false);
+          document.getElementById('day').value=0;
+        }
+        else
+        {
+          $('#day').attr("disabled",true);
+          document.getElementById('day').value=0;
+        }
+      });
+    </script>
   </body>
 </html>

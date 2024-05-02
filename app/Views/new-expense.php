@@ -500,20 +500,24 @@
       $('#due_date_selection').change(function(){
         if (!$(this).prop("checked")) {
           $('#day_month').attr("disabled",false);
+          document.getElementById('day_month').value=0;
         }
         else
         {
           $('#day_month').attr("disabled",true);
+          document.getElementById('day_month').value=0;
         }
       });
 
       $('#due_date').change(function(){
         if (!$(this).prop("checked")) {
           $('#day').attr("disabled",false);
+          document.getElementById('day').value=0;
         }
         else
         {
           $('#day').attr("disabled",true);
+          document.getElementById('day').value=0;
         }
       });
       $('#frmEntry').on('submit',function(e)

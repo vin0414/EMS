@@ -47,7 +47,13 @@ class Home extends BaseController
 
     public function editRental($id)
     {
-        return view('edit-rental');
+        $accountExpense = new \App\Models\accountExpenseModel();
+        $account = $accountExpense->findAll();
+        //rental
+        $rentalModel = new \App\Models\rentalModel();
+        $rent = $rentalModel->WHERE('rentalID',$id)->first();
+        $data = ['account'=>$account,'rent'=>$rent];
+        return view('edit-rental',$data);
     }
 
     public function listContracts()
