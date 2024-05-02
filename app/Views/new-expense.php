@@ -212,8 +212,8 @@
                           </table>
                         </div>
                         <div class="col-12 form-group">
-                          <button type="submit" class="btn btn-primary" id="btnSave"><i class="mdi mdi-content-save"></i>&nbsp;Submit All</button>
-                          <button type="button" class="btn btn-danger" id="btndelete"><i class="mdi mdi-delete-variant"></i>&nbsp;Delete All</button>
+                          <button type="submit" class="btn btn-primary" id="btnSave" disabled><i class="mdi mdi-content-save"></i>&nbsp;Submit All</button>
+                          <button type="button" class="btn btn-danger" id="btnDelete" disabled><i class="mdi mdi-delete-variant"></i>&nbsp;Delete All</button>
                         </div>
                       </form>
                     </div>
@@ -396,14 +396,28 @@
             if(response==="")
             {
               $('#tblexpenses').html("<tr><td colspan='7'><center>No Record(s)</center></td></tr>");
+              $('#btnSave').attr("disabled",true);
+              $('#btnDelete').attr("disabled",true);
             }
             else
             {
               $('#tblexpenses').html(response);
+              $('#btnSave').attr("disabled",false);
+              $('#btnDelete').attr("disabled",false);
             }
           }
         });
       }
+      $('#btnSave').on('click',function(e){
+        e.preventDefault();
+        var data = $('#frmExpense').serialize();
+        alert(data);
+      });
+      $('#btnDelete').on('click',function(e){
+        e.preventDefault();
+        var data = $('#frmExpense').serialize();
+        alert(data);
+      });
       $(document).on('click','.deleteItem',function(){
         var confirmation = confirm("Do you want to delete this item?");
         if(confirmation)
