@@ -33,6 +33,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/new-expense','Home::newExpense');
 $routes->get('/upload','Home::Upload');
 $routes->get('/manage-expenses','Home::manageExpenses');
+$routes->get('/edit-rental/(:any)','Home::editRental/$1');
 $routes->get('/contracts','Home::listContracts');
 $routes->get('/edit/(:any)','Home::editContract/$1');
 $routes->get('/generate-expense','Home::generateExpense');

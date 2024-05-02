@@ -45,6 +45,11 @@ class Home extends BaseController
         return view('manage-expenses',$data);
     }
 
+    public function editRental($id)
+    {
+        return view('edit-rental');
+    }
+
     public function listContracts()
     {
         $pager = \Config\Services::pager();

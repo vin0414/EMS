@@ -221,7 +221,7 @@
                       <form method="POST" class="row" id="frmUtilities">
                         <div class="col-12 form-group">
                           <label>Type of Expense</label>
-                          <select class="js-example-basic-single" name="expenses" style="width:100%;">
+                          <select class="js-example-basic-single" name="expenses" id="expense" style="width:100%;">
                             <option value="">Choose</option>
                             <?php foreach($account as $row):?>
                               <option value="<?php echo $row['expID'] ?>"><?php echo $row['Description'] ?></option>
@@ -296,7 +296,7 @@
             <form method="POST" class="row" id="frmEntry">
               <div class="col-12 form-group">
                 <label>Type of Expense</label>
-                <select class="js-example-basic-single" name="expenses" style="width:100%;">
+                <select class="js-example-basic-single" name="expenses" id="expenses" style="width:100%;">
                   <option value="">Choose</option>
                   <?php foreach($account as $row):?>
                     <option value="<?php echo $row['expID'] ?>"><?php echo $row['Description'] ?></option>
@@ -495,10 +495,7 @@
           });
         }
       });
-      $('#btnAdd').on('click',function()
-      {
-        $('#myModal').modal('show');
-      });
+      $('#btnAdd').on('click',function(){$('#myModal').modal('show');});
       
       $('#due_date_selection').change(function(){
         if (!$(this).prop("checked")) {
@@ -534,6 +531,8 @@
               alert("Great! Successfully submitted");
               $('#frmEntry')[0].reset();
               loadRentals();
+              $('#myModal').modal('hide');
+              document.getElementById('expenses').selectedIndex = 0;
             }
             else
             {
@@ -557,6 +556,7 @@
             {
               alert("Great! Successfully submitted");
               $('#frmUtilities')[0].reset();
+              document.getElementById('expense').selectedIndex = 0;
             }
             else
             {
