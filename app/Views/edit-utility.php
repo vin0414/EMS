@@ -181,10 +181,11 @@
                         <?= session()->getFlashdata('fail'); ?>
                         </div>
                     <?php endif; ?>
-                    <form method="POST" class="row" id="frmUtilities">
+                    <form method="POST" class="row" id="frmUtilities" action="<?=base_url('update-expense')?>">
+                        <input type="hidden" name="utilityID" value="<?=$utility['utilityID']?>"/>
                         <div class="col-12 form-group">
                           <label>Type of Expense</label>
-                          <select class="js-example-basic-single" name="expenses" id="expense" style="width:100%;">
+                          <select class="js-example-basic-single" name="expenses" id="expense" style="width:100%;" required>
                             <option value="">Choose</option>
                             <?php foreach($account as $row):?>
                                 <option value="<?php echo $row['expID'] ?>"><?php echo $row['Description'] ?></option>
@@ -193,21 +194,21 @@
                         </div>
                         <div class="col-12 form-group">
                           <label>Paid To</label>
-                          <input type="text" class="form-control" name="payee"/>
+                          <input type="text" class="form-control" value="<?=$utility['Payee']?>" name="payee" required/>
                         </div>
                         <div class="col-12 form-group">
                           <label>Details</label>
-                          <textarea class="form-control" name="details" style="height:150px;overflow-y:auto;"></textarea>
+                          <textarea class="form-control" name="details" style="height:150px;overflow-y:auto;" required><?=$utility['Details']?></textarea>
                         </div>
                         <div class="col-12 form-group">
                           <div class="row">
                             <div class="col-lg-4">
                               <label>Day of the Month</label>
-                              <input type="number" class="form-control" name="day_month" id="day_month"/>
+                              <input type="number" class="form-control" name="day_month" value="<?=$utility['Day']?>" id="day_month" required/>
                             </div>
                             <div class="col-lg-4">
                               <label>Mode of Payment</label>
-                              <select class="form-control" name="mode_payment">
+                              <select class="form-control" name="mode_payment" required>
                                 <option value="">Choose</option>
                                 <option>Cash</option>
                                 <option>Check</option>
@@ -217,12 +218,12 @@
                             </div>
                             <div class="col-lg-4">
                               <label>Amount</label>
-                              <input type="text" class="form-control" name="amount" placeholder="0.00"/>
+                              <input type="text" class="form-control" name="amount" value="<?=$utility['Amount']?>" placeholder="0.00" required/>
                             </div>
                           </div>
                         </div>
                         <div class="col-12 form-group">
-                          <button type="submit" class="btn btn-primary save">Save Entry</button>
+                          <button type="submit" class="btn btn-primary save">Save Changes</button>
                         </div>
                       </form>
                   </div>

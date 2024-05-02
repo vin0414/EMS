@@ -520,3 +520,111 @@ INFO - 2024-05-02 08:07:56 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-05-02 08:29:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-05-02 08:29:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-05-02 08:29:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-02 08:37:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-02 08:37:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-02 08:37:20 --> Trying to access array offset on value of type null
+in APPPATH\Views\edit-utility.php on line 185.
+ 1 APPPATH\Views\edit-utility.php(185): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'APPPATH\\Views\\edit-utility.php', 185)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\edit-utility.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('edit-utility', [], true)
+ 5 APPPATH\Controllers\Home.php(68): view('edit-utility', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->editUtility('FCPATH\\assets', 'images', 'logo-mini.svg')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-02 08:37:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-02 08:37:20 --> Trying to access array offset on value of type null
+in APPPATH\Views\edit-utility.php on line 185.
+ 1 APPPATH\Views\edit-utility.php(185): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'APPPATH\\Views\\edit-utility.php', 185)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\edit-utility.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('edit-utility', [], true)
+ 5 APPPATH\Controllers\Home.php(68): view('edit-utility', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->editUtility('FCPATH\\assets', 'images', 'faces', 'pic-1.png')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-02 08:39:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-02 08:39:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-02 08:39:45 --> Trying to access array offset on value of type null
+in APPPATH\Views\edit-utility.php on line 185.
+ 1 APPPATH\Views\edit-utility.php(185): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'APPPATH\\Views\\edit-utility.php', 185)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\edit-utility.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('edit-utility', [], true)
+ 5 APPPATH\Controllers\Home.php(68): view('edit-utility', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->editUtility('FCPATH\\assets', 'images', 'logo-mini.svg')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-02 08:39:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-02 08:39:45 --> Trying to access array offset on value of type null
+in APPPATH\Views\edit-utility.php on line 185.
+ 1 APPPATH\Views\edit-utility.php(185): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'APPPATH\\Views\\edit-utility.php', 185)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\edit-utility.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('edit-utility', [], true)
+ 5 APPPATH\Controllers\Home.php(68): view('edit-utility', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->editUtility('FCPATH\\assets', 'images', 'faces', 'pic-1.png')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-02 08:40:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-02 08:40:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-02 08:40:35 --> Trying to access array offset on value of type null
+in APPPATH\Views\edit-utility.php on line 185.
+ 1 APPPATH\Views\edit-utility.php(185): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'APPPATH\\Views\\edit-utility.php', 185)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\edit-utility.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('edit-utility', [], true)
+ 5 APPPATH\Controllers\Home.php(68): view('edit-utility', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->editUtility('FCPATH\\assets', 'images', 'logo-mini.svg')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-02 08:40:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-02 08:40:36 --> Trying to access array offset on value of type null
+in APPPATH\Views\edit-utility.php on line 185.
+ 1 APPPATH\Views\edit-utility.php(185): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'APPPATH\\Views\\edit-utility.php', 185)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\edit-utility.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('edit-utility', [], true)
+ 5 APPPATH\Controllers\Home.php(68): view('edit-utility', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->editUtility('FCPATH\\assets', 'images', 'faces', 'pic-1.png')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-02 08:45:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-02 08:45:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-02 08:45:05 --> Trying to access array offset on value of type null
+in APPPATH\Views\edit-utility.php on line 185.
+ 1 APPPATH\Views\edit-utility.php(185): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'APPPATH\\Views\\edit-utility.php', 185)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\edit-utility.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('edit-utility', [], true)
+ 5 APPPATH\Controllers\Home.php(68): view('edit-utility', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->editUtility('FCPATH\\assets', 'images', 'logo-mini.svg')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-02 08:45:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-02 08:45:05 --> Trying to access array offset on value of type null
+in APPPATH\Views\edit-utility.php on line 185.
+ 1 APPPATH\Views\edit-utility.php(185): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'APPPATH\\Views\\edit-utility.php', 185)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\edit-utility.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('edit-utility', [], true)
+ 5 APPPATH\Controllers\Home.php(68): view('edit-utility', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->editUtility('FCPATH\\assets', 'images', 'faces', 'pic-1.png')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')

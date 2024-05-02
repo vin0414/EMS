@@ -99,6 +99,42 @@ class Home extends BaseController
     }
 
     //functions - BASIC CRUD
+    public function updateExpense()
+    {
+        $utilityModel = new \App\Models\utilityModel();
+        //data
+        $id = $this->request->getPost('utilityID');
+        $expID = $this->request->getPost('expenses');
+        $payee = $this->request->getPost('payee');
+        $details = $this->request->getPost('details');
+        $day_month = $this->request->getPost('day_month');
+        $mode_payment = $this->request->getPost('mode_payment');
+        $amount = str_replace(',', '',$this->request->getPost('amount'));
+        //add validation
+        $validation = $this->validate([
+            'expenses'=>'required',
+            'payee'=>'required',
+            'details'=>'required',
+            'mode_payment'=>'required',
+            'amount'=>'required'
+        ]);
+
+        if(!$validation)
+        {
+            session()->setFlashdata('fail','Invalid! Please fill in the form fields');
+            return redirect()->to('/edit-utility-expense/'.$id)->withInput();
+        }
+        else
+        {
+            $values = ['expID'=>$expID, 'Payee'=>$payee,'Details'=>$details,
+                        'Day'=>$day_month,'ModePayment'=>$mode_payment,
+                        'Amount'=>$amount,'DateCreated'=>date('Y-m-d'),'userID'=>0];
+            $utilityModel->save($values);
+            session()->setFlashdata('success','Great! Successfully applied changes');
+            return redirect()->to('/manage-expenses')->withInput();
+        }
+    }
+
     public function updateRent()
     {
         $rentalModel = new \App\Models\rentalModel();
@@ -335,7 +371,7 @@ class Home extends BaseController
                 {
                     $values = ['expID'=>$expID, 'Payee'=>$payee,'Details'=>$details,
                             'LastDay'=>0,'Day'=>$day_month,'ModePayment'=>$mode_payment,
-                            'Amount'=>$amount,'DateCreated'=>date('Y-m-d'),'userID'=>0];
+                            'Amount'=>$amount,'Status'=>1,'DateCreated'=>date('Y-m-d'),'userID'=>0];
                     $utilityModel->save($values);
                     echo "success";
                 }

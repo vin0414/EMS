@@ -57,6 +57,7 @@ $routes->post('delete-all','Home::deleteAll');
 $routes->post('send-all','Home::sendAll');
 $routes->post('update-rent','Home::updateRent');
 $routes->post('cancel-expense','Home::cancelExpense');
+$routes->post('update-expense','Home::updateExpense');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {
