@@ -388,14 +388,14 @@
       });
       function loadRentals()
       {
-        $('#tblexpenses').html("<tr><td colspan='7'>Loading...</td></tr>");
+        $('#tblexpenses').html("<tr><td colspan='7'><center>Loading...</center></td></tr>");
         $.ajax({
           url:"<?=site_url('list-rentals')?>",method:"GET",
           success:function(response)
           {
             if(response==="")
             {
-              $('#tblexpenses').html("<tr><td colspan='7'>No Record(s)</td></tr>");
+              $('#tblexpenses').html("<tr><td colspan='7'><center>No Record(s)</center></td></tr>");
             }
             else
             {
@@ -404,6 +404,46 @@
           }
         });
       }
+      $(document).on('click','.deleteItem',function(){
+        var confirmation = confirm("Do you want to delete this item?");
+        if(confirmation)
+        {
+          $.ajax({
+            url:"<?=site_url('delete-item')?>",method:"POST",
+            data:{value:$(this).val()},success:function(response)
+            {
+              if(response==="success")
+              {
+                loadRentals();
+              }
+              else
+              {
+                alert(response);
+              }
+            }
+          });
+        }
+      });
+      $(document).on('click','.sendItem',function(){
+        var confirmation = confirm("Do you want to send this selected item?");
+        if(confirmation)
+        {
+          $.ajax({
+            url:"<?=site_url('send-item')?>",method:"POST",
+            data:{value:$(this).val()},success:function(response)
+            {
+              if(response==="success")
+              {
+                loadRentals();
+              }
+              else
+              {
+                alert(response);
+              }
+            }
+          });
+        }
+      });
       $('#btnAdd').on('click',function()
       {
         $('#myModal').modal('show');

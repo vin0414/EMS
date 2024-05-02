@@ -76,6 +76,24 @@ class Home extends BaseController
     }
 
     //functions - BASIC CRUD
+    public function deleteItem()
+    {
+        $val = $this->request->getPost('value');
+        $builder = $this->db->table('tblrental');
+        $builder->WHERE('rentalID',$val);
+        $builder->delete();
+        echo "success";
+    }
+
+    public function sendItem()
+    {
+        $rentalModel = new \App\Models\rentalModel();
+        $val = $this->request->getPost('value');
+        $values = ['Status'=>1];
+        $rentalModel->update($val,$values);
+        echo "success";
+    }
+
     public function saveEntry()
     {
         $rentalModel = new \App\Models\rentalModel();
