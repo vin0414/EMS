@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css" />
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
     <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
     <link rel="shortcut icon" href="assets/images/fastcat.png" />
     <style>
       .tab-content{background-color: #ffffff;}
@@ -195,13 +195,13 @@
             <div class="tabs">
               <ul class="nav nav-pills">
                 <li class="nav-item">
-                  <a class="nav-link active" data-toggle="pill" href="#all_expense"><span class="mdi mdi-book-open"></span>&nbsp;Rentals</a>
+                  <a class="nav-link active" data-toggle="pill" href="#all_expense"><span class="mdi mdi-book-open"></span>&nbsp;Generate Rent Expense</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="pill" href="#utility"><span class="mdi mdi-clipboard-outline"></span>&nbsp;Utilities</a>
+                  <a class="nav-link" data-toggle="pill" href="#rent_expense"><span class="mdi mdi-clipboard-outline"></span>&nbsp;Rent Expenses</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="pill" href="#consumables"><span class="mdi mdi-bulletin-board"></span>&nbsp;Consumables</a>
+                  <a class="nav-link" data-toggle="pill" href="#other_expense"><span class="mdi mdi-clipboard-outline"></span>&nbsp;Other Expenses</a>
                 </li>
               </ul>
               <div class="tab-content">
@@ -263,7 +263,26 @@
                     </div>
                   </form>
                 </div>
-                <div class="tab-pane fade" id="utility">
+                <div class="tab-pane fade" id="rent_expense">
+                  <div class="table-responsive">
+                      <table class="table table-striped table-bordered" style="width:100%;">
+                        <thead>
+                          <th class="bg-primary text-white">Due Date</th>
+                          <th class="bg-primary text-white">Type of Expense</th>
+                          <th class="bg-primary text-white">Payee</th>
+                          <th class="bg-primary text-white">Details</th>
+                          <th class="bg-primary text-white">Amount</th>
+                          <th class="bg-primary text-white">Status</th>
+                          <th class="bg-primary text-white">File(s)</th>
+                          <th class="bg-primary text-white">Action</th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="other_expense">
+                  
                 </div>
               </div>
             </div>
@@ -296,9 +315,10 @@
     <script src="assets/js/off-canvas.js"></script>
     <script src="assets/js/hoverable-collapse.js"></script>
     <script src="assets/js/misc.js"></script>
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
     <script>
       $(document).ready(function(){
-        loadRental();
+        loadRental();$('.table').DataTable();
       });
       $('#btnGenerate').on('click',function(e){
         e.preventDefault();
