@@ -191,12 +191,6 @@
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="pill" href="#consumables"><span class="mdi mdi-bulletin-board"></span>&nbsp;Consumables</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="pill" href="#pending"><span class="mdi mdi-bell-ring-outline"></span>&nbsp;Pending</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="pill" href="#overdue"><span class="mdi mdi-archive"></span>&nbsp;Overdue</a>
-                </li>
               </ul>
               <div class="tab-content">
                 <div class="tab-pane fade show active" id="all_expense">
@@ -280,57 +274,6 @@
                   </div>
                 </div>
                 <div class="tab-pane fade" id="consumables">
-                </div>
-                <div class="tab-pane fade" id="pending">
-                  <div class="table-responsive">
-                    <table class="table" style="width:100%;">
-                      <thead>
-                        <th class="bg-primary text-white">Date Created</th>
-                        <th class="bg-primary text-white">Type of Expense</th>
-                        <th class="bg-primary text-white">Details</th>
-                        <th class="bg-primary text-white">Amount</th>
-                        <th class="bg-primary text-white">Due Date</th>
-                        <th class="bg-primary text-white">Action</th>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>2024-04-26</td>
-                          <td>Service Fee</td>
-                          <td>Sample of details here</td>
-                          <td>50,000.00</td>
-                          <td>2024-04-30</td>
-                          <td>
-                            <div class="btn-group">
-                              <button type="button" class="btn btn-primary btn-sm">Select</button>
-                              <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                              </button>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
-                                <h6 class="dropdown-header">Action</h6>
-                                <a class="dropdown-item" href="#">Upload Proof</a>
-                                <a class="dropdown-item" href="#">Cancel</a>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="overdue">
-                  <div class="table-responsive">
-                    <table class="table" style="width:100%;">
-                      <thead>
-                        <th class="bg-primary text-white">Date Created</th>
-                        <th class="bg-primary text-white">Type of Expense</th>
-                        <th class="bg-primary text-white">Details</th>
-                        <th class="bg-primary text-white">Amount</th>
-                        <th class="bg-primary text-white">Due Date</th>
-                        <th class="bg-primary text-white">Action</th>
-                      </thead>
-                      <tbody></tbody>
-                    </table>
-                  </div>
                 </div>
               </div>
             </div>

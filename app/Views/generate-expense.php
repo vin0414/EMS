@@ -213,12 +213,31 @@
                           <label><b>Month</b></label>
                           <select name="month" id="month" class="form-control">
                             <option value="">Choose</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
                           </select>
                         </div>
                         <div class="col-lg-3">
                           <label><b>Year</b></label>
                           <select name="year" id="year" class="form-control">
                             <option value="">Choose</option>
+                            <option>2024</option>
+                            <option>2025</option>
+                            <option>2026</option>
+                            <option>2027</option>
+                            <option>2028</option>
+                            <option>2029</option>
+                            <option>2030</option>
                           </select>
                         </div>
                         <div class="col-lg-2">
@@ -259,6 +278,16 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+    <div class="modal" id="modal-loading" data-backdrop="static">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+				<div class="modal-body text-center">
+					<div class="spinner-border"></div>
+					<div>Loading</div>
+				</div>
+				</div>
+			</div>
+		</div>
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
@@ -274,7 +303,24 @@
       $('#btnGenerate').on('click',function(e){
         e.preventDefault();
         var data = $('#frmGenerate').serialize();
-        alert(data);
+        $('#modal-loading').modal('show');
+        $.ajax({
+          url:"<?=site_url('generate-rent-expense')?>",method:"POST",
+          data:data,
+          success:function(response)
+          {
+            $('#modal-loading').modal('hide');
+            if(response==="success")
+            {
+              $('#frmGenerate')[0].reset();
+              loadRental();
+            }
+            else
+            {
+              alert(response);
+            }
+          }
+        });
       });
       function loadRental()
       {

@@ -103,3 +103,90 @@ INFO - 2024-05-03 02:28:56 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-05-03 02:37:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-05-03 03:52:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-05-03 05:36:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-03 06:23:57 --> count(): Argument #1 ($value) must be of type Countable|array, null given
+in APPPATH\Controllers\ManageController.php on line 20.
+ 1 APPPATH\Controllers\ManageController.php(20): count(null)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\ManageController->generateRentExpense()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2024-05-03 06:24:22 --> count(): Argument #1 ($value) must be of type Countable|array, null given
+in APPPATH\Controllers\ManageController.php on line 20.
+ 1 APPPATH\Controllers\ManageController.php(20): count(null)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\ManageController->generateRentExpense()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2024-05-03 06:25:42 --> count(): Argument #1 ($value) must be of type Countable|array, null given
+in APPPATH\Controllers\ManageController.php on line 20.
+ 1 APPPATH\Controllers\ManageController.php(20): count(null)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\ManageController->generateRentExpense()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2024-05-03 06:29:20 --> count(): Argument #1 ($value) must be of type Countable|array, null given
+in APPPATH\Controllers\ManageController.php on line 20.
+ 1 APPPATH\Controllers\ManageController.php(20): count(null)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\ManageController->generateRentExpense()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-03 07:08:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-03 07:14:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-03 07:15:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-05-03 07:21:45 --> mysqli_sql_exception: Table 'dbexpense.tblrental_expense' doesn't exist in C:\xampp\htdocs\EMS\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\EMS\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `Date`\nF...', 0)
+#1 C:\xampp\htdocs\EMS\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `Date`\nF...')
+#2 C:\xampp\htdocs\EMS\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `Date`\nF...')
+#3 C:\xampp\htdocs\EMS\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `Date`\nF...', Array, false)
+#4 C:\xampp\htdocs\EMS\app\Controllers\ManageController.php(43): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\EMS\system\CodeIgniter.php(934): App\Controllers\ManageController->generateRentExpense()
+#6 C:\xampp\htdocs\EMS\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+#7 C:\xampp\htdocs\EMS\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\EMS\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\EMS\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2024-05-03 07:21:45 --> Table 'dbexpense.tblrental_expense' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `Date`
+FROM `tblrental_expense`
+WHERE DATE_FORMAT(Date,"%m") = :DATE_FORMAT(Date,"%m"):
+AND DATE_FORMAT(Date,"%Y") = :DATE_FORMAT(Date,"%Y"):', [...], false)
+ 2 APPPATH\Controllers\ManageController.php(43): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\ManageController->generateRentExpense()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+ERROR - 2024-05-03 07:22:04 --> mysqli_sql_exception: Table 'dbexpense.tblrental_expense' doesn't exist in C:\xampp\htdocs\EMS\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\EMS\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `Date`\nF...', 0)
+#1 C:\xampp\htdocs\EMS\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `Date`\nF...')
+#2 C:\xampp\htdocs\EMS\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `Date`\nF...')
+#3 C:\xampp\htdocs\EMS\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `Date`\nF...', Array, false)
+#4 C:\xampp\htdocs\EMS\app\Controllers\ManageController.php(43): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\EMS\system\CodeIgniter.php(934): App\Controllers\ManageController->generateRentExpense()
+#6 C:\xampp\htdocs\EMS\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+#7 C:\xampp\htdocs\EMS\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\EMS\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\EMS\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2024-05-03 07:22:04 --> Table 'dbexpense.tblrental_expense' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `Date`
+FROM `tblrental_expense`
+WHERE DATE_FORMAT(Date,"%m") = :DATE_FORMAT(Date,"%m"):
+AND DATE_FORMAT(Date,"%Y") = :DATE_FORMAT(Date,"%Y"):', [...], false)
+ 2 APPPATH\Controllers\ManageController.php(43): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\ManageController->generateRentExpense()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-03 07:24:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-03 07:24:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

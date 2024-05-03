@@ -34,7 +34,7 @@ class Home extends BaseController
         $builder = $this->db->table('tblrental a');
         $builder->select('a.*,b.Description');
         $builder->join('tblaccount_expense b','b.expID=a.expID','LEFT');
-        $builder->WHERE('a.Status',1);
+        $builder->WHERE('a.Status<>',0);
         $rental = $builder->get()->getResult();
         //utilities
         $builder = $this->db->table('tblutilities a');

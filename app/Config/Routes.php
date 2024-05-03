@@ -60,6 +60,7 @@ $routes->post('cancel-expense','Home::cancelExpense');
 $routes->post('update-expense','Home::updateExpense');
 //functions for Manage Controller
 $routes->get('all-rental-expense','ManageController::getAllRentExpense');
+$routes->post('generate-rent-expense','ManageController::generateRentExpense');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {
