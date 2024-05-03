@@ -253,7 +253,7 @@
                           <th>Payee</th>
                           <th>Details</th>
                           <th>Life</th>
-                          <th>Balance</th>
+                          <th>Beg. Balance</th>
                           <th>Amount</th>
                           <th>New Balance</th>
                         </thead>
