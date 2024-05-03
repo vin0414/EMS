@@ -263,12 +263,10 @@
                           <td>
                             <?php if($row->Status==1){ ?>
                             <div class="btn-group">
-                              <button type="button" class="btn btn-primary btn-sm">Select</button>
                               <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
+                              More<span class="sr-only">Toggle Dropdown</span>
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
-                                <h6 class="dropdown-header">Action</h6>
                                 <a class="dropdown-item" href="<?=site_url('edit-utility-expense/')?><?php echo $row->utilityID ?>">Edit</a>
                                 <button type="button" class="dropdown-item cancel" value="<?php echo $row->utilityID ?>">Cancel</button>
                               </div>
