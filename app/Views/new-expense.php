@@ -321,7 +321,7 @@
                     <input type="number" class="form-control" name="day_month" id="day"/>
                   </div>
                   <div class="col-lg-3">
-                    <label>Life Span</label>
+                    <label>Life</label>
                     <input type="number" class="form-control" name="lifespan"/>
                   </div>
                   <div class="col-lg-5">

@@ -202,7 +202,7 @@
                         <th class="bg-primary text-white">Details</th>
                         <th class="bg-primary text-white">Amount</th>
                         <th class="bg-primary text-white">Total Amount</th>
-                        <th class="bg-primary text-white">Lifespan</th>
+                        <th class="bg-primary text-white">Life</th>
                         <th class="bg-primary text-white">Due Date</th>
                         <th class="bg-primary text-white">Action</th>
                       </thead>

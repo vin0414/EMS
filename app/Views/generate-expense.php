@@ -252,7 +252,7 @@
                           <th>#</th>
                           <th>Payee</th>
                           <th>Details</th>
-                          <th>LifeSpan</th>
+                          <th>Life</th>
                           <th>Balance</th>
                           <th>Amount</th>
                           <th>New Balance</th>
