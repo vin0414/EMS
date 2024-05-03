@@ -192,10 +192,17 @@ class Home extends BaseController
 
     public function deleteAll()
     {
+        $rentalPayment = new \App\Models\rentalPaymentModel();
         $val = $this->request->getPost('itemID');
         $count = count($val);
         for($i=0;$i<$count;$i++)
         {
+            //delete the rental payment
+            $getInfo = $rentalPayment->WHERE('rentalID',$val[$i])->first();
+            $builder = $this->db->table('tblrental_payment');
+            $builder->WHERE('rpID',$getInfo['rpID']);
+            $builder->delete();
+            //delete the main records
             $builder = $this->db->table('tblrental');
             $builder->WHERE('rentalID',$val[$i]);
             $builder->delete();
@@ -205,7 +212,14 @@ class Home extends BaseController
 
     public function deleteItem()
     {
+        $rentalPayment = new \App\Models\rentalPaymentModel();
         $val = $this->request->getPost('value');
+        //delete the rental payment
+        $getInfo = $rentalPayment->WHERE('rentalID',$val)->first();
+        $builder = $this->db->table('tblrental_payment');
+        $builder->WHERE('rpID',$getInfo['rpID']);
+        $builder->delete();
+        //delete the main records
         $builder = $this->db->table('tblrental');
         $builder->WHERE('rentalID',$val);
         $builder->delete();
@@ -224,6 +238,7 @@ class Home extends BaseController
     public function saveEntry()
     {
         $rentalModel = new \App\Models\rentalModel();
+        $rentalPayment = new \App\Models\rentalPaymentModel();
         //data
         $expID = $this->request->getPost('expenses');
         $payee = $this->request->getPost('payee');
@@ -259,7 +274,6 @@ class Home extends BaseController
                 'ModePayment'=>$mode_payment,'Amount'=>$amount,'TotalAmount'=>$totalamount,
                 'DateCreated'=>date('Y-m-d'),'DueDate'=>$expiration_date,'Status'=>0,'userID'=>0];
                 $rentalModel->save($values);
-                echo "success";
             }
             else
             {
@@ -274,9 +288,22 @@ class Home extends BaseController
                     'ModePayment'=>$mode_payment,'Amount'=>$amount,'TotalAmount'=>$totalamount,
                     'DateCreated'=>date('Y-m-d'),'DueDate'=>$expiration_date,'Status'=>0,'userID'=>0];
                     $rentalModel->save($values);
-                    echo "success";
                 }
             }
+            //get the rental ID
+            $getRentInfo = $rentalModel
+            ->WHERE('expID',$expID)
+            ->WHERE('Payee',$payee)
+            ->WHERE('Details',$details)
+            ->WHERE('LifeSpan',$lifespan)
+            ->WHERE('DueDate',$expiration_date)
+            ->WHERE('TotalAmount',$totalamount)->first();
+            //save the data
+            $values = ['rentalID'=>$getRentInfo['rentalID'], 'LifeSpan'=>$lifespan,
+                        'Balance'=>$totalamount,'Payment'=>0.00,'NewBalance'=>$totalamount,
+                        'Date'=>date('Y-m-d'),'Status'=>0,'Attachment'=>''];
+            $rentalPayment->save($values);
+            echo "success";
         }
     }
 
