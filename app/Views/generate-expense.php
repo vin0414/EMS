@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="shortcut icon" href="assets/images/fastcat.png" />
+    <style>
+      .tab-content{background-color: #ffffff;}
+      .tableFixHead thead th { position: sticky; top: 0; z-index: 1;color:#fff;background-color:#0275d8;}
+			table  { border-collapse: collapse; width: 100%; }
+			th, td { padding: 8px 16px;color:#000; }
+			tbody{color:#000;}
+    </style>
   </head>
   <body>
     <div class="container-scroller">
@@ -184,13 +191,61 @@
             <div class="page-header flex-wrap">
               <h3 class="mb-0"> Hi, welcome back! <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">Expense Monitoring System</span>
               </h3>
-              <div class="d-flex">
-                <button type="button" class="btn btn-sm bg-white btn-icon-text border">
-                  <i class="mdi mdi-email btn-icon-prepend"></i> Email 
-                </button>
-                <button type="button" class="btn btn-sm bg-white btn-icon-text border ml-3">
-                  <i class="mdi mdi-printer btn-icon-prepend"></i> Print 
-                </button>
+            </div>
+            <div class="tabs">
+              <ul class="nav nav-pills">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="pill" href="#all_expense"><span class="mdi mdi-book-open"></span>&nbsp;Rentals</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="pill" href="#utility"><span class="mdi mdi-clipboard-outline"></span>&nbsp;Utilities</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="pill" href="#consumables"><span class="mdi mdi-bulletin-board"></span>&nbsp;Consumables</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="all_expense">
+                  <form method="POST" class="row" id="frmGenerate">
+                    <div class="col-12 form-group">
+                      <div class="row">
+                        <div class="col-lg-3">
+                          <label><b>Month</b></label>
+                          <select name="month" id="month" class="form-control">
+                            <option value="">Choose</option>
+                          </select>
+                        </div>
+                        <div class="col-lg-3">
+                          <label><b>Year</b></label>
+                          <select name="year" id="year" class="form-control">
+                            <option value="">Choose</option>
+                          </select>
+                        </div>
+                        <div class="col-lg-2">
+                          <label>&nbsp;</label>
+                          <button type="submit" class="form-control btn btn-primary btn-sm" id="btnGenerate">Generate</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 form-group tableFixHead" style="height:400px;overflow-y:auto;">
+                      <table class="table-striped table-hover">
+                        <thead>
+                          <th>#</th>
+                          <th>Payee</th>
+                          <th>Details</th>
+                          <th>LifeSpan</th>
+                          <th>Balance</th>
+                          <th>Amount</th>
+                          <th>New Balance</th>
+                        </thead>
+                        <tbody id="tblexpenses">
+                        </tbody>
+                      </table>
+                    </div>
+                  </form>
+                </div>
+                <div class="tab-pane fade" id="utility">
+                </div>
               </div>
             </div>
           </div>
@@ -208,23 +263,35 @@
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.resize.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.pie.js"></script>
-    <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="assets/js/off-canvas.js"></script>
     <script src="assets/js/hoverable-collapse.js"></script>
     <script src="assets/js/misc.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
-    <!-- End custom js for this page -->
+    <script>
+      $(document).ready(function(){
+        loadRental();
+      });
+      $('#btnGenerate').on('click',function(e){
+        e.preventDefault();
+        var data = $('#frmGenerate').serialize();
+        alert(data);
+      });
+      function loadRental()
+      {
+        $('#tblexpenses').html("<tr><td colspan='7'><center>Loading...</center></td></tr>");
+        $.ajax({
+          url:"<?=site_url('all-rental-expense')?>",method:"GET",
+          success:function(response)
+          {
+            if(response===""){
+              $('#tblexpenses').html("<tr><td colspan='7'><center>No Data(s)</center></td></tr>");
+            }
+            else{
+              $('#tblexpenses').html(response);
+            }
+          }
+        });
+      }
+    </script>
   </body>
 </html>

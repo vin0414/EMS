@@ -39,7 +39,7 @@ $routes->get('/contracts','Home::listContracts');
 $routes->get('/edit/(:any)','Home::editContract/$1');
 $routes->get('/generate-expense','Home::generateExpense');
 $routes->get('/settings','Home::Settings');
-//functions
+//functions for Home Controller
 $routes->post('save-contract','Home::saveContract');
 $routes->get('search-contract','Home::searchContract');
 $routes->get('list-of-contracts','Home::expiredContracts');
@@ -58,6 +58,8 @@ $routes->post('send-all','Home::sendAll');
 $routes->post('update-rent','Home::updateRent');
 $routes->post('cancel-expense','Home::cancelExpense');
 $routes->post('update-expense','Home::updateExpense');
+//functions for Manage Controller
+$routes->get('all-rental-expense','ManageController::getAllRentExpense');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {
