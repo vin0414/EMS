@@ -154,7 +154,11 @@ class ManageController extends BaseController
                     <?php } ?>
                 </td>
                 <td>
+                    <?php if($row->Status==1){ ?>
                     <a href="Proof/<?php echo $row->Attachment ?>" target="_BLANK"><span class="mdi mdi-file-find"></span>&nbsp;View</a>
+                    <?php }else{ ?>
+                        No File
+                    <?php } ?>
                 </td>
                 <td>
                     <?php if($row->Status!=1){ ?>
