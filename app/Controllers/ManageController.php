@@ -114,6 +114,48 @@ class ManageController extends BaseController
 
     public function pendingRentExpense()
     {
-        $builder = $this->db->table('tblrental_expense a');
+        $builder = $this->db->table('tblrental_payment a');
+        $builder->select('a.rpID,a.Payment,a.Date,a.Status,a.Attachment,b.Payee,b.Details,c.Description');
+        $builder->join('tblrental b','b.rentalID=a.rentalID','LEFT');
+        $builder->join('tblaccount_expense c','c.expID=b.expID','LEFT');
+        $builder->WHERE('a.Status<>',3);
+        $builder->orderBy('a.Status','ASC');
+        $data = $builder->get();
+        foreach($data->getResult() as $row)
+        {
+            ?>
+            <tr>
+                <td><?php echo $row->Date ?></td>
+                <td><?php echo $row->Description ?></td>
+                <td><?php echo $row->Payee ?></td>
+                <td><?php echo $row->Details ?></td>
+                <td><?php echo number_format($row->Payment,2) ?></td>
+                <td>
+                    <?php if($row->Status==0){ ?>
+                        <span class="badge bg-warning text-white">PENDING</span>
+                    <?php }else if($row->Status==1){?>
+                        <span class="badge bg-success text-white">DONE</span>
+                    <?php }else if($row->Status==2){?>
+                        <span class="badge bg-danger text-white">OVERDUE</span>
+                    <?php } ?>
+                </td>
+                <td>
+                    <a href="Proof/<?php echo $row->Attachment ?>" target="_BLANK"><span class="mdi mdi-file-find"></span>&nbsp;View</a>
+                </td>
+                <td>
+                    <?php if($row->Status!=1){ ?>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More<span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
+                        <button type="button" class="dropdown-item upload" value="<?php echo $row->rpID ?>">Upload Proof</button>
+                        </div>
+                    </div>
+                    <?php } ?>
+                </td>
+            </tr>
+            <?php
+        }
     }
 }

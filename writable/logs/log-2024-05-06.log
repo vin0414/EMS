@@ -1,0 +1,69 @@
+ERROR - 2024-05-06 02:07:58 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.`Details`
+FROM `tblrental_payment` `a`
+LEFT JOIN `tblrental` `b` ON `b`.`rental' at line 1 in C:\xampp\htdocs\EMS\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\EMS\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`rpI...', 0)
+#1 C:\xampp\htdocs\EMS\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`rpI...')
+#2 C:\xampp\htdocs\EMS\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`rpI...')
+#3 C:\xampp\htdocs\EMS\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`rpI...', Array, false)
+#4 C:\xampp\htdocs\EMS\app\Controllers\ManageController.php(122): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\EMS\system\CodeIgniter.php(934): App\Controllers\ManageController->pendingRentExpense()
+#6 C:\xampp\htdocs\EMS\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+#7 C:\xampp\htdocs\EMS\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\EMS\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\EMS\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2024-05-06 02:07:58 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.`Details`
+FROM `tblrental_payment` `a`
+LEFT JOIN `tblrental` `b` ON `b`.`rental' at line 1
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`rpID`, `a`.`LifeSpan`, `a`.`Balance`, `a`.`Payment`, `a`.`NewBalance`, `a`.`Date`, `a`.`Status`, `a`.`Attachment`, `b`.`Payee`.`b`.`Details`
+FROM `tblrental_payment` `a`
+LEFT JOIN `tblrental` `b` ON `b`.`rentalID`=`a`.`rentalID`
+WHERE `a`.`Status` = :a.Status:
+ORDER BY `a`.`Status` ASC', [...], false)
+ 2 APPPATH\Controllers\ManageController.php(122): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\ManageController->pendingRentExpense()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+ERROR - 2024-05-06 02:08:10 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.`Details`
+FROM `tblrental_payment` `a`
+LEFT JOIN `tblrental` `b` ON `b`.`rental' at line 1 in C:\xampp\htdocs\EMS\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\EMS\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `a`.`rpI...', 0)
+#1 C:\xampp\htdocs\EMS\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `a`.`rpI...')
+#2 C:\xampp\htdocs\EMS\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `a`.`rpI...')
+#3 C:\xampp\htdocs\EMS\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`rpI...', Array, false)
+#4 C:\xampp\htdocs\EMS\app\Controllers\ManageController.php(122): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\EMS\system\CodeIgniter.php(934): App\Controllers\ManageController->pendingRentExpense()
+#6 C:\xampp\htdocs\EMS\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+#7 C:\xampp\htdocs\EMS\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\EMS\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\EMS\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2024-05-06 02:08:10 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.`Details`
+FROM `tblrental_payment` `a`
+LEFT JOIN `tblrental` `b` ON `b`.`rental' at line 1
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `a`.`rpID`, `a`.`LifeSpan`, `a`.`Balance`, `a`.`Payment`, `a`.`NewBalance`, `a`.`Date`, `a`.`Status`, `a`.`Attachment`, `b`.`Payee`.`b`.`Details`
+FROM `tblrental_payment` `a`
+LEFT JOIN `tblrental` `b` ON `b`.`rentalID`=`a`.`rentalID`
+WHERE `a`.`Status` = :a.Status:
+ORDER BY `a`.`Status` ASC', [...], false)
+ 2 APPPATH\Controllers\ManageController.php(122): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\ManageController->pendingRentExpense()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2024-05-06 02:29:44 --> Undefined property: stdClass::$Amount
+in APPPATH\Controllers\ManageController.php on line 132.
+ 1 APPPATH\Controllers\ManageController.php(132): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$Amount', 'APPPATH\\Controllers\\ManageController.php', 132)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\ManageController->pendingRentExpense()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ManageController))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-06 03:01:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
