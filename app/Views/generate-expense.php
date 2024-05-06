@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
     <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
     <link rel="shortcut icon" href="assets/images/fastcat.png" />
     <style>
       .tab-content{background-color: #ffffff;}
@@ -246,7 +245,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 form-group tableFixHead" style="height:400px;overflow-y:auto;">
+                    <div class="col-12 form-group table-responsive tableFixHead" style="height:400px;overflow-y:auto;font-size:13px;">
                       <table class="table-striped table-hover">
                         <thead>
                           <th>#</th>
@@ -264,25 +263,40 @@
                   </form>
                 </div>
                 <div class="tab-pane fade" id="rent_expense">
-                  <div class="table-responsive">
-                      <table class="table table-striped table-bordered" style="width:100%;">
+                  <div class="table-responsive tableFixHead" style="height:400px;overflow-y:auto;font-size:13px;">
+                      <table class="table-striped table-hover">
                         <thead>
-                          <th class="bg-primary text-white">Due Date</th>
-                          <th class="bg-primary text-white">Type of Expense</th>
-                          <th class="bg-primary text-white">Payee</th>
-                          <th class="bg-primary text-white">Details</th>
-                          <th class="bg-primary text-white">Amount</th>
-                          <th class="bg-primary text-white">Status</th>
-                          <th class="bg-primary text-white">File(s)</th>
-                          <th class="bg-primary text-white">Action</th>
+                          <th>Due Date</th>
+                          <th>Type of Expense</th>
+                          <th>Payee</th>
+                          <th>Details</th>
+                          <th>Amount</th>
+                          <th>Status</th>
+                          <th>File(s)</th>
+                          <th>Action</th>
                         </thead>
-                        <tbody>
+                        <tbody id="tbl_rent_expense">
                         </tbody>
                       </table>
                   </div>
                 </div>
                 <div class="tab-pane fade" id="other_expense">
-                  
+                  <div class="table-responsive tableFixHead" style="height:400px;overflow-y:auto;font-size:13px;">
+                      <table class="table-striped table-hover">
+                        <thead>
+                          <th>Due Date</th>
+                          <th>Type of Expense</th>
+                          <th>Payee</th>
+                          <th>Details</th>
+                          <th>Amount</th>
+                          <th>Status</th>
+                          <th>File(s)</th>
+                          <th>Action</th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+                  </div>
                 </div>
               </div>
             </div>
@@ -315,10 +329,9 @@
     <script src="assets/js/off-canvas.js"></script>
     <script src="assets/js/hoverable-collapse.js"></script>
     <script src="assets/js/misc.js"></script>
-    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
     <script>
       $(document).ready(function(){
-        loadRental();$('.table').DataTable();
+        loadRental();loadRentalExpense();
       });
       $('#btnGenerate').on('click',function(e){
         e.preventDefault();
@@ -342,6 +355,7 @@
           }
         });
       });
+
       function loadRental()
       {
         $('#tblexpenses').html("<tr><td colspan='7'><center>Loading...</center></td></tr>");
@@ -354,6 +368,25 @@
             }
             else{
               $('#tblexpenses').html(response);
+            }
+          }
+        });
+      }
+
+      function loadRentalExpense()
+      {
+        $('#tbl_rent_expense').html("<tr><td colspan='8'><center>Loading...</center></td></tr>");
+        $.ajax({
+          url:"<?=site_url('load-pending-rent-expense')?>",method:"GET",
+          success:function(response)
+          {
+            if(response==="")
+            {
+              $('#tbl_rent_expense').html("<tr><td colspan='8'><center>No Record(s)</center></td></tr>");
+            }
+            else
+            {
+              $('#tbl_rent_expense').html(response);
             }
           }
         });

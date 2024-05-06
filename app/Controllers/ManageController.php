@@ -111,4 +111,9 @@ class ManageController extends BaseController
             <?php
         }
     }
+
+    public function pendingRentExpense()
+    {
+        $builder = $this->db->table('tblrental_expense a');
+    }
 }
