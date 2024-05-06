@@ -322,7 +322,7 @@
           </div>
           <!-- Modal body -->
           <div class="modal-body">
-            <form method="POST" class="row" id="frmUpload">
+            <form method="POST" class="row" id="frmUpload" enctype="multipart/form-data">
               <input type="hidden" name="rentalID" id="rentalID"/>
               <div class="col-12 form-group">
                 <label>Attachment</label>
@@ -366,6 +366,35 @@
           $('#uploadModal').modal('show');
           $('#rentalID').attr("Value",$(this).val());
         }
+      });
+
+      $('#frmUpload').on('submit',function(evt)
+      {
+            evt.preventDefault();
+            $.ajax({
+                url:"<?=site_url('upload-proof-file')?>",method:"POST",
+                data:new FormData(this),
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend: function(){
+                  $('#modal-loading').modal('show');
+                },
+                success:function(response)
+                {
+                  $('#modal-loading').modal('hide');
+                  $('#uploadModal').modal('hide');
+                  if(response==="success")
+                  {
+                    alert("Great! Successfully uploaded for review");
+                    loadRentalExpense();
+                  }
+                  else
+                  {
+                    alert(response);
+                  }
+                }
+            });
       });
 
       $('#btnGenerate').on('click',function(e){

@@ -12,7 +12,16 @@ class ManageController extends BaseController
 
     public function uploadProof()
     {
-        
+        $rentalPayment = new \App\Models\rentalPaymentModel();
+        //update the rental payment
+        $id = $this->request->getPost('rentalID');
+        $file = $this->request->getFile('file');
+        $originalName = $file->getClientName();
+        //save the file
+        $values = ['Status'=>1,'Attachment'=>$originalName];
+        $file->move('Proof/',$originalName);
+        $rentalPayment->update($id,$values);
+        echo "success";
     }
 
     public function generateRentExpense()

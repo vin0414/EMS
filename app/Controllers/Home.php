@@ -301,7 +301,7 @@ class Home extends BaseController
             //save the data
             $values = ['rentalID'=>$getRentInfo['rentalID'], 'LifeSpan'=>$lifespan,
                         'Balance'=>$totalamount,'Payment'=>0.00,'NewBalance'=>$totalamount,
-                        'Date'=>date('Y-m-d'),'Status'=>0,'Attachment'=>''];
+                        'Date'=>date('Y-m-d'),'Status'=>3,'Attachment'=>''];
             $rentalPayment->save($values);
             echo "success";
         }
