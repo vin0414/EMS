@@ -10,6 +10,11 @@ class ManageController extends BaseController
         $this->db = db_connect();
     }
 
+    public function uploadProof()
+    {
+        
+    }
+
     public function generateRentExpense()
     {
         $rentalPayment = new \App\Models\rentalPaymentModel();

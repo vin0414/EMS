@@ -311,6 +311,31 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+
+    <div class="modal fade" id="uploadModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Upload</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form method="POST" class="row" id="frmUpload">
+              <input type="hidden" name="rentalID" id="rentalID"/>
+              <div class="col-12 form-group">
+                <label>Attachment</label>
+                <input type="file" name="file" class="form-control"/>
+              </div>
+              <div class="col-12 form-group">
+                <button type="submit" class="btn btn-primary" id="btnUpload">Upload File</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="modal" id="modal-loading" data-backdrop="static">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -333,6 +358,16 @@
       $(document).ready(function(){
         loadRental();loadRentalExpense();
       });
+
+      $(document).on('click','.upload',function(){
+        var confirmation = confirm('Do you want to upload the proof of payment?');
+        if(confirmation)
+        {
+          $('#uploadModal').modal('show');
+          $('#rentalID').attr("Value",$(this).val());
+        }
+      });
+
       $('#btnGenerate').on('click',function(e){
         e.preventDefault();
         var data = $('#frmGenerate').serialize();
