@@ -175,6 +175,11 @@
           <div class="content-wrapper pb-0">
             <div class="page-header flex-wrap">
               <h3 class="mb-0"> Expense Sheet List</h3>
+              <div class="d-flex">
+                <button type="button" class="btn btn-sm bg-white btn-icon-text border add" id="btnAdd">
+                  <i class="mdi mdi-plus btn-icon-prepend"></i> Add Entry 
+                </button>
+              </div>
             </div>
             <div class="card">
               <div class="card-body">
@@ -183,18 +188,9 @@
                     <li class="nav-item">
                       <a class="nav-link active" data-toggle="pill" href="#rental"><span class="mdi mdi-square-inc-cash"></span>&nbsp;Rental Expense</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-toggle="pill" href="#utilities"><span class="mdi mdi-clipboard-outline"></span>&nbsp;Utilities</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-toggle="pill" href="#consumables"><span class="mdi mdi-bulletin-board"></span>&nbsp;Consumables</a>
-                    </li>
                   </ul>
                   <div class="tab-content">
                     <div class="tab-pane fade show active" id="rental">
-                      <button type="button" class="btn btn-sm bg-white btn-icon-text border" id="btnAdd">
-                        <i class="mdi mdi-plus btn-icon-prepend"></i> Add Entry 
-                      </button>
                       <form method="POST" class="row" id="frmExpense" action="" style="margin-top:10px;">
                         <div class="col-12 form-group tableFixHead" style="height:400px;overflow-y:auto;">
                           <table class="table-striped table-hover">
@@ -216,57 +212,6 @@
                           <button type="button" class="btn btn-danger" id="btnDelete" disabled><i class="mdi mdi-delete-variant"></i>&nbsp;Delete All</button>
                         </div>
                       </form>
-                    </div>
-                    <div class="tab-pane fade" id="utilities">
-                      <form method="POST" class="row" id="frmUtilities">
-                        <div class="col-12 form-group">
-                          <label>Type of Expense</label>
-                          <select class="js-example-basic-single" name="expenses" id="expense" style="width:100%;">
-                            <option value="">Choose</option>
-                            <?php foreach($account as $row):?>
-                              <option value="<?php echo $row['expID'] ?>"><?php echo $row['Description'] ?></option>
-                            <?php endforeach;?>
-                          </select>
-                        </div>
-                        <div class="col-12 form-group">
-                          <label>Paid To</label>
-                          <input type="text" class="form-control" name="payee"/>
-                        </div>
-                        <div class="col-12 form-group">
-                          <label>Details</label>
-                          <textarea class="form-control" name="details" style="height:150px;overflow-y:auto;"></textarea>
-                        </div>
-                        <div class="col-12 form-group">
-                          <input type="checkbox" name="due_date_selection" id="due_date_selection" value="1" style="height:20px;width:18px;"/>&nbsp;Last Day of the Month?
-                        </div>
-                        <div class="col-12 form-group">
-                          <div class="row">
-                            <div class="col-lg-4">
-                              <label>Day of the Month</label>
-                              <input type="number" class="form-control" name="day_month" id="day_month"/>
-                            </div>
-                            <div class="col-lg-4">
-                              <label>Mode of Payment</label>
-                              <select class="form-control" name="mode_payment">
-                                <option value="">Choose</option>
-                                <option>Cash</option>
-                                <option>Check</option>
-                                <option>Credit</option>
-                                <option>Bank</option>
-                              </select>
-                            </div>
-                            <div class="col-lg-4">
-                              <label>Amount</label>
-                              <input type="text" class="form-control" name="amount" placeholder="0.00"/>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-12 form-group">
-                          <button type="submit" class="btn btn-primary save">Save Entry</button>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="tab-pane fade" id="consumables">
                     </div>
                   </div>
                 </div>
@@ -496,18 +441,7 @@
         }
       });
       $('#btnAdd').on('click',function(){$('#myModal').modal('show');});
-      
-      $('#due_date_selection').change(function(){
-        if (!$(this).prop("checked")) {
-          $('#day_month').attr("disabled",false);
-          document.getElementById('day_month').value=0;
-        }
-        else
-        {
-          $('#day_month').attr("disabled",true);
-          document.getElementById('day_month').value=0;
-        }
-      });
+    
 
       $('#due_date').change(function(){
         if (!$(this).prop("checked")) {
@@ -537,30 +471,6 @@
               loadRentals();
               $('#myModal').modal('hide');
               document.getElementById('expenses').selectedIndex = 0;
-            }
-            else
-            {
-              alert(response);
-            }
-          }
-        });
-      });
-
-      $('#frmUtilities').on('submit',function(e)
-      {
-        e.preventDefault();
-        var data = $('#frmUtilities').serialize();
-        $('#modal-loading').modal('show');
-        $.ajax({
-          url:"<?=site_url('save-expense')?>",method:"POST",
-          data:data,success:function(response)
-          {
-            $('#modal-loading').modal('hide');
-            if(response==="success")
-            {
-              alert("Great! Successfully submitted");
-              $('#frmUtilities')[0].reset();
-              document.getElementById('expense').selectedIndex = 0;
             }
             else
             {

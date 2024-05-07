@@ -176,4 +176,12 @@ class ManageController extends BaseController
             <?php
         }
     }
+
+    public function otherExpense()
+    {
+        $builder = $this->db->table('tblutilities a');
+        $builder->select('a.*,b.Description');
+        $builder->join('tblaccount_expense b','b.expID=a.expID','LEFT');
+        $builder->WHERE('a.Status<>',0);
+    }
 }

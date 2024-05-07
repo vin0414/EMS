@@ -34,7 +34,6 @@ $routes->get('/new-expense','Home::newExpense');
 $routes->get('/upload','Home::Upload');
 $routes->get('/manage-expenses','Home::manageExpenses');
 $routes->get('/edit-rental/(:any)','Home::editRental/$1');
-$routes->get('/edit-utility-expense/(:any)','Home::editUtility/$1');
 $routes->get('/contracts','Home::listContracts');
 $routes->get('/edit/(:any)','Home::editContract/$1');
 $routes->get('/generate-expense','Home::generateExpense');
@@ -48,7 +47,6 @@ $routes->post('save-code','Home::saveCode');
 $routes->post('remove-code','Home::removeCode');
 $routes->get('view-details','Home::viewDetails');
 $routes->post('modify-code','Home::modifyCode');
-$routes->post('save-expense','Home::saveExpense');
 $routes->post('save-rental-entry','Home::saveEntry');
 $routes->get('list-rentals','Home::listRentals');
 $routes->post('delete-item','Home::deleteItem');
@@ -56,13 +54,12 @@ $routes->post('send-item','Home::sendItem');
 $routes->post('delete-all','Home::deleteAll');
 $routes->post('send-all','Home::sendAll');
 $routes->post('update-rent','Home::updateRent');
-$routes->post('cancel-expense','Home::cancelExpense');
-$routes->post('update-expense','Home::updateExpense');
 //functions for Manage Controller
 $routes->get('all-rental-expense','ManageController::getAllRentExpense');
 $routes->post('generate-rent-expense','ManageController::generateRentExpense');
 $routes->get('load-pending-rent-expense','ManageController::pendingRentExpense');
 $routes->post('upload-proof-file','ManageController::uploadProof');
+$routes->get('load-pending-other-expense','ManageController::otherExpense');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {
