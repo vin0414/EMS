@@ -12,6 +12,24 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="shortcut icon" href="assets/images/fastcat.png" />
     <style>
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888; 
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }
+      ::-webkit-scrollbar {
+          height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+          width: 4px;               /* width of vertical scrollbar */
+          border: 1px solid #d5d5d5;
+        }
       .tab-content{background-color: #ffffff;}
       .tableFixHead thead th { position: sticky; top: 0; z-index: 1;color:#fff;background-color:#0275d8;}
 			table  { border-collapse: collapse; width: 100%; }
@@ -242,7 +260,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 form-group table-responsive tableFixHead" style="height:400px;overflow-y:auto;font-size:13px;">
+                    <div class="col-12 form-group tableFixHead" style="height:400px;overflow-y:auto;font-size:13px;">
                       <table class="table-striped table-hover">
                         <thead>
                           <th>#</th>
@@ -260,7 +278,7 @@
                   </form>
                 </div>
                 <div class="tab-pane fade" id="rent_expense">
-                  <div class="table-responsive tableFixHead" style="height:400px;overflow-y:auto;font-size:13px;">
+                  <div class="tableFixHead" style="height:400px;overflow-y:auto;font-size:13px;">
                       <table class="table-striped table-hover">
                         <thead>
                           <th>Due Date</th>

@@ -230,7 +230,20 @@
                             <p class="mb-0 color-card-head">Other Expenses</p>
                             <h2 class="text-white"><?php echo number_format($expense,2) ?></h2>
                           </div>
-                          <i class="card-icon-indicator mdi mdi-cash bg-inverse-icon-primary"></i>
+                          <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-primary"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-md-6 grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3">
+                    <div class="card bg-success">
+                      <div class="card-body px-3 py-4">
+                        <div class="d-flex justify-content-between align-items-start">
+                          <div class="color-card">
+                            <p class="mb-0 color-card-head">Contracts</p>
+                            <h2 class="text-white"><?php echo number_format($expense,2) ?></h2>
+                          </div>
+                          <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-primary"></i>
                         </div>
                       </div>
                     </div>
@@ -242,7 +255,7 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-sm-7">
-                        <h5>Yearly Expenses</h5>
+                        <h5>Yearly Expenses (Utilities/Consumables)</h5>
                         <p class="text-muted"> Show overview <?php echo date('M-Y') ?><a class="text-muted font-weight-medium pl-2" href="#"><u>See Details</u></a>
                         </p>
                       </div>
@@ -253,10 +266,8 @@
                     </div>
                     <div class="row my-3">
                       <div class="col-sm-12">
-                        <div class="flot-chart-wrapper">
-                          <div id="flotChart" class="flot-chart">
-                            <canvas class="flot-base"></canvas>
-                          </div>
+                        <div style="width:100%;height:auto;">
+                          <canvas id="chartExpense"></canvas>
                         </div>
                       </div>
                     </div>
@@ -292,7 +303,7 @@
                       </table>
                     </div>
                     <a class="text-black mt-3 d-block pl-4" href="<?=site_url('generate-expense')?>">
-                      <span class="font-weight-medium h6">View all rent expense</span>
+                      <span class="font-weight-medium h6">View All Rent Expense</span>
                       <i class="mdi mdi-chevron-right"></i></a>
                   </div>
                 </div>
@@ -302,13 +313,13 @@
               <div class="col-xl-8 col-md-6 grid-margin stretch-card">
                 <div class="card card-invoice">
                   <div class="card-body">
-                    <h4 class="card-title pb-3">Pending invoices</h4>
+                    <h4 class="card-title pb-3">Other Expense - Pending</h4>
                     <div class="list-card">
                       <div class="row align-items-center">
                         <div class="col-7 col-sm-8">
                           <div class="row align-items-center">
                             <div class="col-sm-4">
-                              <img src="assets/images/faces/face2.jpg" alt="" />
+                              <img src="" alt="" />
                             </div>
                             <div class="col-sm-8 pr-0 pl-sm-0">
                               <span>06 Jan 2019</span>
@@ -340,7 +351,7 @@
                         <div class="col-7 col-sm-8">
                           <div class="row align-items-center">
                             <div class="col-sm-4">
-                              <img src="assets/images/faces/face3.jpg" alt="" />
+                              <img src="" alt="" />
                             </div>
                             <div class="col-sm-8 pr-0 pl-sm-0">
                               <span>18 Mar 2019</span>
@@ -372,7 +383,7 @@
                         <div class="col-7 col-sm-8">
                           <div class="row align-items-center">
                             <div class="col-sm-4">
-                              <img src="assets/images/faces/face11.jpg" alt="" />
+                              <img src="" alt="" />
                             </div>
                             <div class="col-sm-8 pr-0 pl-sm-0">
                               <span>10 Apr 2019</span>
@@ -404,7 +415,7 @@
                         <div class="col-7 col-sm-8">
                           <div class="row align-items-center">
                             <div class="col-sm-4">
-                              <img src="assets/images/faces/face3.jpg" alt="" />
+                              <img src="" alt="" />
                             </div>
                             <div class="col-sm-8 pr-0 pl-sm-0">
                               <span>18 Mar 2019</span>
@@ -462,12 +473,6 @@
     <!-- Plugin js for this page -->
     <script src="assets/vendors/chart.js/Chart.min.js"></script>
     <script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.resize.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.pie.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="assets/js/off-canvas.js"></script>
@@ -477,5 +482,69 @@
     <!-- Custom js for this page -->
     <script src="assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+    <script>
+      $(document).ready(function(){
+        showGraph();
+      });
+      function showGraph()
+      {
+          $.ajax({
+            url:"<?=site_url('chart-expense')?>",method:"GET",
+            dataType:"JSON",
+            success:function(data)
+            {
+              console.log(data);
+              var month = [];
+              var amount = [];
+
+              for (var i in data) {
+                //alter the data
+                var mm="";
+                if(data[i].Month==="01"){mm="Jan";}else if(data[i].Month==="02"){mm="Feb";}else if(data[i].Month==="03"){mm="Mar";}
+                else if(data[i].Month==="04"){mm="Apr";}else if(data[i].Month==="05"){mm="May";}else if(data[i].Month==="06"){mm="Jun";}
+                else if(data[i].Month==="07"){mm="Jul";}else if(data[i].Month==="08"){mm="Aug";}else if(data[i].Month==="09"){mm="Sep";}
+                else if(data[i].Month==="10"){mm="Oct";}else if(data[i].Month==="11"){mm="Nov";}else if(data[i].Month==="12"){mm="Dec";}
+                  month.push(mm);
+                  amount.push(data[i].Amount);
+              }
+
+              var chartdata = {
+                  labels: month,
+                  datasets: [
+                      {
+                          label: 'Expense',
+                          data: amount,
+                          backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                          ],
+                          borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                          ],
+                          borderWidth: 1,
+                          fill: true
+                      }
+                  ]
+              };
+
+              var graphTarget = $("#chartExpense");
+
+              var lineGraph = new Chart(graphTarget, {
+                  type: 'line',
+                  data: chartdata
+              });
+            }
+          });
+      }
+    </script>
   </body>
 </html>

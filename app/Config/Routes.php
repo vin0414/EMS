@@ -61,6 +61,8 @@ $routes->get('load-pending-rent-expense','ManageController::pendingRentExpense')
 $routes->post('upload-proof-file','ManageController::uploadProof');
 $routes->post('upload-proof-receipt','ManageController::uploadReceipt');
 $routes->get('load-pending-other-expense','ManageController::otherExpense');
+//dashboard function
+$routes->get('chart-expense','Home::chartExpense');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {

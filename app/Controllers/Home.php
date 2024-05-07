@@ -10,6 +10,22 @@ class Home extends BaseController
         $this->db = db_connect();
     }
 
+    //chart
+    public function chartExpense()
+    {
+        header('Content-Type: application/json');
+        $year = date('Y');
+        $sql = "Select DATE_FORMAT(Date,'%m')Month,SUM(Payment) as Amount from tblrental_payment 
+                WHERE Status<>3 AND DATE_FORMAT(Date,'%Y')=:year: GROUP BY DATE_FORMAT(Date,'%m')";
+        $query = $this->db->query($sql,['year'=>$year]);
+        $data = array();
+        foreach($query->getResult() as $row)
+        {
+            $data[] = $row;
+        }
+        echo json_encode($data);
+    }
+
     public function index()
     {
         //get the total expenses

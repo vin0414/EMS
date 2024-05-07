@@ -13,6 +13,24 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="shortcut icon" href="assets/images/fastcat.png" />
     <style>
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888; 
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }
+      ::-webkit-scrollbar {
+          height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+          width: 4px;               /* width of vertical scrollbar */
+          border: 1px solid #d5d5d5;
+        }
       .tableFixHead thead th { position: sticky; top: 0; z-index: 1;color:#fff;background-color:#0275d8;}
 			table  { border-collapse: collapse; width: 100%; }
 			th, td { padding: 8px 16px;color:#000; }
@@ -183,38 +201,27 @@
             </div>
             <div class="card">
               <div class="card-body">
-                <div class="tabs">
-                  <ul class="nav nav-pills">
-                    <li class="nav-item">
-                      <a class="nav-link active" data-toggle="pill" href="#rental"><span class="mdi mdi-square-inc-cash"></span>&nbsp;Rental Expense</a>
-                    </li>
-                  </ul>
-                  <div class="tab-content">
-                    <div class="tab-pane fade show active" id="rental">
-                      <form method="POST" class="row" id="frmExpense" action="" style="margin-top:10px;">
-                        <div class="col-12 form-group tableFixHead" style="height:400px;overflow-y:auto;">
-                          <table class="table-striped table-hover">
-                            <thead>
-                              <th>#</th>
-                              <th>Date</th>
-                              <th>Type of Expense</th>
-                              <th>Details</th>
-                              <th>Total Amount</th>
-                              <th>Status</th>
-                              <th>Action</th>
-                            </thead>
-                            <tbody id="tblexpenses">
-                            </tbody>
-                          </table>
-                        </div>
-                        <div class="col-12 form-group">
-                          <button type="submit" class="btn btn-primary" id="btnSave" disabled><i class="mdi mdi-content-save"></i>&nbsp;Submit All</button>
-                          <button type="button" class="btn btn-danger" id="btnDelete" disabled><i class="mdi mdi-delete-variant"></i>&nbsp;Delete All</button>
-                        </div>
-                      </form>
-                    </div>
+                <form method="POST" class="row" id="frmExpense" action="" style="margin-top:10px;">
+                  <div class="col-12 form-group tableFixHead" style="height:400px;overflow-y:auto;font-size:13px;">
+                    <table class="table-striped table-hover">
+                      <thead>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Type of Expense</th>
+                        <th>Details</th>
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </thead>
+                      <tbody id="tblexpenses">
+                      </tbody>
+                    </table>
                   </div>
-                </div>
+                  <div class="col-12 form-group">
+                    <button type="submit" class="btn btn-primary" id="btnSave" disabled><i class="mdi mdi-content-save"></i>&nbsp;Submit All</button>
+                    <button type="button" class="btn btn-danger" id="btnDelete" disabled><i class="mdi mdi-delete-variant"></i>&nbsp;Delete All</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
