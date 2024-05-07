@@ -10,6 +10,27 @@ class ManageController extends BaseController
         $this->db = db_connect();
     }
 
+    public function uploadReceipt()
+    {
+        $expenseModel = new \App\Models\expenseModel();
+        //update the expenses
+        $id = $this->request->getPost('expenseID');
+        $file = $this->request->getFile('file');
+        $originalName = $file->getClientName();
+        if(empty($originalName))
+        {
+            echo "Invalid! Please upload the attachment";
+        }
+        else
+        {
+            //save the file
+            $values = ['id'=>$id, 'Files'=>$originalName,'Date'=>date('Y-m-d')];
+            $expenseModel->save($values);
+            $file->move('Proof/',$originalName);
+            echo "success";
+        }
+    }
+
     public function uploadProof()
     {
         $rentalPayment = new \App\Models\rentalPaymentModel();
@@ -18,10 +39,17 @@ class ManageController extends BaseController
         $file = $this->request->getFile('file');
         $originalName = $file->getClientName();
         //save the file
-        $values = ['Status'=>1,'Attachment'=>$originalName];
-        $file->move('Proof/',$originalName);
-        $rentalPayment->update($id,$values);
-        echo "success";
+        if(empty($originalName))
+        {
+            echo "Invalid! Please upload the attachment";
+        }
+        else
+        {
+            $values = ['Status'=>1,'Attachment'=>$originalName];
+            $file->move('Proof/',$originalName);
+            $rentalPayment->update($id,$values);
+            echo "success";
+        }
     }
 
     public function generateRentExpense()

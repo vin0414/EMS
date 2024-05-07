@@ -186,10 +186,7 @@
                   <a class="nav-link active" data-toggle="pill" href="#all_expense"><span class="mdi mdi-book-open"></span>&nbsp;Rentals</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="pill" href="#utility"><span class="mdi mdi-clipboard-outline"></span>&nbsp;Utilities</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="pill" href="#consumables"><span class="mdi mdi-bulletin-board"></span>&nbsp;Consumables</a>
+                  <a class="nav-link" data-toggle="pill" href="#utility"><span class="mdi mdi-clipboard-outline"></span>&nbsp;Other Expenses</a>
                 </li>
               </ul>
               <div class="tab-content">
@@ -229,51 +226,46 @@
                   <div class="table-responsive">
                     <table class="table table-striped table-bordered" style="width:100%;">
                       <thead>
-                        <th class="bg-primary text-white">Date Created</th>
-                        <th class="bg-primary text-white">Type of Expense</th>
+                        <th class="bg-primary text-white">Payment Date</th>
                         <th class="bg-primary text-white">Payee</th>
                         <th class="bg-primary text-white">Details</th>
                         <th class="bg-primary text-white">Amount</th>
-                        <th class="bg-primary text-white">Status</th>
+                        <th class="bg-primary text-white">Files</th>
+                        <th class="bg-primary text-white">Date</th>
                         <th class="bg-primary text-white">Action</th>
                       </thead>
                       <tbody>
-                        <?php foreach($utility as $row): ?>
+                      <?php foreach($others as $row): ?>
                         <tr>
-                          <td><?php echo $row->DateCreated ?></td>
-                          <td><?php echo $row->Description ?></td>
-                          <td><?php echo $row->Payee ?></td>
-                          <td><?php echo $row->Details ?></td>
-                          <td><?php echo number_format($row->Amount,2) ?></td>
+                          <td><?php echo $row->p_date ?></td>
+                          <td><?php echo substr($row->p_name,0,40) ?>...</td>
+                          <td><?php echo substr($row->p_purpose,0,30) ?>...</td>
+                          <td style='text-align:right;'><?php echo number_format($row->p_amount_in_figures,2) ?></td>
                           <td>
-                            <?php if($row->Status==1){ ?>
-                              <span class="badge bg-info text-white">ON PROCESS</span>
-                            <?php }else if($row->Status==0){ ?>
-                              <span class="badge bg-danger text-white">CANCELLED</span>
-                            <?php }else{?>
-                              <span class="badge bg-success text-white">ARCHIVE</span>
+                            <?php if(empty($row->Files)){ ?>
+                              <span class="badge bg-warning text-white">No Files</span>
+                            <?php }else{ ?>
+                              <a href="Proof/<?php echo $row->Files?>" target="_BLANK" class="badge bg-success text-white">View</a>
                             <?php } ?>
                           </td>
+                          <td><?php echo $row->Date ?></td>
                           <td>
-                            <?php if($row->Status==1){ ?>
+                            <?php if(empty($row->Files)){ ?>
                             <div class="btn-group">
                               <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               More<span class="sr-only">Toggle Dropdown</span>
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
-                                <a class="dropdown-item" href="<?=site_url('edit-utility-expense/')?><?php echo $row->utilityID ?>">Edit</a>
-                                <button type="button" class="dropdown-item cancel" value="<?php echo $row->utilityID ?>">Cancel</button>
+                                <button type="button" class="dropdown-item upload" value="<?php echo $row->id ?>">Upload Proof</button>
                               </div>
                             </div>
                             <?php } ?>
                           </td>
                         </tr>
-                        <?php endforeach; ?>
+                      <?php endforeach; ?>
                       </tbody>
                     </table>
                   </div>
-                </div>
-                <div class="tab-pane fade" id="consumables">
                 </div>
               </div>
             </div>
@@ -288,6 +280,40 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+    <div class="modal fade" id="uploadModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Upload</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form method="POST" class="row" id="frmUpload" enctype="multipart/form-data">
+              <input type="hidden" name="expenseID" id="expenseID"/>
+              <div class="col-12 form-group">
+                <label>Attachment</label>
+                <input type="file" name="file" class="form-control"/>
+              </div>
+              <div class="col-12 form-group">
+                <button type="submit" class="btn btn-primary" id="btnUpload">Upload File</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="modal-loading" data-backdrop="static">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+				<div class="modal-body text-center">
+					<div class="spinner-border"></div>
+					<div>Loading</div>
+				</div>
+				</div>
+			</div>
+		</div>
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
@@ -314,6 +340,42 @@
     <script>
       $(document).ready( function () {
           $('.table').DataTable();
+      });
+      $(document).on('click','.upload',function(){
+        var confirmation = confirm('Do you want to upload the proof of payment?');
+        if(confirmation)
+        {
+          $('#uploadModal').modal('show');
+          $('#expenseID').attr("Value",$(this).val());
+        }
+      });
+      $('#frmUpload').on('submit',function(evt)
+      {
+        evt.preventDefault();
+        $.ajax({
+            url:"<?=site_url('upload-proof-receipt')?>",method:"POST",
+            data:new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend: function(){
+              $('#modal-loading').modal('show');
+            },
+            success:function(response)
+            {
+              $('#modal-loading').modal('hide');
+              if(response==="success")
+              {
+                alert("Great! Successfully uploaded");
+                $('#uploadModal').modal('hide');
+                location.reload();
+              }
+              else
+              {
+                alert(response);
+              }
+            }
+        });
       });
       $(document).on('click','.cancel',function(){
         var confirmation = confirm('Do you want to cancel this expense?');

@@ -199,9 +199,6 @@
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="pill" href="#rent_expense"><span class="mdi mdi-clipboard-outline"></span>&nbsp;Rent Expenses</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="pill" href="#other_expense"><span class="mdi mdi-clipboard-outline"></span>&nbsp;Other Expenses</a>
-                </li>
               </ul>
               <div class="tab-content">
                 <div class="tab-pane fade show active" id="all_expense">
@@ -280,24 +277,6 @@
                       </table>
                   </div>
                 </div>
-                <div class="tab-pane fade" id="other_expense">
-                  <div class="table-responsive tableFixHead" style="height:400px;overflow-y:auto;font-size:13px;">
-                      <table class="table-striped table-hover">
-                        <thead>
-                          <th>Due Date</th>
-                          <th>Type of Expense</th>
-                          <th>Payee</th>
-                          <th>Details</th>
-                          <th>Amount</th>
-                          <th>Status</th>
-                          <th>File(s)</th>
-                          <th>Action</th>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                      </table>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -370,31 +349,31 @@
 
       $('#frmUpload').on('submit',function(evt)
       {
-            evt.preventDefault();
-            $.ajax({
-                url:"<?=site_url('upload-proof-file')?>",method:"POST",
-                data:new FormData(this),
-                contentType: false,
-                cache: false,
-                processData:false,
-                beforeSend: function(){
-                  $('#modal-loading').modal('show');
-                },
-                success:function(response)
-                {
-                  $('#modal-loading').modal('hide');
-                  $('#uploadModal').modal('hide');
-                  if(response==="success")
-                  {
-                    alert("Great! Successfully uploaded for review");
-                    loadRentalExpense();
-                  }
-                  else
-                  {
-                    alert(response);
-                  }
-                }
-            });
+        evt.preventDefault();
+        $.ajax({
+            url:"<?=site_url('upload-proof-file')?>",method:"POST",
+            data:new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend: function(){
+              $('#modal-loading').modal('show');
+            },
+            success:function(response)
+            {
+              $('#modal-loading').modal('hide');
+              if(response==="success")
+              {
+                alert("Great! Successfully uploaded");
+                loadRentalExpense();
+                $('#uploadModal').modal('hide');
+              }
+              else
+              {
+                alert(response);
+              }
+            }
+        });
       });
 
       $('#btnGenerate').on('click',function(e){

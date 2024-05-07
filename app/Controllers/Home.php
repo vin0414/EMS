@@ -36,12 +36,12 @@ class Home extends BaseController
         $builder->join('tblaccount_expense b','b.expID=a.expID','LEFT');
         $builder->WHERE('a.Status<>',0);
         $rental = $builder->get()->getResult();
-        //utilities
-        $builder = $this->db->table('tblutilities a');
-        $builder->select('a.*,b.Description');
-        $builder->join('tblaccount_expense b','b.expID=a.expID','LEFT');
-        $utility = $builder->get()->getResult();
-        $data = ['utility'=>$utility,'rental'=>$rental];
+        //other expenses
+        $sql = "Select a.id,a.p_name,a.p_date,a.p_purpose,a.p_amount_in_figures,b.Date,b.Files from payment_info_master a
+        LEFT JOIN tblattachment b ON b.id=a.id WHERE a.Status=6";
+        $query = $this->db->query($sql);
+        $others = $query->getResult();
+        $data = ['rental'=>$rental,'others'=>$others];
         return view('manage-expenses',$data);
     }
 
@@ -297,16 +297,6 @@ class Home extends BaseController
             <?php
         }
     }
-
-    public function cancelExpense()
-    {
-        $utilityModel = new \App\Models\utilityModel();
-        $val = $this->request->getPost('value');
-        $values = ['Status'=>0];
-        $utilityModel->update($val,$values);
-        echo "success";
-    }
-
 
     public function saveCode()
     {

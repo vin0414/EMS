@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class utilityModel extends Model
+class expenseModel extends Model
 {
-    protected $table      = 'tblutilities';
-    protected $primaryKey = 'utilityID';
+    protected $table      = 'tblattachment';
+    protected $primaryKey = 'attachmentID';
 
     protected $useAutoIncrement  = true;
     protected $insertID = 0;
     protected $returnType = 'array';
     protected $userSoftDelete = false;
     protected $protectFields = true;
-    protected $allowedFields = ['expID', 'Payee','Details','LastDay','Day','ModePayment','Amount','Status','DateCreated','userID'];
+    protected $allowedFields = ['id', 'Files','Date'];
     
     protected $validationRules = [];
     protected $validationMessages = [];

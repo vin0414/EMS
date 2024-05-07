@@ -59,6 +59,7 @@ $routes->get('all-rental-expense','ManageController::getAllRentExpense');
 $routes->post('generate-rent-expense','ManageController::generateRentExpense');
 $routes->get('load-pending-rent-expense','ManageController::pendingRentExpense');
 $routes->post('upload-proof-file','ManageController::uploadProof');
+$routes->post('upload-proof-receipt','ManageController::uploadReceipt');
 $routes->get('load-pending-other-expense','ManageController::otherExpense');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
