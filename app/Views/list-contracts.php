@@ -219,7 +219,7 @@
                     </div>
                     <br/>
                     <div class="form-inline">
-                    <?=$pager->simpleLinks() ?>
+                    <?= $pager->makeLinks($page,$perPage, $total, 'custom_view') ?>
                     </div>
                   </div>
                 </div>

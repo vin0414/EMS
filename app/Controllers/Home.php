@@ -111,10 +111,13 @@ class Home extends BaseController
 
     public function listContracts()
     {
-        $pager = \Config\Services::pager();
+        $data=[];
         $model = new \App\Models\contractsModel();
-        $list = $model->paginate(6);
-        $data = ['list'=>$list,'pager'=>$model->pager];
+        $data['page'] = isset($_GET['page']) ? $_GET['page'] : 1;
+        $data['perPage'] = 3;
+        $data['total'] = $model->countAll();
+        $data['list'] = $model->paginate($data['perPage']);
+        $data['pager'] = $model->pager;
         return view('list-contracts',$data);
     }
 

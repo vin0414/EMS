@@ -221,3 +221,100 @@ INFO - 2024-05-07 09:38:46 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-05-07 09:38:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-05-07 09:39:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-05-07 09:39:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:40:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:40:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:40:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:40:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:40:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:40:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:40:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:40:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:41:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:41:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:41:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:41:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:41:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:42:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:44:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:44:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-07 09:53:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-07 09:53:27 --> Undefined variable $list
+in APPPATH\Views\list-contracts.php on line 193.
+ 1 APPPATH\Views\list-contracts.php(193): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $list', 'APPPATH\\Views\\list-contracts.php', 193)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\list-contracts.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('list-contracts', [], true)
+ 5 APPPATH\Controllers\Home.php(121): view('list-contracts', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->listContracts()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-07 09:53:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-07 09:53:53 --> count(): Argument #1 ($value) must be of type Countable|array, null given
+in APPPATH\Views\layouts\custom_pagination.php on line 42.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Pager\Pager.php(126): CodeIgniter\View\View->render('App\\Views\\layouts\\custom_pagination', null, false)
+ 4 SYSTEMPATH\Pager\Pager.php(110): CodeIgniter\Pager\Pager->displayLinks('default', 'custom_view')
+ 5 APPPATH\Views\list-contracts.php(222): CodeIgniter\Pager\Pager->makeLinks(1, 3, 4, 'custom_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\list-contracts.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('list-contracts', [], true)
+ 9 APPPATH\Controllers\Home.php(121): view('list-contracts', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->listContracts()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-07 09:54:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-07 09:54:34 --> count(): Argument #1 ($value) must be of type Countable|array, null given
+in APPPATH\Views\layouts\custom_pagination.php on line 42.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Pager\Pager.php(126): CodeIgniter\View\View->render('App\\Views\\layouts\\custom_pagination', null, false)
+ 4 SYSTEMPATH\Pager\Pager.php(110): CodeIgniter\Pager\Pager->displayLinks('default', 'custom_view')
+ 5 APPPATH\Views\list-contracts.php(222): CodeIgniter\Pager\Pager->makeLinks(1, 3, 4, 'custom_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\list-contracts.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('list-contracts', [], true)
+ 9 APPPATH\Controllers\Home.php(121): view('list-contracts', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->listContracts()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-07 09:55:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-07 09:55:58 --> count(): Argument #1 ($value) must be of type Countable|array, null given
+in APPPATH\Views\layouts\custom_pagination.php on line 42.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Pager\Pager.php(126): CodeIgniter\View\View->render('App\\Views\\layouts\\custom_pagination', null, false)
+ 4 SYSTEMPATH\Pager\Pager.php(110): CodeIgniter\Pager\Pager->displayLinks('default', 'custom_view')
+ 5 APPPATH\Views\list-contracts.php(222): CodeIgniter\Pager\Pager->makeLinks(1, 3, 4, 'custom_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\list-contracts.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('list-contracts', [], true)
+ 9 APPPATH\Controllers\Home.php(121): view('list-contracts', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->listContracts()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-07 09:56:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-07 09:56:34 --> count(): Argument #1 ($value) must be of type Countable|array, null given
+in APPPATH\Views\layouts\custom_pagination.php on line 43.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Pager\Pager.php(126): CodeIgniter\View\View->render('App\\Views\\layouts\\custom_pagination', null, false)
+ 4 SYSTEMPATH\Pager\Pager.php(110): CodeIgniter\Pager\Pager->displayLinks('default', 'custom_view')
+ 5 APPPATH\Views\list-contracts.php(222): CodeIgniter\Pager\Pager->makeLinks(1, 3, 4, 'custom_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\list-contracts.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('list-contracts', [], true)
+ 9 APPPATH\Controllers\Home.php(121): view('list-contracts', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->listContracts()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
