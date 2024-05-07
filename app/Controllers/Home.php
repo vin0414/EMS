@@ -12,7 +12,44 @@ class Home extends BaseController
 
     public function index()
     {
-        return view('welcome_message');
+        //get the total expenses
+        $rent = 0;
+        $builder = $this->db->table('tblrental_payment');
+        $builder->select('IFNULL(SUM(Payment),0)total');
+        $builder->WHERE('Status',0);
+        $builder->WHERE('DATE_FORMAT(Date,"%m")',date('m'))->WHERE('DATE_FORMAT(Date,"%Y")',date('Y'));
+        $builder->groupBy('DATE_FORMAT(Date,"%m")')->groupBy('DATE_FORMAT(Date,"%Y")');
+        $data = $builder->get();
+        if($row = $data->getRow())
+        {
+            $rent = $row->total;
+        }
+        //total other expenses
+        $current_expense=0;
+        $builder = $this->db->table('payment_info_master');
+        $builder->select('IFNULL(SUM(p_amount_in_figures),0)total');
+        $builder->WHERE('status',6);
+        $builder->WHERE('DATE_FORMAT(p_date,"%m")',date('m'));
+        $builder->WHERE('DATE_FORMAT(p_date,"%Y")',date('Y'));
+        $builder->groupBy('DATE_FORMAT(p_date,"%m")');
+        $builder->groupBy('DATE_FORMAT(p_date,"%Y")');
+        $data = $builder->get();
+        if($row = $data->getRow())
+        {
+            $current_expense = $row->total;
+        }
+        $total_expense = $current_expense+$rent;
+        //pending rent expense
+        $builder = $this->db->table('tblrental_payment a');
+        $builder->select('a.rpID,a.Payment,a.Date,a.Status,a.Attachment,b.Payee,b.Details,c.Description');
+        $builder->join('tblrental b','b.rentalID=a.rentalID','LEFT');
+        $builder->join('tblaccount_expense c','c.expID=b.expID','LEFT');
+        $builder->WHERE('a.Status<>',3);
+        $builder->orderBy('a.Status','ASC')->limit(5);
+        $rent_expense = $builder->get()->getResult();
+        //collect
+        $data = ['rent'=>$rent,'expense'=>$current_expense,'total'=>$total_expense,'rent_expense'=>$rent_expense];
+        return view('welcome_message',$data);
     }
 
     public function newExpense()
