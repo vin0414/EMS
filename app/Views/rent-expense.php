@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>EMS - Upload</title>
+    <title>EMS - Rent Expense Report</title>
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css" />
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
@@ -52,7 +52,7 @@
                   <a class="nav-link" href="<?=site_url('new-expense')?>">New Expense</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="<?=site_url('upload')?>">Upload Contract</a>
+                  <a class="nav-link" href="<?=site_url('upload')?>">Upload Contract</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?=site_url('manage-expenses')?>">List of Expenses</a>
@@ -75,7 +75,7 @@
             </span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=site_url('rent-expense')?>">
+            <a class="nav-link active" href="<?=site_url('rent-expense')?>">
               <i class="mdi mdi-chart-bar menu-icon"></i>
               <span class="menu-title">Rental Expense</span>
             </a>
@@ -136,6 +136,20 @@
             <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
               <i class="mdi mdi-menu"></i>
             </button>
+            <ul class="navbar-nav">
+              <li class="nav-item nav-search border-0 ml-1 ml-md-3 ml-lg-5 d-none d-md-flex">
+                <form class="nav-link form-inline mt-2 mt-md-0">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="mdi mdi-magnify"></i>
+                      </span>
+                    </div>
+                  </div>
+                </form>
+              </li>
+            </ul>
             <ul class="navbar-nav navbar-nav-right ml-lg-auto">
               <li class="nav-item dropdown d-none d-xl-flex border-0">
                 <a class="nav-link dropdown-toggle" id="languageDropdown" href="#" data-toggle="dropdown">
@@ -167,63 +181,79 @@
         </nav>
         <div class="main-panel">
           <div class="content-wrapper pb-0">
+            <div class="page-header flex-wrap">
+              <h3 class="mb-0"> Hi, welcome back! <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">Expense Monitoring System</span>
+              </h3>
+              <div class="d-flex">
+                <button type="button" class="btn btn-sm bg-white btn-icon-text border ml-3">
+                  <i class="mdi mdi-printer btn-icon-prepend"></i> Print 
+                </button>
+              </div>
+            </div>
             <div class="row">
-              <div class="col-lg-4 form-group">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="card-title"><i class="mdi mdi-upload"></i> Upload</div>
-                    <?php if(!empty(session()->getFlashdata('fail'))) : ?>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <?= session()->getFlashdata('fail'); ?>
-                    </div>
-                  <?php endif; ?>
-                  <?php if(!empty(session()->getFlashdata('success'))) : ?>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                      <?= session()->getFlashdata('success'); ?>
-                    </div>
-                  <?php endif; ?>
-                    <form method="POST" class="row" id="frmUpload" action="<?=base_url('save-contract')?>" enctype="multipart/form-data">
-                      <div class="col-12 form-group">
-                        <label>Title</label>
-                        <input type="text" class="form-control" name="title_file" required/>
-                      </div>
-                      <div class="col-12 form-group">
-                        <label>Description</label>
-                        <textarea class="form-control" name="details" style="height:120px;" required></textarea>
-                      </div>
-                      <div class="col-12 form-group">
-                        <div class="row">
-                          <div class="col-lg-6">
-                            <label>From Date</label>
-                            <input type="date" class="form-control" name="from_date" required/>
-                          </div>
-                          <div class="col-lg-6">
-                            <label>End Date</label>
-                            <input type="date" class="form-control" name="expiration_date" required/>
-                          </div>
+                <div class="col-xl-3">
+                    <div class="card bg-warning">
+                        <div class="card-body px-3 py-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="color-card">
+                                <p class="mb-0 color-card-head">Total Contract Expenses</p>
+                                <h2 class="text-white"></h2>
+                                </div>
+                                <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-warning"></i>
+                            </div>
                         </div>
-                      </div>
-                      <div class="col-12 form-group">
-                        <label>Attachment</label>
-                        <input type="file" class="form-control" name="file" id="file" onchange="DisplayFile()" required/>
-                      </div>
-                      <div class="col-12 form-group">
-                        <button type="submit" class="btn btn-primary" id="BtnSubmit">Submit</button>
-                      </div>
-                    </form>
-                  </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-lg-8 form-group">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="card-title"><i class="mdi mdi-image"></i> Preview</div>
-                    <object data="" type="application/pdf" id="fileContents" style="width:100%;height:475px;">
-                    <div>No PDF viewer available</div>
-                    </object>
-                  </div>
+                <div class="col-xl-3">
+                    <div class="card bg-danger">
+                        <div class="card-body px-3 py-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="color-card">
+                                <p class="mb-0 color-card-head">Balances</p>
+                                <h2 class="text-white"></h2>
+                                </div>
+                                <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-danger"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="col-xl-3">
+                    <div class="card bg-primary">
+                        <div class="card-body px-3 py-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="color-card">
+                                <p class="mb-0 color-card-head">Pending Expenses</p>
+                                <h2 class="text-white"></h2>
+                                </div>
+                                <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="card bg-success">
+                        <div class="card-body px-3 py-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="color-card">
+                                <p class="mb-0 color-card-head">Paid</p>
+                                <h2 class="text-white"></h2>
+                                </div>
+                                <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">Fiscal Period : <?php echo date('Y') ?></div>
+                    <div class="table-responsive" style="font-size:13px;">
+                        <table class="table table-bordered table-striped">
+
+                        </table>
+                    </div>
+                </div>
             </div>
           </div>
           <footer class="footer">
@@ -243,30 +273,14 @@
     <!-- Plugin js for this page -->
     <script src="assets/vendors/chart.js/Chart.min.js"></script>
     <script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.resize.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.pie.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="assets/js/off-canvas.js"></script>
     <script src="assets/js/hoverable-collapse.js"></script>
     <script src="assets/js/misc.js"></script>
     <!-- endinject -->
-    <script>
-      function DisplayFile()
-      {
-        var file = document.getElementById("file").files[0];
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function (evt) {
-              document.querySelector('#fileContents').setAttribute('data', evt.target.result);
-            }
-            reader.readAsDataURL(file);
-        }
-      }
-    </script>
+    <!-- Custom js for this page -->
+    <script src="assets/js/dashboard.js"></script>
+    <!-- End custom js for this page -->
   </body>
 </html>

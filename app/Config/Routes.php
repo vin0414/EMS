@@ -38,6 +38,8 @@ $routes->get('/contracts','Home::listContracts');
 $routes->get('/edit/(:any)','Home::editContract/$1');
 $routes->get('/generate-expense','Home::generateExpense');
 $routes->get('/settings','Home::Settings');
+//reports
+$routes->get('/rent-expense','Home::rentExpense');
 //functions for Home Controller
 $routes->post('save-contract','Home::saveContract');
 $routes->get('search-contract','Home::searchContract');

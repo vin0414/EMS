@@ -1,4 +1,7 @@
 <?php $pager->setSurroundCount(2) ?>
+<style>
+    .live{color:#ffffff;background-color: blue;}
+</style>
 <nav aria-label="Page navigation">
     <ul class="pagination">
     <?php if ($pager->hasPrevious()) : ?>
@@ -15,7 +18,7 @@
     <?php endif ?>
 
     <?php foreach ($pager->links() as $link): ?>
-        <li <?= $link['active'] ? 'class="active"' : '' ?>>
+        <li <?= $link['active'] ? 'class="live"' : '' ?>>
             <a  class="btn btn-outline-secondary btn-sm" href="<?= $link['uri'] ?>">
                 <?= $link['title'] ?>
             </a>

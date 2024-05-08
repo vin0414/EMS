@@ -79,7 +79,7 @@
             </span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?=site_url('rent-expense')?>">
               <i class="mdi mdi-chart-bar menu-icon"></i>
               <span class="menu-title">Rental Expense</span>
             </a>
