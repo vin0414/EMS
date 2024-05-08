@@ -122,8 +122,8 @@ class Home extends BaseController
     {
         $data=[];
         $model = new \App\Models\contractsModel();
-        $data['page'] = isset($_GET['page']) ? $_GET['page'] : 1;
-        $data['perPage'] = 3;
+        $data['page'] = (int) ($this->request->getGet('page') ?? 1);
+        $data['perPage'] = 6;
         $data['total'] = $model->countAll();
         $data['list'] = $model->paginate($data['perPage']);
         $data['pager'] = $model->pager;
@@ -447,10 +447,14 @@ class Home extends BaseController
 
     public function searchContract()
     {
+        $data = [];
         $val = "%".$this->request->getGet('search')."%";
         $model = new \App\Models\contractsModel();
-        $list = $model->LIKE('Title',$val)->paginate(6);
-        $data = ['list'=>$list,'pager'=>$model->pager];
+        $data['page'] = (int) ($this->request->getGet('page') ?? 1);
+        $data['perPage'] = 6;
+        $data['total'] = $model->countAll();
+        $data['list']=$model->LIKE('Title',$val)->paginate($data['perPage']);
+        $data['pager']=$model->pager;
         return view('list-contracts',$data);
     }
     public function saveContract()
