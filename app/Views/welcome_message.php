@@ -241,7 +241,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                           <div class="color-card">
                             <p class="mb-0 color-card-head">Contracts</p>
-                            <h2 class="text-white"><?php echo number_format($expense,2) ?></h2>
+                            <h2 class="text-white"><?php foreach($contract as $row):?><?php echo number_format($row->total,0) ?><?php endforeach; ?></h2>
                           </div>
                           <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-primary"></i>
                         </div>
@@ -256,7 +256,7 @@
                     <div class="row">
                       <div class="col-sm-7">
                         <h5>Yearly Expenses (Utilities/Consumables)</h5>
-                        <p class="text-muted"> Show overview <?php echo date('M-Y') ?><a class="text-muted font-weight-medium pl-2" href="#"><u>See Details</u></a>
+                        <p class="text-muted"> Show overview <?php echo date('M-Y') ?>
                         </p>
                       </div>
                       <div class="col-sm-5 text-md-right">
@@ -310,138 +310,33 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-xl-8 col-md-6 grid-margin stretch-card">
-                <div class="card card-invoice">
-                  <div class="card-body">
-                    <h4 class="card-title pb-3">Other Expense - Pending</h4>
-                    <div class="list-card">
-                      <div class="row align-items-center">
-                        <div class="col-7 col-sm-8">
-                          <div class="row align-items-center">
-                            <div class="col-sm-4">
-                              <img src="" alt="" />
-                            </div>
-                            <div class="col-sm-8 pr-0 pl-sm-0">
-                              <span>06 Jan 2019</span>
-                              <h6 class="mb-1 mb-sm-0">Isabel Cross</h6>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-5 col-sm-4">
-                          <div class="d-flex pt-1 align-items-center">
-                            <div class="reload-outer bg-info">
-                              <i class="mdi mdi-reload"></i>
-                            </div>
-                            <div class="dropdown dropleft pl-1 pt-3">
-                              <div id="dropdownMenuButton2" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <p><i class="mdi mdi-dots-vertical"></i></p>
-                              </div>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <a class="dropdown-item" href="#">Sales</a>
-                                <a class="dropdown-item" href="#">Track Invoice</a>
-                                <a class="dropdown-item" href="#">Payment History</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+              <div class="col-xl-8 col-md-6 grid-margin">
+                <div class="card">
+                  <div class="card-body px-0 overflow-auto">
+                    <h4 class="card-title pl-4">Other Expense - Pending</h4>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class="bg-light">
+                          <tr>
+                            <th>Date</th>
+                            <th>Payee</th>
+                            <th>Amount</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($others as $row): ?>
+                        <tr>
+                          <td><?php echo $row->p_date ?></td>
+                          <td><?php echo $row->p_name ?></td>
+                          <td><?php echo number_format($row->p_amount_in_figures,2) ?></td>
+                        </tr>
+                      <?php endforeach; ?>
+                        </tbody>
+                      </table>
                     </div>
-                    <div class="list-card">
-                      <div class="row align-items-center">
-                        <div class="col-7 col-sm-8">
-                          <div class="row align-items-center">
-                            <div class="col-sm-4">
-                              <img src="" alt="" />
-                            </div>
-                            <div class="col-sm-8 pr-0 pl-sm-0">
-                              <span>18 Mar 2019</span>
-                              <h6 class="mb-1 mb-sm-0">Carrie Parker</h6>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-5 col-sm-4">
-                          <div class="d-flex pt-1 align-items-center">
-                            <div class="reload-outer bg-primary">
-                              <i class="mdi mdi-reload"></i>
-                            </div>
-                            <div class="dropdown dropleft pl-1 pt-3">
-                              <div id="dropdownMenuButton3" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <p><i class="mdi mdi-dots-vertical"></i></p>
-                              </div>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                                <a class="dropdown-item" href="#">Sales</a>
-                                <a class="dropdown-item" href="#">Track Invoice</a>
-                                <a class="dropdown-item" href="#">Payment History</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="list-card">
-                      <div class="row align-items-center">
-                        <div class="col-7 col-sm-8">
-                          <div class="row align-items-center">
-                            <div class="col-sm-4">
-                              <img src="" alt="" />
-                            </div>
-                            <div class="col-sm-8 pr-0 pl-sm-0">
-                              <span>10 Apr 2019</span>
-                              <h6 class="mb-1 mb-sm-0">Don Bennett</h6>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-5 col-sm-4">
-                          <div class="d-flex pt-1 align-items-center">
-                            <div class="reload-outer bg-warning">
-                              <i class="mdi mdi-reload"></i>
-                            </div>
-                            <div class="dropdown dropleft pl-1 pt-3">
-                              <div id="dropdownMenuButton4" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <p><i class="mdi mdi-dots-vertical"></i></p>
-                              </div>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
-                                <a class="dropdown-item" href="#">Sales</a>
-                                <a class="dropdown-item" href="#">Track Invoice</a>
-                                <a class="dropdown-item" href="#">Payment History</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="list-card">
-                      <div class="row align-items-center">
-                        <div class="col-7 col-sm-8">
-                          <div class="row align-items-center">
-                            <div class="col-sm-4">
-                              <img src="" alt="" />
-                            </div>
-                            <div class="col-sm-8 pr-0 pl-sm-0">
-                              <span>18 Mar 2019</span>
-                              <h6 class="mb-1 mb-sm-0">Carrie Parker</h6>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-5 col-sm-4">
-                          <div class="d-flex pt-1 align-items-center">
-                            <div class="reload-outer bg-info">
-                              <i class="mdi mdi-reload"></i>
-                            </div>
-                            <div class="dropdown dropleft pl-1 pt-3">
-                              <div id="dropdownMenuButton5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <p><i class="mdi mdi-dots-vertical"></i></p>
-                              </div>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                <a class="dropdown-item" href="#">Sales</a>
-                                <a class="dropdown-item" href="#">Track Invoice</a>
-                                <a class="dropdown-item" href="#">Payment History</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <a class="text-black mt-3 d-block pl-4" href="<?=site_url('manage-expenses')?>">
+                      <span class="font-weight-medium h6">View All Expense</span>
+                      <i class="mdi mdi-chevron-right"></i></a>
                   </div>
                 </div>
               </div>
@@ -502,7 +397,7 @@
                 var mm="";
                 if(data[i].Month==="01"){mm="Jan";}else if(data[i].Month==="02"){mm="Feb";}else if(data[i].Month==="03"){mm="Mar";}
                 else if(data[i].Month==="04"){mm="Apr";}else if(data[i].Month==="05"){mm="May";}else if(data[i].Month==="06"){mm="Jun";}
-                else if(data[i].Month==="07"){mm="Jul";}else if(data[i].Month==="08"){mm="Aug";}else if(data[i].Month==="09"){mm="Sep";}
+                else if(data[i].Month==="07"){mm="Jul";}else if(data[i].Month==="08"){mm="Aug";}else if(data[i].Month==="09"){mm="Sept";}
                 else if(data[i].Month==="10"){mm="Oct";}else if(data[i].Month==="11"){mm="Nov";}else if(data[i].Month==="12"){mm="Dec";}
                   month.push(mm);
                   amount.push(data[i].Amount);

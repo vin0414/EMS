@@ -15,8 +15,8 @@ class Home extends BaseController
     {
         header('Content-Type: application/json');
         $year = date('Y');
-        $sql = "Select DATE_FORMAT(Date,'%m')Month,SUM(Payment) as Amount from tblrental_payment 
-                WHERE Status<>3 AND DATE_FORMAT(Date,'%Y')=:year: GROUP BY DATE_FORMAT(Date,'%m')";
+        $sql = "Select DATE_FORMAT(p_date,'%m')Month,SUM(p_amount_in_figures) as Amount from payment_info_master 
+                WHERE Status=6 AND DATE_FORMAT(p_date,'%Y')=:year: GROUP BY DATE_FORMAT(p_date,'%m')";
         $query = $this->db->query($sql,['year'=>$year]);
         $data = array();
         foreach($query->getResult() as $row)
@@ -60,11 +60,20 @@ class Home extends BaseController
         $builder->select('a.rpID,a.Payment,a.Date,a.Status,a.Attachment,b.Payee,b.Details,c.Description');
         $builder->join('tblrental b','b.rentalID=a.rentalID','LEFT');
         $builder->join('tblaccount_expense c','c.expID=b.expID','LEFT');
-        $builder->WHERE('a.Status<>',3);
-        $builder->orderBy('a.Status','ASC')->limit(5);
+        $builder->WHERE('a.Status',0);
+        $builder->orderBy('a.Date','DESC')->limit(5);
         $rent_expense = $builder->get()->getResult();
+        //count the contracts
+        $builder = $this->db->table('tblcontracts');
+        $builder->select('COUNT(contractID)total');
+        $contract = $builder->get()->getResult();
+        //other expense
+        $sql = "Select id,p_name,p_date,p_purpose,p_amount_in_figures from payment_info_master 
+        WHERE Status=6 order by p_date DESC limit 5";
+        $query = $this->db->query($sql);
+        $others = $query->getResult();
         //collect
-        $data = ['rent'=>$rent,'expense'=>$current_expense,'total'=>$total_expense,'rent_expense'=>$rent_expense];
+        $data = ['rent'=>$rent,'expense'=>$current_expense,'total'=>$total_expense,'rent_expense'=>$rent_expense,'contract'=>$contract,'others'=>$others];
         return view('welcome_message',$data);
     }
 
