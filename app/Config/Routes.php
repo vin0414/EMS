@@ -40,6 +40,7 @@ $routes->get('/generate-expense','Home::generateExpense');
 $routes->get('/settings','Home::Settings');
 //reports
 $routes->get('/rent-expense','Home::rentExpense');
+$routes->get('/expense-report','Home::expenseReport');
 //functions for Home Controller
 $routes->post('save-contract','Home::saveContract');
 $routes->get('search-contract','Home::searchContract');

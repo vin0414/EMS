@@ -227,6 +227,11 @@ class Home extends BaseController
         return view('rent-expense',$data);
     }
 
+    public function expenseReport()
+    {
+        return view('expense-report');
+    }
+
     //functions - BASIC CRUD
 
     public function updateRent()

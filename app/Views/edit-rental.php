@@ -84,7 +84,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?=site_url('expense-report')?>">
               <i class="mdi mdi-chart-bar menu-icon"></i>
               <span class="menu-title">Expense Report</span>
             </a>
