@@ -153,7 +153,40 @@ class Home extends BaseController
 
     public function rentExpense()
     {
-        return view('rent-expense');
+        //variables
+        $totalContract = 0;$totalPending=0;$totalPaid=0;
+        //compute the total contract price
+        $builder = $this->db->table('tblrental');
+        $builder->select('SUM(TotalAmount)Total');
+        $builder->WHERE('Status',1);
+        $contract = $builder->get();
+        if($row = $contract->getRow())
+        {
+            $totalContract=$row->Total;
+        }
+        //get the total pending
+        $builder = $this->db->table('tblrental_payment');
+        $builder->select('SUM(Payment)Total');
+        $builder->WHERE('Status',0);
+        $pending = $builder->get();
+        if($row = $pending->getRow())
+        {
+            $totalPending = $row->Total;
+        }
+        //get the total paid
+        $builder = $this->db->table('tblrental_payment');
+        $builder->select('SUM(Payment)Total');
+        $builder->WHERE('Status',1);
+        $paid = $builder->get();
+        if($row = $paid->getRow())
+        {
+            $totalPaid = $row->Total;
+        }
+        //compute the balance
+        $balance = $totalContract - ($totalPaid+$totalPending);
+        //collect
+        $data = ['contract'=>$totalContract,'balance'=>$balance,'pending'=>$totalPending,'paid'=>$totalPaid];
+        return view('rent-expense',$data);
     }
 
     //functions - BASIC CRUD

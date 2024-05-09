@@ -182,7 +182,7 @@
         <div class="main-panel">
           <div class="content-wrapper pb-0">
             <div class="page-header flex-wrap">
-              <h3 class="mb-0"> Hi, welcome back! <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">Expense Monitoring System</span>
+              <h3 class="mb-0"> Hi, welcome back! <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block">Rent Expense</span>
               </h3>
               <div class="d-flex">
                 <button type="button" class="btn btn-sm bg-white btn-icon-text border ml-3">
@@ -197,7 +197,7 @@
                             <div class="d-flex justify-content-between align-items-start">
                                 <div class="color-card">
                                 <p class="mb-0 color-card-head">Total Contract Expenses</p>
-                                <h2 class="text-white"></h2>
+                                <h2 class="text-white"><?php echo number_format($contract,2) ?></h2>
                                 </div>
                                 <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-warning"></i>
                             </div>
@@ -210,7 +210,7 @@
                             <div class="d-flex justify-content-between align-items-start">
                                 <div class="color-card">
                                 <p class="mb-0 color-card-head">Balances</p>
-                                <h2 class="text-white"></h2>
+                                <h2 class="text-white"><?php echo number_format($balance,2) ?></h2>
                                 </div>
                                 <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-danger"></i>
                             </div>
@@ -223,7 +223,7 @@
                             <div class="d-flex justify-content-between align-items-start">
                                 <div class="color-card">
                                 <p class="mb-0 color-card-head">Pending Expenses</p>
-                                <h2 class="text-white"></h2>
+                                <h2 class="text-white"><?php echo number_format($pending,2) ?></h2>
                                 </div>
                                 <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-primary"></i>
                             </div>
@@ -236,7 +236,7 @@
                             <div class="d-flex justify-content-between align-items-start">
                                 <div class="color-card">
                                 <p class="mb-0 color-card-head">Paid</p>
-                                <h2 class="text-white"></h2>
+                                <h2 class="text-white"><?php echo number_format($paid,2) ?></h2>
                                 </div>
                                 <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-primary"></i>
                             </div>
