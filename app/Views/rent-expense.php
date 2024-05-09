@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="shortcut icon" href="assets/images/fastcat.png" />
+    <style>
+      .tableFixHead thead th { position: sticky; top: 0; z-index: 1;color:#fff;background-color:#0275d8;border:2px solid blue;}
+			table  { border-collapse: collapse; width: 100%;}
+			th, td { padding: 8px 16px;color:#000;}
+			tbody{color:#000;border:2px solid blue;}
+    </style>
   </head>
   <body>
     <div class="container-scroller">
@@ -222,7 +228,7 @@
                         <div class="card-body px-3 py-4">
                             <div class="d-flex justify-content-between align-items-start">
                                 <div class="color-card">
-                                <p class="mb-0 color-card-head">Pending Expenses</p>
+                                <p class="mb-0 color-card-head">Pending</p>
                                 <h2 class="text-white"><?php echo number_format($pending,2) ?></h2>
                                 </div>
                                 <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-primary"></i>
@@ -245,16 +251,68 @@
                 </div>
             </div>
             <br/>
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title">Fiscal Period : <?php echo date('Y') ?></div>
-                    <div class="table-responsive" style="font-size:13px;">
-                        <table class="table table-bordered table-striped">
-
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <div class="tableFixHead" style="font-size:13px;">
+              <table class="table-bordered table-striped">
+                <thead>
+                  <th>Payee Details</th>
+                  <th>Total Contract</th>
+                  <th>Balance</th>
+                  <th>Jan</th>
+                  <th>Feb</th>
+                  <th>Mar</th>
+                  <th>Apr</th>
+                  <th>May</th>
+                  <th>Jun</th>
+                  <th>Jul</th>
+                  <th>Aug</th>
+                  <th>Sept</th>
+                  <th>Oct</th>
+                  <th>Nov</th>
+                  <th>Dec</th>
+                  <th>Total</th>
+                </thead>
+                <tbody>
+                  <?php foreach($expense as $row): ?>
+                    <tr>
+                      <td><?php echo $row->Payee ?></td>
+                      <td><?php echo number_format($row->TotalAmount,2) ?></td>
+                      <td><?php echo number_format($row->TotalAmount-$row->Total,2) ?></td>
+                      <td><?php echo number_format($row->Jan,2) ?></td>
+                      <td><?php echo number_format($row->Feb,2) ?></td>
+                      <td><?php echo number_format($row->Mar,2) ?></td>
+                      <td><?php echo number_format($row->Apr,2) ?></td>
+                      <td><?php echo number_format($row->May,2) ?></td>
+                      <td><?php echo number_format($row->Jun,2) ?></td>
+                      <td><?php echo number_format($row->Jul,2) ?></td>
+                      <td><?php echo number_format($row->Aug,2) ?></td>
+                      <td><?php echo number_format($row->Sept,2) ?></td>
+                      <td><?php echo number_format($row->Oct,2) ?></td>
+                      <td><?php echo number_format($row->Nov,2) ?></td>
+                      <td><?php echo number_format($row->Dis,2) ?></td>
+                      <td><?php echo number_format($row->Total,2) ?></td>
+                    </tr>
+                  <?php endforeach;?>
+                  <?php foreach($total_rent as $row): ?>
+                    <tr style="font-weight:bold;border:2px solid blue;">
+                      <td colspan='3'>Total</td>
+                      <td><?php echo number_format($row->Jan,2) ?></td>
+                      <td><?php echo number_format($row->Feb,2) ?></td>
+                      <td><?php echo number_format($row->Mar,2) ?></td>
+                      <td><?php echo number_format($row->Apr,2) ?></td>
+                      <td><?php echo number_format($row->May,2) ?></td>
+                      <td><?php echo number_format($row->Jun,2) ?></td>
+                      <td><?php echo number_format($row->Jul,2) ?></td>
+                      <td><?php echo number_format($row->Aug,2) ?></td>
+                      <td><?php echo number_format($row->Sept,2) ?></td>
+                      <td><?php echo number_format($row->Oct,2) ?></td>
+                      <td><?php echo number_format($row->Nov,2) ?></td>
+                      <td><?php echo number_format($row->Dis,2) ?></td>
+                      <td><?php echo number_format($row->Total,2) ?></td>
+                    </tr>
+                  <?php endforeach;?>
+                </tbody>
+              </table>
+          </div>
           </div>
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">

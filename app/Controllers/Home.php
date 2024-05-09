@@ -184,8 +184,46 @@ class Home extends BaseController
         }
         //compute the balance
         $balance = $totalContract - ($totalPaid+$totalPending);
+        //yearly expense
+        $year = date('Y');
+        $sql = 'SELECT a.rentalID,b.Payee,b.TotalAmount,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="01" THEN a.Payment ELSE 0 END)Jan,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="02" THEN a.Payment ELSE 0 END)Feb,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="03" THEN a.Payment ELSE 0 END)Mar,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="04" THEN a.Payment ELSE 0 END)Apr,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="05" THEN a.Payment ELSE 0 END)May,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="06" THEN a.Payment ELSE 0 END)Jun,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="07" THEN a.Payment ELSE 0 END)Jul,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="08" THEN a.Payment ELSE 0 END)Aug,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="09" THEN a.Payment ELSE 0 END)Sept,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="10" THEN a.Payment ELSE 0 END)Oct,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="11" THEN a.Payment ELSE 0 END)Nov,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="12" THEN a.Payment ELSE 0 END)Dis,
+        SUM(a.Payment)Total FROM tblrental_payment a LEFT JOIN tblrental b ON b.rentalID=a.rentalID 
+        WHERE DATE_FORMAT(a.Date,"%Y")=:year: group by a.rentalID';
+        $query = $this->db->query($sql,['year'=>$year]);
+        $expense = $query->getResult();
+        //total
+        $sql = 'SELECT
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="01" THEN a.Payment ELSE 0 END)Jan,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="02" THEN a.Payment ELSE 0 END)Feb,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="03" THEN a.Payment ELSE 0 END)Mar,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="04" THEN a.Payment ELSE 0 END)Apr,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="05" THEN a.Payment ELSE 0 END)May,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="06" THEN a.Payment ELSE 0 END)Jun,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="07" THEN a.Payment ELSE 0 END)Jul,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="08" THEN a.Payment ELSE 0 END)Aug,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="09" THEN a.Payment ELSE 0 END)Sept,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="10" THEN a.Payment ELSE 0 END)Oct,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="11" THEN a.Payment ELSE 0 END)Nov,
+        SUM(CASE WHEN DATE_FORMAT(a.Date,"%m")="12" THEN a.Payment ELSE 0 END)Dis,
+        SUM(a.Payment)Total FROM tblrental_payment a LEFT JOIN tblrental b ON b.rentalID=a.rentalID 
+        WHERE DATE_FORMAT(a.Date,"%Y")=:year:';
+        $query = $this->db->query($sql,['year'=>$year]);
+        $total_rent = $query->getResult();
         //collect
-        $data = ['contract'=>$totalContract,'balance'=>$balance,'pending'=>$totalPending,'paid'=>$totalPaid];
+        $data = ['contract'=>$totalContract,'balance'=>$balance,'pending'=>$totalPending,'paid'=>$totalPaid,
+        'expense'=>$expense,'total_rent'=>$total_rent];
         return view('rent-expense',$data);
     }
 
