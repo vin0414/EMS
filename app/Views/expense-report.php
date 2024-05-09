@@ -203,7 +203,7 @@
                             <div class="d-flex justify-content-between align-items-start">
                                 <div class="color-card">
                                 <p class="mb-0 color-card-head">Grand Total Expense</p>
-                                <h2 class="text-white"></h2>
+                                <h2 class="text-white"><?=number_format($total,2)?></h2>
                                 </div>
                                 <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-warning"></i>
                             </div>
@@ -216,7 +216,7 @@
                             <div class="d-flex justify-content-between align-items-start">
                                 <div class="color-card">
                                 <p class="mb-0 color-card-head">Total Pending</p>
-                                <h2 class="text-white"></h2>
+                                <h2 class="text-white"><?=number_format($pending,2)?></h2>
                                 </div>
                                 <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-primary"></i>
                             </div>
@@ -229,7 +229,7 @@
                             <div class="d-flex justify-content-between align-items-start">
                                 <div class="color-card">
                                 <p class="mb-0 color-card-head">Total Paid</p>
-                                <h2 class="text-white"></h2>
+                                <h2 class="text-white"><?=number_format($paid,2)?></h2>
                                 </div>
                                 <i class="card-icon-indicator mdi mdi-poll bg-inverse-icon-primary"></i>
                             </div>
@@ -237,6 +237,8 @@
                     </div>
                 </div>
             </div>
+            <br/>
+            
           </div>
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">

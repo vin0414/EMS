@@ -229,7 +229,53 @@ class Home extends BaseController
 
     public function expenseReport()
     {
-        return view('expense-report');
+        $year = date('Y');
+        //get the total expenses
+        $rent = 0;
+        $builder = $this->db->table('tblrental_payment');
+        $builder->select('IFNULL(SUM(Payment),0)total');
+        $builder->WHERE('DATE_FORMAT(Date,"%Y")',date('Y'));
+        $data = $builder->get();
+        if($row = $data->getRow())
+        {
+            $rent = $row->total;
+        }
+        //total other expenses
+        $current_expense=0;
+        $builder = $this->db->table('payment_info_master');
+        $builder->select('IFNULL(SUM(p_amount_in_figures),0)total');
+        $builder->WHERE('status',6);
+        $builder->WHERE('DATE_FORMAT(p_date,"%Y")',date('Y'));
+        $data = $builder->get();
+        if($row = $data->getRow())
+        {
+            $current_expense = $row->total;
+        }
+        $total_expense = $current_expense+$rent;
+        //get the total pending from rent and other expense
+        $other_expense=0;
+        $sql = "Select SUM(a.p_amount_in_figures)total from payment_info_master a
+        WHERE a.Status=6 AND DATE_FORMAT(a.p_date,'%Y')=:year: AND NOT EXISTS(Select b.id from tblattachment b WHERE a.id=b.id)";
+        $query = $this->db->query($sql,['year'=>$year]);
+        if($row = $query->getRow())
+        {
+            $other_expense = $row->total;
+        }
+        $rent_expense = 0;
+        $builder = $this->db->table('tblrental_payment');
+        $builder->select('IFNULL(SUM(Payment),0)total');
+        $builder->WHERE('DATE_FORMAT(Date,"%Y")',date('Y'))->WHERE('Status',0);
+        $data = $builder->get();
+        if($row = $data->getRow())
+        {
+            $rent_expense = $row->total;
+        }
+        $pending = $rent_expense+$other_expense;
+        //paid
+        $paid = $total_expense-$pending;
+        //collect
+        $data = ['total'=>$total_expense,'pending'=>$pending,'paid'=>$paid];
+        return view('expense-report',$data);
     }
 
     //functions - BASIC CRUD
